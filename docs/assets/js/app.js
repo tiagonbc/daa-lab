@@ -670,6 +670,7 @@ async function pageAbout() {
       <tr><td class="small">Data library, dashboards and monitoring tools</td><td class="small"><a href="#/method">Data pipeline with validation and lags</a></td></tr>
       <tr><td class="small">AI-enabled workflows, with validated outputs</td><td class="small"><a href="#/method">How AI was used and checked</a></td></tr>
       <tr><td class="small">Economics, asset allocation, multi-asset investing</td><td class="small"><a href="#/research">Research tracker</a></td></tr>
+      <tr><td class="small">How I would start and work inside the team</td><td class="small"><a href="#/playbook">Playbook</a></td></tr>
     </tbody></table></div>
     <div class="card"><h3>Context: OTPP's total-fund approach</h3><ul class="small">
       <li>OTPP manages <b>$279.4B</b> in net assets (2025) and lists dynamic, top-down asset allocation among its competitive advantages.</li>
@@ -682,8 +683,144 @@ async function pageAbout() {
     <p class="small" style="opacity:.7">This is a personal, independent project. It uses OTPP's publicly available annual report for context and borrows its public colour palette for readability. It is not affiliated with or endorsed by Ontario Teachers' Pension Plan.</p></div></div></section>`;
 }
 
+
+/* ================================================================== PLAYBOOK */
+async function pagePlaybook() {
+  const { strats } = await core();
+  const nStrat = strats.filter(s => !s.benchmark).length;
+  const JD = [
+    ['Research global macro and market developments; implications for returns, valuations, risk premia and total-fund positioning',
+     'A monthly macro and cross-asset review in the team’s format, built on the house view and data, with publication lags respected',
+     'On time every cycle; findings used in team discussions'],
+    ['Cross-asset portfolio analysis and scenario assessments for potential asset-mix shifts',
+     'A scenario toolkit: historical episodes, rate/inflation/equity/FX shocks and their effect on the total fund, the funding line and liquidity',
+     'Turnaround on ad-hoc requests; scenarios reconciled with Risk'],
+    ['Build, maintain and enhance analytical, quantitative and econometric models',
+     'Port the robust parts of my toolkit (walk-forward testing, point-in-time data, signal combination) into the team’s models; documented and versioned',
+     'Models documented and handed over for independent validation'],
+    ['Decision-oriented presentations and materials for senior leaders and decision forums',
+     'Committee-ready pages: recommendation, rationale, sizing, risks and what would change the view (as in the Monthly DAA Note)',
+     'Feedback from the Director; materials used without rework'],
+    ['Maintain the team’s library of data, charts, dashboards and monitoring tools',
+     'Automated refresh, data-quality checks (staleness, gaps, revisions) and a data dictionary, starting with the series I use most',
+     'Fewer manual updates; issues caught before meetings'],
+    ['Synthesize complex findings into concise insights',
+     'A three-bullet takeaway on every analysis; one chart that carries the message',
+     'Stakeholders can act on the summary alone'],
+    ['Integrate AI-enabled tools into research, modelling and programming, with review and judgement',
+     'Use only approved tools, never put confidential data in external tools, and keep a review log: tests, reconciliation to source and checked citations',
+     'Measurable time saved; zero unvalidated outputs'],
+    ['Contribute to cross-functional projects across Investments',
+     'Bring the DAA lens to joint work with Global Investment Strategy, Risk, Beta & Trading and Capital Markets',
+     'Delivered pieces of shared initiatives'],
+    ['Judgement within established objectives; significant recommendations reviewed by senior members and forums',
+     'I propose, document and stress-test; the Director and the forums decide. Every recommendation states its evidence, its confidence and its exit rule',
+     'Clean reviews; no surprises'],
+  ];
+  const partners = [
+    ['DAA team & Director, DAA', 'The house view, the signals in use, the risk budget and how decisions are made', 'Research capacity, model building, faster materials'],
+    ['Total Fund Management', 'The total-fund picture: liquidity, the funding line, leverage, board ranges', 'Scenario analysis of asset-mix shifts and their liquidity cost'],
+    ['Global Investment Strategy', 'The long-term views and capital market assumptions', 'Quantitative checks of where tactical signals agree or disagree'],
+    ['Risk', 'Expected tail loss (ETL), active-risk measurement, model-risk standards', 'Models built to pass validation; stress tests that reconcile with Risk’s numbers'],
+    ['Beta & Trading', 'How tilts are implemented: futures, swaps, costs, timing', 'Implementation-aware sizing (my execution background)'],
+    ['Capital Markets', 'Market colour, positioning and liquidity conditions', 'Systematic signal context for their views'],
+  ];
+  app.innerHTML = `
+  <section class="hero"><div class="eyebrow">Playbook</div><h1>How I would start in the DAA team, and how my work would fit Ontario Teachers' way of working</h1>
+  <p class="lede">DAA Lab shows what I can build on my own. Inside an institution the job is different: learn the house view, work inside the team's process and risk budget, and give the Director and decision forums analysis they can act on. This is my plan for the first year, mapped to the job description.</p></section>
+
+  <section class="grid-4">
+    <div class="card flat"><h3>Learn before I build</h3><p class="small muted">First understand the team's signals, data, risk budget and decision calendar. My own toolkit comes second.</p></div>
+    <div class="card flat"><h3>Fit the process</h3><p class="small muted">Work to the team's cadence, the board-approved ranges and active-risk budget, and the existing model inventory.</p></div>
+    <div class="card flat"><h3>Validate everything</h3><p class="small muted">Code with tests, data reconciled to source, models documented for independent validation, AI outputs reviewed.</p></div>
+    <div class="card flat"><h3>Write for decisions</h3><p class="small muted">Every piece ends with: what we recommend, why, how much, the risks and what would change our mind.</p></div>
+  </section>
+
+  <section>
+    <div class="section-head"><div><h2>The first year, in four phases</h2><p>Paced to how an analyst earns trust: deliver the assigned work well first, then take on a workstream.</p></div></div>
+    <div class="phases">
+      <div class="phase"><div class="when">Days 1–30</div><h3>Learn</h3><ul>
+        <li>Onboarding, the code of conduct, and the personal-trading, information-security and AI-use policies</li>
+        <li>Read the team's recent committee materials, signal documentation and model inventory</li>
+        <li>Map the data sources, refresh routines and who owns them</li>
+        <li>Meet Risk, Beta &amp; Trading and Global Investment Strategy counterparts</li>
+        <li>Take over one recurring deliverable (e.g. a chart pack) and run it as is</li></ul>
+        <div class="out">Output: a written map of the team's process, data and models, with questions, reviewed with the Director</div></div>
+      <div class="phase"><div class="when">Days 31–90</div><h3>Contribute</h3><ul>
+        <li>Own the recurring macro and cross-asset monitoring materials</li>
+        <li>Automate one manual refresh, with data-quality checks</li>
+        <li>Deliver the first scenario analyses on request</li>
+        <li>Propose one improvement to an existing tool, with a test plan</li>
+        <li>Agree with my manager which AI tools I use and how I log their review</li></ul>
+        <div class="out">Output: reliable weekly and monthly materials; one automation shipped</div></div>
+      <div class="phase"><div class="when">Months 4–6</div><h3>Own a workstream</h3><ul>
+        <li>Take a research question the Director sets, e.g. stock-bond correlation regimes and tilt sizing, or the public-vs-private gap</li>
+        <li>Walk-forward evaluation with settings fixed in advance and the sensitivities reported</li>
+        <li>Document the model to the model-risk standard and hand it to Risk for validation</li>
+        <li>Present the findings to the team, then to a forum if the Director agrees</li></ul>
+        <div class="out">Output: one documented, validated piece of research feeding a decision</div></div>
+      <div class="phase"><div class="when">Months 7–12</div><h3>Scale</h3><ul>
+        <li>Add the validated work to the team's production monitoring</li>
+        <li>Extend it to the CAD view and currency-hedging questions with Total Fund Management</li>
+        <li>Contribute to a cross-functional total-fund initiative</li>
+        <li>Pass CFA Level I (May 2027), then start Level II</li>
+        <li>Review the year with the Director and agree year-2 goals</li></ul>
+        <div class="out">Output: production-grade tools the team relies on, plus a clear development plan</div></div>
+    </div>
+  </section>
+
+  <section class="card" style="padding:0">
+    <div style="padding:18px 22px 6px"><h2>Mapped to the job description</h2><p class="muted small" style="margin-top:4px">Each responsibility in the posting (paraphrased), what I would do, and how my manager could measure it.</p></div>
+    <div class="table-wrap"><table class="jd"><thead><tr><th>The posting asks for</th><th>What I would do</th><th>How it's measured</th></tr></thead><tbody>
+      ${JD.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td class="muted">${esc(r[2])}</td></tr>`).join('')}
+    </tbody></table></div>
+    <p class="small muted" style="padding:10px 22px 16px;margin:0">The role has no people or budget accountability: it is about delivering the assigned research, analysis and models, and helping the team reach its objectives.</p>
+  </section>
+
+  <section>
+    <div class="section-head"><div><h2>What transfers from DAA Lab, and what changes</h2></div></div>
+    <div class="grid-2">
+      <div class="card"><h3>Transfers directly</h3><ul class="small">
+        <li><b>Testing discipline:</b> walk-forward selection, settings fixed in advance, sensitivity grids, the hindsight-vs-honest gap.</li>
+        <li><b>Data discipline:</b> publication lags, revision awareness, proxies validated before use.</li>
+        <li><b>Sizing in risk-budget terms:</b> tilts expressed as tracking error and information ratio, not as conviction.</li>
+        <li><b>Communication:</b> the Monthly DAA Note format and plain-language explanations.</li>
+        <li><b>Engineering:</b> tested, versioned Python; reproducible pipelines; monitoring.</li></ul></div>
+      <div class="card"><h3>Changes inside Ontario Teachers'</h3><ul class="small">
+        <li><b>Data:</b> the firm's licensed sources and internal holdings replace my public and Norgate data, and stay internal.</li>
+        <li><b>Perspective:</b> CAD reporting, a liability-aware total fund, and private assets in the mix.</li>
+        <li><b>Benchmarks and limits:</b> the board's ranges, the active-risk budget and the composite benchmark set the frame.</li>
+        <li><b>Implementation:</b> tilts through futures, swaps and overlays with Beta &amp; Trading, not ETF switches.</li>
+        <li><b>Governance:</b> model-risk validation, the decision forums and documented approvals.</li></ul></div>
+    </div>
+  </section>
+
+  <section class="card" style="padding:0">
+    <div style="padding:18px 22px 6px"><h2>Who I would work with</h2><p class="muted small" style="margin-top:4px">The groups the posting names, what I need to learn from each, and what I can offer them.</p></div>
+    <div class="table-wrap"><table class="jd"><thead><tr><th>Partner</th><th>What I need to learn</th><th>What I can offer</th></tr></thead><tbody>
+      ${partners.map(r => `<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('')}
+    </tbody></table></div>
+  </section>
+
+  <section class="card grey">
+    <h2>Guardrails I would follow</h2>
+    <div class="grid-2" style="margin-top:10px">
+      <ul class="small">
+        <li><b>Confidentiality:</b> no Ontario Teachers' data, positions or views in personal projects or external tools. DAA Lab would stay on public data only, or be paused, as my manager and compliance prefer.</li>
+        <li><b>Personal trading:</b> follow the personal-trading and conflict-of-interest policies in full, including pre-clearance. I would restructure or wind down my own systematic book as those policies require.</li>
+        <li><b>Outside activities:</b> disclose DAA Lab and any public writing for approval.</li></ul>
+      <ul class="small">
+        <li><b>Model risk:</b> every model documented with its assumptions, limits and tests, and validated before it supports a decision.</li>
+        <li><b>AI use:</b> approved tools only, human review of every output, and a log of how each output was checked.</li>
+        <li><b>Decision rights:</b> I analyse and recommend; senior team members and the forums decide.</li></ul>
+    </div>
+  </section>
+
+  <section class="callout"><b>In one sentence:</b> I would spend the first months learning how the DAA team works and delivering its existing work reliably, then bring the testing and data discipline behind the ${nStrat} strategies in this lab to research the Director prioritises, inside the team's governance.</section>`;
+}
+
 /* ================================================================== ROUTER */
-const ROUTES = { '': pageHome, blend: pageBlend, strategies: pageStrategies, s: pageStrategy, builder: pageBuilder, macro: pageMacro, research: pageResearch, review: pageReview, note: pageNote, method: pageMethod, about: pageAbout };
+const ROUTES = { '': pageHome, blend: pageBlend, strategies: pageStrategies, s: pageStrategy, builder: pageBuilder, macro: pageMacro, research: pageResearch, review: pageReview, note: pageNote, method: pageMethod, about: pageAbout, playbook: pagePlaybook };
 async function route() {
   const parts = location.hash.replace(/^#\/?/, '').split('/');
   const fn = ROUTES[parts[0]] || pageHome;
