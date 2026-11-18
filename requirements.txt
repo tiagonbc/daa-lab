@@ -1,0 +1,7 @@
+norgatedata>=1.0.77   # requires a Norgate Data subscription and the Norgate Data Updater running locally
+pandas>=2.2
+numpy>=1.26
+scipy>=1.11
+requests>=2.31
+markdown>=3.5
+pytest>=8.0

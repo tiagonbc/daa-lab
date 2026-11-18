@@ -1,0 +1,1029 @@
+[
+  {
+    "id": "faa",
+    "name": "Flexible Asset Allocation (FAA)",
+    "author": "Wouter J. Keller, Hugo S. van Putten",
+    "family": "momentum-rotation",
+    "source": {"title": "Generalized Momentum and Flexible Asset Allocation (FAA): An Heuristic Approach", "year": 2012, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2193735"},
+    "allocatesmartly_url": "https://allocatesmartly.com/list-of-strategies/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["VTI", "VEA", "VWO", "BND", "GSG", "VNQ", "SHY"],
+      "defensive": ["SHY"],
+      "canary": [],
+      "cash": "SHY (paper: VFISX, Vanguard Short-Term Treasury fund, which is also a member of the 7-asset universe)"
+    },
+    "signal": "Lookback 4 months (84 trading days) for all three factors, measured on daily data. R_i = P_t/P_{t-84d} - 1 (total return). V_i = volatility of daily returns over the lookback. C_i = average of the pairwise correlations of asset i's daily returns with each of the other universe assets over the lookback. Rank R descending, V ascending, C ascending (rank 1 = best). Loss L_i = wR*rank(R_i) + wV*rank(V_i) + wC*rank(C_i) with wR=1.0, wV=0.5, wC=0.5; lower L is better.",
+    "rules": [
+      "At the last trading day close of each month compute R, V, C for all 7 assets (the cash fund is ranked like any other asset).",
+      "Compute the rank-based loss L_i and select the 3 assets with the lowest L.",
+      "Absolute momentum: any selected asset with R_i <= 0 is replaced by the cash asset (SHY / VFISX).",
+      "Weight each of the 3 slots 1/3; cash slots add up in the cash asset.",
+      "Hold until the next month-end; rebalance the whole portfolio monthly."
+    ],
+    "parameters": {"lookback_trading_days": 84, "wR": 1.0, "wV": 0.5, "wC": 0.5, "top_n": 3, "abs_momentum_threshold": 0.0},
+    "data_needs": ["daily total-return (adjusted) closes for volatility and correlation", "month-end total-return prices"],
+    "earliest_etf_start": "2007 (VEA, BND); ~2006 with EFA/EEM/AGG/DBC substitutes; paper used mutual funds from 1997/98",
+    "plain_english": "Each month the seven asset classes are scored on three things: how much they rose over the last four months, how calm they were, and how little they moved in step with the others. The three best overall scores are bought in equal parts, but any of them that actually lost money over four months is swapped for short-term Treasuries.",
+    "notes": "Paper universe (mutual funds): VTSMX (US stocks), FDIVX (foreign stocks), VEIEX (EM), VFISX (short Treasuries = cash), VBMFX (US aggregate bonds), QRAAX (commodities), VGSIX (REITs); paper sample 1998-2012 with daily data. ETF mapping above follows TuringTrader's splice choices; AllocateSmartly tracks FAA but its rules page is members-only, so its exact ETFs are not verified. Rule details were cross-checked against TuringTrader source (Keller_FAA.cs) and BestFolio/Alpha Architect summaries because the SSRN PDF was not downloadable (Cloudflare). Tie-breaking of equal L values is unspecified. Whether R<=0 or R<0 triggers replacement is not stated precisely (TuringTrader keeps an asset only if R>0). Paper also discusses rank-weighted and log-loss variants (not catalogued)."
+  },
+  {
+    "id": "maa",
+    "name": "Modern Asset Allocation (MAA)",
+    "author": "Wouter J. Keller, Hugo S. van Putten",
+    "family": "other",
+    "source": {"title": "Tactical MPT and Momentum: The Modern Asset Allocation (MAA)", "year": 2013, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2373086"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly (CXO summary says trades at the first close of the month; treat as month-end signal, next-close execution)",
+    "universe": {
+      "risky": ["VTI", "VEA", "VWO", "BND", "SHY", "VNQ", "GSG"],
+      "defensive": [],
+      "canary": [],
+      "cash": "none explicit (assets with negative momentum are simply excluded; best reading: unallocated weight, if any, to SHY)"
+    },
+    "signal": "Lookback 4 months (84 trading days), daily data. r_i = total return over the lookback; v_i = volatility of daily returns; c_i = correlation of the asset's daily returns with an equal-weight index of the whole universe (single-index covariance model). r, v, c are shrunk 50% toward their cross-sectional (universe) averages; the index (market) volatility is shrunk toward zero (per CXO summary). Assets with r_i <= 0 are excluded.",
+    "rules": [
+      "At each monthly rebalance compute shrunk r_i, v_i, c_i for all assets on an 84-trading-day window.",
+      "Exclude assets with non-positive estimated return.",
+      "Form a long-only mean-variance portfolio from the remaining assets using the single-index covariance built from shrunk v_i, c_i and index volatility (exact closed-form weighting NOT verified).",
+      "Hold one month, then repeat."
+    ],
+    "parameters": {"lookback_trading_days": 84, "shrinkage": 0.5, "abs_momentum_threshold": 0.0},
+    "data_needs": ["daily total-return closes", "equal-weight index of the universe computed from daily returns"],
+    "earliest_etf_start": "2007 (VEA, BND); paper used 7 mutual funds from Nov 1997",
+    "plain_english": "A simplified version of classic portfolio optimisation that only uses the last four months of data. Assets that went down are dropped, and the rest are combined in proportions that favour assets with good recent returns, low volatility and low correlation with the overall market.",
+    "notes": "COULD NOT BE FULLY SPECIFIED: only the CXO Advisory summary was accessible (SSRN blocked), and it does not give the weight formula, number of holdings, or a cash rule. Universe is the same 7-fund set as FAA (VTSMX, FDIVX, VEIEX, VFISX, VBMFX, VGSIX, QRAAX) per the CXO description; paper also tested 9 universes of 7-130 assets. Not tracked by AllocateSmartly. Treat as low-confidence; CAA (2015) is the authors' later, fully specified successor."
+  },
+  {
+    "id": "eaa_golden_offensive",
+    "name": "Elastic Asset Allocation - Golden Offensive (EAA)",
+    "author": "Wouter J. Keller, Adam Butler",
+    "family": "momentum-rotation",
+    "source": {"title": "A Century of Generalized Momentum: From Flexible Asset Allocations (FAA) to Elastic Asset Allocation (EAA)", "year": 2014, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2543979"},
+    "allocatesmartly_url": "https://allocatesmartly.com/list-of-strategies/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "EFA", "EEM", "QQQ", "EWJ", "HYG", "IEF"],
+      "defensive": ["IEF"],
+      "canary": [],
+      "cash": "IEF (paper: US 10-year Treasury index acts as the cash/crash-protection asset); excess returns measured over 13-week T-bills (BIL)"
+    },
+    "signal": "r_i = average excess total return over the last 1, 3, 6 and 12 months, implemented as (R1 + R3 + R6 + R12)/22 minus the same quantity for T-bills (Rk = cumulative total return over k months, month-end data). v_i = volatility of the last 12 monthly returns. c_i = correlation of the last 12 monthly returns with the equal-weight average return of all N universe assets. Score z_i = (r_i^wR * (1 - c_i)^wC / v_i^wV)^(wS + eps) if r_i > 0, else z_i = 0; eps = 1e-6. Golden Offensive: wR=1, wC=0.5, wV=0, wS=2, i.e. z_i = (1 - c_i) * r_i^2 for r_i > 0.",
+    "rules": [
+      "At month-end compute r_i, v_i, c_i and z_i for every universe asset.",
+      "Crash protection: CP = (number of assets with r_i <= 0) / N; allocate CP to the cash asset (IEF).",
+      "Select the TopN assets by z_i, TopN = min(1 + ceil(sqrt(N)), floor(N/2)) = 3 for N = 7 (Kipnis' code default is 1 + ceil(sqrt(N)) = 4).",
+      "Weight selected assets w_i = (1 - CP) * z_i / sum(z_j over TopN); the cash asset can also be selected on its own score.",
+      "Hold to next month-end; rebalance monthly."
+    ],
+    "parameters": {"wR": 1.0, "wC": 0.5, "wV": 0.0, "wS": 2.0, "eps": 1e-6, "return_lookbacks_months": [1, 3, 6, 12], "vol_corr_lookback_months": 12, "top_n_formula": "min(1+ceil(sqrt(N)), floor(N/2))", "crash_protection": "CP = n_nonpositive / N"},
+    "data_needs": ["monthly total-return prices", "3-month T-bill return series for excess returns"],
+    "earliest_etf_start": "2007 (HYG); 2003 if HYG replaced by a high-yield mutual fund; paper used index data 1914-2014",
+    "plain_english": "Every asset gets a score that rewards strong recent gains and low correlation with the rest of the universe; the offensive version squares the return term so the leaders get much bigger weights. Money is spread over the top few scorers in proportion to their scores, and the share of the universe that is losing money is parked in Treasuries.",
+    "notes": "SSRN PDF not accessible; rules assembled from TrendXplorer's primer (co-developer blog), Kipnis' IKTrading EAA.R code, CXO and Quantopian-archive quotes of section 4.6 (excess return over 13-week T-bill). UNIVERSE IS A BEST READING: the paper used index universes of N=7, 15, 38 over 1914-2014; the CAA paper (same data set, 'Keller 2014b') lists N=8 = S&P 500, EAFE, EEM, US Tech, Japan, T-Bills, US Gov10y, US High Yield, so EAA's N=7 is assumed to be that set minus T-bills, mapped to ETFs above. AllocateSmartly tracks EAA Offensive/Defensive but rules and ETFs are members-only. Discrepancies: TrendXplorer's primer used total (not excess) returns and IEF as cash; Kipnis' prototype used the FAA mutual funds with VBMFX as cash; whether the cash asset is counted in CP is handled differently (TrendXplorer excludes it). Exact return averaging ((R1+R3+R6+R12)/22) follows Kipnis' code."
+  },
+  {
+    "id": "eaa_golden_defensive",
+    "name": "Elastic Asset Allocation - Golden Defensive (EAA)",
+    "author": "Wouter J. Keller, Adam Butler",
+    "family": "momentum-rotation",
+    "source": {"title": "A Century of Generalized Momentum: From Flexible Asset Allocations (FAA) to Elastic Asset Allocation (EAA)", "year": 2014, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2543979"},
+    "allocatesmartly_url": "https://allocatesmartly.com/list-of-strategies/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "EFA", "EEM", "QQQ", "EWJ", "HYG", "IEF"],
+      "defensive": ["IEF"],
+      "canary": [],
+      "cash": "IEF (paper: US 10-year Treasury); excess returns over 13-week T-bills (BIL)"
+    },
+    "signal": "Same inputs as eaa_golden_offensive. Golden Defensive elasticities: wR=1, wC=1, wV=0, wS=0.5, i.e. z_i = sqrt((1 - c_i) * r_i) for r_i > 0, else 0.",
+    "rules": [
+      "At month-end compute r_i (excess 1/3/6/12-month average), v_i, c_i (12 monthly returns) and z_i.",
+      "CP = (number of assets with r_i <= 0) / N goes to the cash asset (IEF).",
+      "Select TopN = min(1 + ceil(sqrt(N)), floor(N/2)) assets by z_i (3 for N = 7).",
+      "Weight w_i = (1 - CP) * z_i / sum(z_j over TopN).",
+      "Hold to next month-end; rebalance monthly."
+    ],
+    "parameters": {"wR": 1.0, "wC": 1.0, "wV": 0.0, "wS": 0.5, "eps": 1e-6, "return_lookbacks_months": [1, 3, 6, 12], "vol_corr_lookback_months": 12, "top_n_formula": "min(1+ceil(sqrt(N)), floor(N/2))", "crash_protection": "CP = n_nonpositive / N"},
+    "data_needs": ["monthly total-return prices", "3-month T-bill return series for excess returns"],
+    "earliest_etf_start": "2007 (HYG); paper used index data 1914-2014",
+    "plain_english": "Same machinery as the offensive version, but the score leans much harder on low correlation and only mildly on return, so weights are flatter and more diversified. Losing assets again push a proportional slice of the portfolio into Treasuries.",
+    "notes": "Golden Defensive exponents (wC=1, wS=0.5) come from TrendXplorer's primer and the IKTrading demo; Kipnis' first blog prototype instead suggested wS=1 for a 'defensive' setting - flagged as a discrepancy. Universe is the same best reading as eaa_golden_offensive (not verified). Paper also defines 'Equal Weighted Hedged' (wS=0, wC=1) and 'Equal Weighted Return' (wS=wC=0) variants, not catalogued separately."
+  },
+  {
+    "id": "caa_offensive",
+    "name": "Classical Asset Allocation - Offensive (CAA, TV=10%)",
+    "author": "Wouter J. Keller, Adam Butler, Ilya Kipnis",
+    "family": "other",
+    "source": {"title": "Momentum and Markowitz: A Golden Combination", "year": 2015, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2606884"},
+    "allocatesmartly_url": "https://allocatesmartly.com/classical-asset-allocation-combining-markowitz-momentum/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "EFA", "EEM", "EWJ", "HYG"],
+      "defensive": ["IEF", "BIL"],
+      "canary": [],
+      "cash": "BIL (T-bills) and IEF are both uncapped 'cash' assets"
+    },
+    "signal": "Expected return mu_i = (R1 + R3 + R6 + R12)/22, Rk = cumulative total return over the last k months (month-end data). Covariance = sample covariance of the last 12 monthly total returns. Long-only mean-variance efficient frontier computed with Markowitz' Critical Line Algorithm, with weight cap 25% on every risky asset and no cap (100%) on IEF and BIL. Pick the frontier portfolio whose annualized volatility equals the target TV = 10%.",
+    "rules": [
+      "At month-end compute mu_i and the 12-month covariance matrix for all 8 assets.",
+      "Build the long-only, capped efficient frontier (CLA).",
+      "Select the efficient portfolio with annualized volatility = 10%.",
+      "Trade to those weights at the close; hold to next month-end; rebalance monthly."
+    ],
+    "parameters": {"target_vol_annual": 0.10, "risky_cap": 0.25, "uncapped_assets": ["IEF", "BIL"], "return_lookbacks_months": [1, 3, 6, 12], "return_divisor": 22, "cov_lookback_months": 12},
+    "data_needs": ["monthly total-return prices", "a long-only constrained MVO / Critical Line Algorithm solver"],
+    "earliest_etf_start": "2007 (HYG, BIL); +12 months for covariance warm-up",
+    "plain_english": "A classic Markowitz optimiser fed only with recent data: expected returns come from 1-12 month momentum and risk from the last year of monthly returns. It picks the mix with the highest expected return for a 10% volatility budget, never putting more than a quarter in any one risky asset, and can sit fully in bonds and bills when nothing is trending.",
+    "notes": "Paper universe N=8 indices (Jan 1915-Dec 2014): S&P 500, EAFE, Emerging Markets, US Technology, Japan Topix, T-Bills, US Gov10y, US High Yield; AllocateSmartly maps these to SPY, EFA, EEM, QQQ, EWJ, BIL, IEF, HYG (EEM data before 1989 excluded by AS). Paper also has N=16 (FF sectors + bonds) and N=39 universes, not catalogued. Return estimate: the paper says equal weights on 1, 3, 6, 12-month lookbacks; AllocateSmartly (and Kipnis' code style) use sum/22, whereas TuringTrader uses (1*R1 + 3*R3 + 6*R6 + 12*R12)/22 - flagged discrepancy. Not specified in paper or AS: what to do if the target volatility is unreachable; best reading: if the maximum-return corner portfolio has vol < TV hold it, if the minimum-variance portfolio has vol > TV hold the minimum-variance portfolio."
+  },
+  {
+    "id": "caa_defensive",
+    "name": "Classical Asset Allocation - Defensive (CAA, TV=5%)",
+    "author": "Wouter J. Keller, Adam Butler, Ilya Kipnis",
+    "family": "other",
+    "source": {"title": "Momentum and Markowitz: A Golden Combination", "year": 2015, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2606884"},
+    "allocatesmartly_url": "https://allocatesmartly.com/classical-asset-allocation-combining-markowitz-momentum/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "EFA", "EEM", "EWJ", "HYG"],
+      "defensive": ["IEF", "BIL"],
+      "canary": [],
+      "cash": "BIL and IEF (uncapped)"
+    },
+    "signal": "Identical to caa_offensive except the efficient-frontier portfolio is chosen at annualized volatility TV = 5%.",
+    "rules": [
+      "At month-end compute mu_i = (R1+R3+R6+R12)/22 and the 12-month monthly-return covariance.",
+      "Build the long-only efficient frontier with 25% caps on risky assets and no caps on IEF/BIL.",
+      "Select the efficient portfolio with annualized volatility = 5%.",
+      "Hold to next month-end; rebalance monthly."
+    ],
+    "parameters": {"target_vol_annual": 0.05, "risky_cap": 0.25, "uncapped_assets": ["IEF", "BIL"], "return_lookbacks_months": [1, 3, 6, 12], "return_divisor": 22, "cov_lookback_months": 12},
+    "data_needs": ["monthly total-return prices", "long-only constrained MVO / CLA solver"],
+    "earliest_etf_start": "2007 (HYG, BIL); +12 months warm-up",
+    "plain_english": "The same momentum-fed optimiser as the offensive version but with half the risk budget, so it usually holds a larger share of Treasuries and bills. It aims for steadier returns with smaller drawdowns.",
+    "notes": "See caa_offensive for paper vs AllocateSmartly differences (return averaging, unreachable-target handling, EEM pre-1989 data)."
+  },
+  {
+    "id": "paa2",
+    "name": "Protective Asset Allocation - PAA2 (high protection, Top6, IEF)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Protective Asset Allocation (PAA): A Simple Momentum-Based Alternative for Term Deposits", "year": 2016, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2759734"},
+    "allocatesmartly_url": "https://allocatesmartly.com/protective-asset-allocation/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "IWM", "VGK", "EWJ", "EEM", "VNQ", "DBC", "GLD", "HYG", "LQD", "TLT"],
+      "defensive": ["IEF"],
+      "canary": ["(risky universe doubles as the breadth/canary universe)"],
+      "cash": "IEF (crash-protection asset)"
+    },
+    "signal": "SMA12 momentum: MOM_i = P_t / mean(P_t, P_{t-1}, ..., P_{t-12}) - 1, using the 13 most recent month-end total-return prices (Keller calls this SMA(12) = SMA13). n = number of risky assets with MOM > 0. Bond fraction BF = min(1, (N - n) / (N - n1)), n1 = a*N/4, with protection factor a = 2 and N = 12, so BF = min(1, (12 - n)/6).",
+    "rules": [
+      "At month-end compute MOM for the 12 risky assets.",
+      "Count n = assets with MOM > 0; BF = 100% if n <= 6, else BF = (12 - n)/6.",
+      "Put BF in IEF.",
+      "Put (1 - BF) equally into the TopN = 6 risky assets with the highest MOM (only those with MOM > 0; with a=2 all six are positive whenever BF < 100%).",
+      "Hold to next month-end; rebalance the full portfolio monthly."
+    ],
+    "parameters": {"N": 12, "protection_factor_a": 2, "n1": 6, "top_n": 6, "sma_lag_months": 12, "sma_points": 13},
+    "data_needs": ["monthly total-return prices (13 month-ends of history)"],
+    "earliest_etf_start": "2007 (HYG); +12 months for SMA warm-up; paper used simulated ETF data from Dec 1970",
+    "plain_english": "The strategy counts how many of twelve major asset classes are above their one-year average price. The fewer that are trending up, the more of the portfolio goes into intermediate Treasuries; once half or more are down it is entirely in Treasuries. The rest is split equally among the six strongest assets.",
+    "notes": "Paper universe used IYR (real estate) and GSG (commodities); AllocateSmartly uses VNQ and DBC and starts its backtest in 1989. Paper's main safe asset was IEF only (CXO summary; also BAA paper fn 3 'we focussed on PAA2 IEF'), although the paper notes SHY/IEF momentum switching could be more robust in rising-rate regimes (see paa_cpr). In-sample optimum (1971-1992): SMA12, a=2, Top6. Momentum 'bad' = non-positive."
+  },
+  {
+    "id": "paa_cpr",
+    "name": "Protective Asset Allocation - CPR (IEF or cash as protection)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Protective Asset Allocation (PAA): A Simple Momentum-Based Alternative for Term Deposits", "year": 2016, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2759734"},
+    "allocatesmartly_url": "https://allocatesmartly.com/protective-asset-allocation/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "IWM", "VGK", "EWJ", "EEM", "VNQ", "DBC", "GLD", "HYG", "LQD", "TLT"],
+      "defensive": ["IEF", "BIL"],
+      "canary": ["(risky universe doubles as the breadth universe)"],
+      "cash": "BIL / 3-month T-bill rate (paper: SHY)"
+    },
+    "signal": "Same SMA12 momentum and bond-fraction formula as paa2 (a=2, N=12). The crash-protection asset is whichever of IEF and cash (paper: SHY) has the higher SMA12 momentum.",
+    "rules": [
+      "Compute MOM = P_t/SMA13 - 1 for the 12 risky assets plus IEF and cash (BIL).",
+      "n = risky assets with MOM > 0; BF = 100% if n <= 6, else (12 - n)/6.",
+      "Allocate BF to the better of IEF vs cash by MOM.",
+      "Allocate (1 - BF)/6 to each of the 6 highest-MOM risky assets.",
+      "Hold to next month-end; rebalance monthly."
+    ],
+    "parameters": {"N": 12, "protection_factor_a": 2, "top_n": 6, "sma_lag_months": 12, "protection_candidates": ["IEF", "BIL"]},
+    "data_needs": ["monthly total-return prices", "3-month T-bill total return (cash)"],
+    "earliest_etf_start": "2007 (HYG, BIL); use T-bill index for cash before BIL",
+    "plain_english": "Identical to standard PAA except the safe bucket chooses between intermediate Treasuries and cash, picking whichever has been trending better. This aims to avoid holding bonds while bond prices themselves are falling.",
+    "notes": "AllocateSmartly substitutes cash (3-month UST) for the paper's SHY, citing frequent trading and low yields. Allocates ~52% to protection on average per AS."
+  },
+  {
+    "id": "paa1",
+    "name": "Protective Asset Allocation - PAA1 (medium protection)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Protective Asset Allocation (PAA): A Simple Momentum-Based Alternative for Term Deposits", "year": 2016, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2759734"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "IWM", "VGK", "EWJ", "EEM", "IYR", "GSG", "GLD", "HYG", "LQD", "TLT"],
+      "defensive": ["IEF"],
+      "canary": ["(risky universe doubles as the breadth universe)"],
+      "cash": "IEF"
+    },
+    "signal": "SMA12 momentum as in paa2. BF = min(1, (N - n)/(N - n1)) with a = 1, n1 = N/4 = 3, i.e. BF = min(1, (12 - n)/9).",
+    "rules": [
+      "Compute MOM = P_t/SMA13 - 1 for the 12 risky assets.",
+      "n = assets with MOM > 0; BF = min(1, (12 - n)/9) into IEF.",
+      "Split (1 - BF) equally over the top min(n, 6) risky assets by MOM (only positive-momentum assets are held; fewer are held if fewer are positive).",
+      "Rebalance monthly."
+    ],
+    "parameters": {"N": 12, "protection_factor_a": 1, "n1": 3, "top_n": 6, "sma_lag_months": 12},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (HYG)",
+    "plain_english": "A milder version of PAA: Treasuries are added more gradually as assets fall below trend, and the portfolio only goes fully defensive when three-quarters of the asset classes are trending down.",
+    "notes": "Paper variant, not tracked by AllocateSmartly. Universe shown with the paper's IYR/GSG; VNQ/DBC are acceptable substitutes. Equal weight per selected asset assumed to be (1-BF)/min(n, TopN) per CXO wording ('fewer are held'); TrendXplorer notes this case is not stated explicitly - flag."
+  },
+  {
+    "id": "paa0",
+    "name": "Protective Asset Allocation - PAA0 (low protection)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Protective Asset Allocation (PAA): A Simple Momentum-Based Alternative for Term Deposits", "year": 2016, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2759734"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "IWM", "VGK", "EWJ", "EEM", "IYR", "GSG", "GLD", "HYG", "LQD", "TLT"],
+      "defensive": ["IEF"],
+      "canary": ["(risky universe doubles as the breadth universe)"],
+      "cash": "IEF"
+    },
+    "signal": "SMA12 momentum as in paa2. BF = (N - n)/N = (12 - n)/12 (a = 0).",
+    "rules": [
+      "Compute MOM = P_t/SMA13 - 1 for the 12 risky assets.",
+      "BF = (12 - n)/12 into IEF, n = assets with MOM > 0.",
+      "Split (1 - BF) equally over the top min(n, 6) positive-momentum risky assets.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"N": 12, "protection_factor_a": 0, "n1": 0, "top_n": 6, "sma_lag_months": 12},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (HYG)",
+    "plain_english": "The least defensive PAA setting: the Treasury share simply equals the fraction of the twelve asset classes that are below trend.",
+    "notes": "Paper variant; per TrendXplorer it reduced volatility vs GTAA but failed the authors' absolute-return criteria. Not tracked by AllocateSmartly. Same Top-N ambiguity as paa1."
+  },
+  {
+    "id": "gpm",
+    "name": "Generalized Protective Momentum (GPM)",
+    "author": "Jan Willem Keuning, Wouter J. Keller",
+    "family": "momentum-rotation",
+    "source": {"title": "Generalized Protective Momentum (Seeking Alpha article)", "year": 2016, "url": "https://seekingalpha.com/article/3985525-generalized-protective-momentum"},
+    "allocatesmartly_url": "https://allocatesmartly.com/keuning-kellers-generalized-protective-momentum/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "IWM", "VGK", "EWJ", "EEM", "VNQ", "DBC", "GLD", "HYG", "LQD", "TLT"],
+      "defensive": ["IEF", "BIL"],
+      "canary": ["(risky universe doubles as the breadth universe)"],
+      "cash": "BIL / cash (original: SHY)"
+    },
+    "signal": "r_i = 13612U = (R1 + R3 + R6 + R12)/4 using month-end total returns. c_i = correlation of the asset's last 12 monthly returns with the monthly return of an equal-weight (monthly rebalanced) portfolio of the 12 risky assets. Score z_i = r_i * (1 - c_i). n = number of risky assets with z_i > 0. Crash-protection fraction CP = min(1, (12 - n)/6).",
+    "rules": [
+      "At month-end compute r_i, c_i, z_i for the 12 risky assets and for IEF and cash.",
+      "CP = 100% if n <= 6, otherwise (12 - n)/6.",
+      "CP goes to whichever of IEF and cash (SHY in the original) has the higher z.",
+      "(1 - CP) is split equally (1/3 each of the remainder) over the 3 risky assets with the highest z.",
+      "Hold to next month-end; rebalance monthly."
+    ],
+    "parameters": {"N": 12, "top_n": 3, "breadth_divisor": 6, "corr_lookback_months": 12, "momentum": "13612U"},
+    "data_needs": ["monthly total-return prices", "cash/T-bill return series"],
+    "earliest_etf_start": "2007 (HYG); +12 months warm-up",
+    "plain_english": "Like PAA, but each asset's recent return is discounted by how closely it moves with the overall basket, so diversifying assets such as gold or commodities get a boost. The three best scores are held, and the number of asset classes with negative scores decides how much is moved into Treasuries or cash.",
+    "notes": "Original published by Keuning on Seeking Alpha (Aug 2016) and TrendXplorer; not an SSRN paper. Original used SHY as the short-duration alternative; AllocateSmartly substitutes cash. AS asset proxies differ slightly from the authors'. HAA paper confirms GPM uses 13612U momentum. How z is computed for the cash asset (correlation of T-bill returns with the risky EW index) follows AS wording ('the one with the higher z')."
+  },
+  {
+    "id": "vaa_g4",
+    "name": "Vigilant Asset Allocation - G4 Aggressive (VAA-G4, T1/B1)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Breadth Momentum and Vigilant Asset Allocation (VAA): Winning More by Losing Less", "year": 2017, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3002624"},
+    "allocatesmartly_url": "https://allocatesmartly.com/vigilant-asset-allocation-dr-wouter-keller-jw-keuning/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "EFA", "EEM", "AGG"],
+      "defensive": ["LQD", "IEF", "SHY"],
+      "canary": ["SPY", "EFA", "EEM", "AGG"],
+      "cash": "SHY (AllocateSmartly executes SHY as cash / 3-month T-bill)"
+    },
+    "signal": "13612W: mom = 12*R1 + 4*R3 + 2*R6 + 1*R12 (Rk = P_t/P_{t-k} - 1, month-end total-return prices; the paper divides by 4 = average annualized return, which does not change sign or rank). Breadth b = number of offensive assets with mom <= 0; B = 1, T = 1.",
+    "rules": [
+      "At month-end compute 13612W for the 4 offensive and 3 defensive assets.",
+      "If all 4 offensive assets have positive momentum, hold 100% in the offensive asset with the highest momentum.",
+      "If any offensive asset has non-positive momentum, hold 100% in the defensive asset with the highest momentum (even if negative).",
+      "Hold to next month-end; rebalance monthly."
+    ],
+    "parameters": {"T": 1, "B": 1, "top_cash": 1, "momentum": "13612W"},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2004 (EEM/AGG start 2003; +12 months); 2008 with paper's VEA/VWO/BND",
+    "plain_english": "Four broad assets act as their own early-warning system: if every one of them has positive short-weighted momentum, the single strongest is bought; if even one is weakening, the whole portfolio moves into the strongest of three bond funds. It is very concentrated and switches often.",
+    "notes": "Paper's G4 universe is SPY, VEA, VWO, BND (TrendXplorer lists VOO instead of SPY); AllocateSmartly uses SPY, EFA, EEM, AGG. Paper backtests from Dec 1970 with simulated ETF data; out-of-sample Dec 1993-Dec 2016. TrendXplorer also mentions a G4 T2/B1 variant (top two at 50/50)."
+  },
+  {
+    "id": "vaa_g12",
+    "name": "Vigilant Asset Allocation - G12 (paper, T2/B4)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Breadth Momentum and Vigilant Asset Allocation (VAA): Winning More by Losing Less", "year": 2017, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3002624"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "IWM", "QQQ", "VGK", "EWJ", "VWO", "VNQ", "GSG", "GLD", "TLT", "LQD", "HYG"],
+      "defensive": ["SHY", "IEF", "LQD"],
+      "canary": ["(the 12 risky assets are the breadth universe)"],
+      "cash": "best of SHY/IEF/LQD by 13612W"
+    },
+    "signal": "13612W momentum on all assets. b = number of risky assets with mom <= 0. Cash fraction CF = min(1, b/B) rounded down to a multiple of 1/T ('easy trading': CF = floor(b*T/B)/T, capped at 1), with B = 4, T = 2.",
+    "rules": [
+      "At month-end compute 13612W for the 12 risky and 3 cash assets.",
+      "Compute b and CF = min(1, floor(b*T/B)/T).",
+      "Hold the top round((1 - CF)*T) risky assets by momentum (regardless of sign), each at weight 1/T.",
+      "Put CF into the single cash asset with the highest momentum (even if negative).",
+      "Rebalance monthly."
+    ],
+    "parameters": {"T": 2, "B": 4, "top_cash": 1, "momentum": "13612W", "cf_rounding": "floor to multiple of 1/T"},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (HYG); +12 months",
+    "plain_english": "Twelve global asset classes are monitored; each one with a negative trend shifts a quarter of the portfolio toward the best bond fund, and four or more negative trends mean fully defensive. Otherwise the two strongest assets are held.",
+    "notes": "In-sample optimal parameters per CXO summary: G12 B=4/T=2; other paper universes (U15 FF sectors B3/T4, U6 FF size-value B1/T6) are not ETF-implementable and not catalogued. CXO: base CF = b/B 'rounded to multiples of 1/T'; rounding direction (floor) taken from TrendXplorer's 'easy trading' formula - flag. LQD appears in both risky and cash universes."
+  },
+  {
+    "id": "vaa_g12_balanced",
+    "name": "Vigilant Asset Allocation - Balanced (AllocateSmartly G12, T5/B4)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Breadth Momentum and Vigilant Asset Allocation (VAA): Winning More by Losing Less", "year": 2017, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3002624"},
+    "allocatesmartly_url": "https://allocatesmartly.com/new-strategy-added-vigilant-asset-allocation-balanced/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "IWM", "QQQ", "VGK", "EWJ", "VWO", "VNQ", "GSG", "GLD", "TLT", "LQD", "HYG"],
+      "defensive": ["SHY", "IEF", "LQD"],
+      "canary": ["(the 12 risky assets are the breadth universe)"],
+      "cash": "best of SHY (as cash)/IEF/LQD"
+    },
+    "signal": "13612W momentum; b = risky assets with mom <= 0; CF = min(1, floor(b*T/B)/T) with T = 5, B = 4.",
+    "rules": [
+      "At month-end compute 13612W for the 12 risky and 3 cash assets.",
+      "CF = min(1, floor(b*5/4)/5): b=0 -> 0%, b=1 -> 20%, b=2 -> 40%, b=3 -> 60%, b>=4 -> 100%.",
+      "Hold the top round((1 - CF)*5) risky assets, each 20%.",
+      "Put CF into the best cash asset by momentum.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"T": 5, "B": 4, "top_cash": 1, "momentum": "13612W"},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (HYG); +12 months",
+    "plain_english": "A more diversified VAA: up to five of twelve asset classes are held, and each additional asset class with a weak trend moves a fifth of the portfolio into the strongest bond fund.",
+    "notes": "AllocateSmartly states G=12/T=5/B=4 but does not publish the ETFs or the CF rounding on the public page (refers to paper); universe shown is the paper's G12 (AS may substitute EEM/DBC). TrendXplorer lists T=2..5 with B=4 as acceptable G12 settings. Exact CF rounding (b/B vs floor to 1/T) used by AS is unverified - flag."
+  },
+  {
+    "id": "daa_g12",
+    "name": "Defensive Asset Allocation - G12 (DAA, T6/B2)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Breadth Momentum and the Canary Universe: Defensive Asset Allocation (DAA)", "year": 2018, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3212862"},
+    "allocatesmartly_url": "https://allocatesmartly.com/two-new-strategies-added-defensive-asset-allocation-and-accelerating-dual-momentum/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "IWM", "QQQ", "VGK", "EWJ", "VWO", "VNQ", "GSG", "GLD", "TLT", "HYG", "LQD"],
+      "defensive": ["SHY", "IEF", "LQD"],
+      "canary": ["VWO", "BND"],
+      "cash": "best of SHY/IEF/LQD by 13612W"
+    },
+    "signal": "13612W momentum on all assets. b = number of canary assets (VWO, BND) with negative momentum. CF = min(1, floor(b*T/B)/T) with B = 2, T = 6; i.e. 0 bad -> 0%, 1 bad -> 50%, 2 bad -> 100%.",
+    "rules": [
+      "At month-end compute 13612W for risky, cash and canary assets.",
+      "Count bad canaries b among VWO and BND.",
+      "b = 0: 100% equally in the top 6 risky assets (1/6 each, momentum sign ignored).",
+      "b = 1: top 3 risky assets at 1/6 each (50%) plus 50% in the best cash asset.",
+      "b = 2: 100% in the best cash asset (highest 13612W, even if negative).",
+      "Rebalance monthly."
+    ],
+    "parameters": {"T": 6, "B": 2, "top_cash": 1, "momentum": "13612W", "cf_rounding": "floor to multiple of 1/T"},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (BND, HYG); +12 months",
+    "plain_english": "Instead of watching the twelve holdings themselves, DAA watches two 'canary' funds - emerging-market stocks and the US bond market. If both are healthy it holds the six strongest asset classes; one sick canary means half defensive, and two mean fully in the best bond fund.",
+    "notes": "This is the 'standard' DAA (TrendXplorer announcement, TuringTrader Keller_DAA_G12). AllocateSmartly tracks a single DAA whose rules are members-only; it is very likely DAA-G12 but this is unverified. Canary selected on 1926-1970 data; in-sample 1971-1993; out-of-sample 1994-Mar 2018. Paper says 'negative' momentum for bad canaries (TuringTrader uses mom < 0). Paper also tested U6/U15 Fama-French universes (not catalogued)."
+  },
+  {
+    "id": "daa_g6",
+    "name": "Defensive Asset Allocation - G6 (T6/B2)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Breadth Momentum and the Canary Universe: Defensive Asset Allocation (DAA)", "year": 2018, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3212862"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "VEA", "VWO", "LQD", "TLT", "HYG"],
+      "defensive": ["SHY", "IEF", "LQD"],
+      "canary": ["VWO", "BND"],
+      "cash": "best of SHY/IEF/LQD by 13612W"
+    },
+    "signal": "13612W; b = bad canaries among VWO/BND; CF = min(1, floor(b*T/B)/T), T = 6, B = 2.",
+    "rules": [
+      "b = 0: all 6 risky assets at 1/6 each.",
+      "b = 1: top 3 risky by momentum at 1/6 each + 50% best cash asset.",
+      "b = 2: 100% best cash asset.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"T": 6, "B": 2, "top_cash": 1, "momentum": "13612W"},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (VEA, BND, HYG)",
+    "plain_english": "A six-asset version of DAA mixing US, developed and emerging stocks with corporate, Treasury and high-yield bonds, governed by the same two canaries.",
+    "notes": "LOW CONFIDENCE: parameters and universe come from TuringTrader's Keller_DAA_G6 class, whose comment reads 'instead of DAA-G4, we use DAA-G6'; the CXO summary of the paper lists only G12, U6, U15 and G4 universes, so G6 could not be verified as a paper variant. Note T = N = 6, so with b = 0 the whole risky universe is held."
+  },
+  {
+    "id": "daa_g4",
+    "name": "Defensive Asset Allocation - G4 (T2/B1)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Breadth Momentum and the Canary Universe: Defensive Asset Allocation (DAA)", "year": 2018, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3212862"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "VEA", "VWO", "BND"],
+      "defensive": ["SHY", "IEF", "LQD"],
+      "canary": ["VWO", "BND"],
+      "cash": "best of SHY/IEF/LQD by 13612W"
+    },
+    "signal": "13612W; b = bad canaries among VWO/BND; with B = 1 any bad canary -> CF = 100%; T = 2.",
+    "rules": [
+      "If neither VWO nor BND has negative 13612W: hold the top 2 of SPY/VEA/VWO/BND at 50% each.",
+      "Otherwise: 100% in the best of SHY/IEF/LQD.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"T": 2, "B": 1, "top_cash": 1, "momentum": "13612W"},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (VEA, BND)",
+    "plain_english": "The four-asset global DAA: hold the two strongest of US, developed, emerging stocks and US bonds while both canaries are healthy, and switch entirely to the best bond fund otherwise.",
+    "notes": "G4 universe confirmed by CXO summary; T=2/B=1 taken from TuringTrader (which comments that this variant 'has subpar risk/return') - paper parameters for G4 not independently verified, flag."
+  },
+  {
+    "id": "daa1_g4",
+    "name": "Defensive Asset Allocation - aggressive DAA1-G4 (T4/B1)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Breadth Momentum and the Canary Universe: Defensive Asset Allocation (DAA)", "year": 2018, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3212862"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "VEA", "VWO", "BND"],
+      "defensive": ["SHV", "IEF", "UST"],
+      "canary": ["VWO", "BND"],
+      "cash": "best of SHV/IEF/UST (UST = ProShares Ultra 7-10y Treasury, 2x)"
+    },
+    "signal": "13612W; B = 1 (any bad canary -> 100% cash universe); T = 4.",
+    "rules": [
+      "If both canaries have non-negative 13612W: hold all 4 risky assets (top 4 of 4) at 25% each.",
+      "Otherwise: 100% in the best of SHV/IEF/UST by 13612W.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"T": 4, "B": 1, "top_cash": 1, "momentum": "13612W"},
+    "data_needs": ["monthly total-return prices", "leveraged ETF UST history (2010+) or simulated 2x IEF"],
+    "earliest_etf_start": "2010 (UST); earlier requires a simulated 2x 7-10y Treasury series",
+    "plain_english": "An aggressive DAA that is fully invested in an equal mix of four global assets while the canaries are healthy, and otherwise jumps to the best of short bills, intermediate Treasuries or a 2x leveraged Treasury fund.",
+    "notes": "Parameters and cash universe from TuringTrader Keller_DAA1_G4 (consistent with my recollection of the paper's DAA1 section, but the paper PDF itself was not accessible) - flag. Includes a leveraged ETF in the cash universe."
+  },
+  {
+    "id": "daa1_g12",
+    "name": "Defensive Asset Allocation - aggressive DAA1-G12 (T2/B1)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Breadth Momentum and the Canary Universe: Defensive Asset Allocation (DAA)", "year": 2018, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3212862"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "IWM", "QQQ", "VGK", "EWJ", "VWO", "VNQ", "GSG", "GLD", "TLT", "HYG", "LQD"],
+      "defensive": ["SHV", "IEF", "UST"],
+      "canary": ["VWO", "BND"],
+      "cash": "best of SHV/IEF/UST"
+    },
+    "signal": "13612W; B = 1; T = 2.",
+    "rules": [
+      "If neither canary is bad: hold the top 2 risky assets at 50% each.",
+      "Otherwise: 100% in the best of SHV/IEF/UST.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"T": 2, "B": 1, "top_cash": 1, "momentum": "13612W"},
+    "data_needs": ["monthly total-return prices", "UST history or simulated 2x IEF"],
+    "earliest_etf_start": "2010 (UST)",
+    "plain_english": "Holds the two strongest of twelve global asset classes while both canaries are healthy and switches fully to the best defensive bond option at the first warning.",
+    "notes": "From TuringTrader Keller_DAA1_G12; not independently verified against the paper - flag."
+  },
+  {
+    "id": "daa1_u1",
+    "name": "Defensive Asset Allocation - minimal DAA1-U1 (SPY only)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "trend-following",
+    "source": {"title": "Breadth Momentum and the Canary Universe: Defensive Asset Allocation (DAA)", "year": 2018, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3212862"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY"],
+      "defensive": ["SHV", "IEF", "UST"],
+      "canary": ["VWO", "BND"],
+      "cash": "best of SHV/IEF/UST"
+    },
+    "signal": "13612W on canaries and cash assets; B = 1; T = 1.",
+    "rules": [
+      "If neither VWO nor BND has negative 13612W: 100% SPY.",
+      "Otherwise: 100% in the best of SHV/IEF/UST.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"T": 1, "B": 1, "top_cash": 1, "momentum": "13612W"},
+    "data_needs": ["monthly total-return prices", "UST history or simulated 2x IEF"],
+    "earliest_etf_start": "2010 (UST)",
+    "plain_english": "The simplest DAA: own the S&P 500 while emerging-market stocks and US bonds are both trending up, and otherwise move to the best-trending short, intermediate or leveraged Treasury fund.",
+    "notes": "From TuringTrader Keller_DAA1_U1; not independently verified against the paper - flag. Note SPY's own momentum is not checked."
+  },
+  {
+    "id": "laa",
+    "name": "Lethargic Asset Allocation (LAA)",
+    "author": "Wouter J. Keller",
+    "family": "macro",
+    "source": {"title": "Growth-Trend Timing and 60-40 Variations: Lethargic Asset Allocation (LAA)", "year": 2019, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3498092"},
+    "allocatesmartly_url": "https://allocatesmartly.com/blending-buy-hold-with-tactical-a-lethargic-approach-to-asset-allocation/",
+    "rebalance": "monthly, last trading day close (rebalance to equal weights every month)",
+    "universe": {
+      "risky": ["IWD", "GLD", "IEF", "QQQ"],
+      "defensive": ["IWD", "GLD", "IEF", "SHY"],
+      "canary": ["UNRATE (FRED)", "S&P 500 (SPY)"],
+      "cash": "SHY (AllocateSmartly executes SHY as cash / 3-month T-bill)"
+    },
+    "signal": "Growth-Trend timing (Philosophical Economics): bearish growth = US unemployment rate (FRED UNRATE, seasonally adjusted) above its 12-month simple moving average; bearish trend = S&P 500 below its 10-month simple moving average of month-end values. Risk-off only if BOTH are bearish.",
+    "rules": [
+      "75% is static: 25% IWD, 25% GLD, 25% IEF.",
+      "At month-end evaluate UE vs SMA12(UE) and SPX vs SMA10(SPX).",
+      "If UE > SMA12(UE) AND SPX < SMA10(SPX): the remaining 25% goes to SHY (cash); otherwise the 25% is in QQQ.",
+      "Rebalance all four sleeves back to 25% each monthly."
+    ],
+    "parameters": {"static_weights": {"IWD": 0.25, "GLD": 0.25, "IEF": 0.25}, "timed_weight": 0.25, "ue_sma_months": 12, "price_sma_months": 10, "ue_publication_lag_months": 1},
+    "data_needs": ["monthly total-return prices", "FRED UNRATE monthly", "S&P 500 month-end index or SPY"],
+    "earliest_etf_start": "2005 (GLD Nov 2004); paper used modeled data Feb 1949-Oct 2019",
+    "plain_english": "Three-quarters of the portfolio is a permanent, equal mix of value stocks, gold and Treasuries. The last quarter sits in the Nasdaq-100 unless unemployment is rising and the stock market is in a downtrend at the same time, in which case it moves to short-term Treasuries.",
+    "notes": "CXO summary text and FAQ disagree on direction, but the logic and Philosophical Economics' rule are: unemployment ABOVE its 12m SMA = bearish. Publication lag: the paper's handling was not verified; TuringTrader and AllocateSmartly's GTT implementations use the prior month's UE (1-month lag) - recommended. Price series (price vs total return) for the SMA10 test unverified; TuringTrader uses ~200 trading-day SMA of $SPX. AllocateSmartly replaces IWD with SPY before 1975 and executes SHY as cash; AS also reports a variant that only rebalances on signal change or at year end. Uses revised (not real-time) unemployment data."
+  },
+  {
+    "id": "laa_g4",
+    "name": "Lethargic Asset Allocation - G4 (global equity instead of QQQ)",
+    "author": "Wouter J. Keller",
+    "family": "macro",
+    "source": {"title": "Growth-Trend Timing and 60-40 Variations: Lethargic Asset Allocation (LAA)", "year": 2019, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3498092"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["WRLD = 3/6 SPY + 2/6 VEA + 1/6 VWO", "IWD", "GLD", "IEF"],
+      "defensive": ["IWD", "GLD", "IEF", "SHY"],
+      "canary": ["UNRATE (FRED)", "S&P 500"],
+      "cash": "SHY"
+    },
+    "signal": "Same Growth-Trend timing as laa (UE > SMA12 AND SPX < SMA10 -> risk-off).",
+    "rules": [
+      "75% static: 25% each IWD, GLD, IEF.",
+      "Timed 25%: a constructed world-equity sleeve (SPY 50%, VEA 33.3%, VWO 16.7% of the sleeve) when risk-on, SHY when risk-off.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"wrld_weights": {"SPY": 0.5, "VEA": 0.3333, "VWO": 0.1667}, "ue_sma_months": 12, "price_sma_months": 10},
+    "data_needs": ["monthly total-return prices", "FRED UNRATE"],
+    "earliest_etf_start": "2007 (VEA)",
+    "plain_english": "Same lazy structure as LAA, but the switchable quarter holds a world stock basket rather than the Nasdaq-100.",
+    "notes": "LOW CONFIDENCE: taken from TuringTrader's Keller_LAA_G4 class, which cites 'Fig. 16' of the paper; not verified against the PDF."
+  },
+  {
+    "id": "raa",
+    "name": "Resilient Asset Allocation (RAA)",
+    "author": "Wouter J. Keller",
+    "family": "macro",
+    "source": {"title": "Lazy Momentum with Growth-Trend Timing: Resilient Asset Allocation (RAA)", "year": 2020, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3752294"},
+    "allocatesmartly_url": "https://allocatesmartly.com/kellers-resilient-asset-allocation/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["QQQ", "IWN", "GLD", "IEF", "TLT"],
+      "defensive": ["IEF", "TLT"],
+      "canary": ["EEM", "AGG", "UNRATE (FRED)"],
+      "cash": "none (defensive portfolio is 50/50 IEF/TLT)"
+    },
+    "signal": "Unemployment: compare UNRATE at end of prior month (t-1) with its value 12 months before that (t-13). Canary: 13612W = 12*R1 + 4*R3 + 2*R6 + R12 for EEM and AGG (paper: VWO and BND).",
+    "rules": [
+      "If UE(t-1) <= UE(t-13): risk-on.",
+      "Else compute canary 13612W; if either canary is <= 0: risk-off, otherwise risk-on.",
+      "Risk-on: 20% each in QQQ, IWN, GLD, IEF, TLT.",
+      "Risk-off: 50% IEF, 50% TLT.",
+      "Rebalance monthly to target weights."
+    ],
+    "parameters": {"ue_comparison": "UE(t-1) vs UE(t-13)", "canary_momentum": "13612W", "risk_on_weights": 0.2, "risk_off_weights": 0.5},
+    "data_needs": ["monthly total-return prices", "FRED UNRATE monthly"],
+    "earliest_etf_start": "2005 (GLD); 2008 with paper's VWO/BND canaries",
+    "plain_english": "An all-weather style mix of tech stocks, small-cap value, gold and Treasuries that is held almost all the time. Only when unemployment is higher than a year ago and an emerging-market or bond canary is also weakening does it retreat to Treasuries alone.",
+    "notes": "Described as a more aggressive LAA. Paper canaries VWO/BND (borrowed from DAA); AllocateSmartly uses EEM/AGG. Defensive about 15% of the time over Dec 1970-Nov 2020 per CXO. Uses revised unemployment data (look-ahead bias). Exact bad-canary threshold (< 0 vs <= 0) not verified."
+  },
+  {
+    "id": "baa_g12_balanced",
+    "name": "Bold Asset Allocation - Balanced (BAA-G12/T6)",
+    "author": "Wouter J. Keller",
+    "family": "momentum-rotation",
+    "source": {"title": "Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA)", "year": 2022, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845"},
+    "allocatesmartly_url": "https://allocatesmartly.com/bold-asset-allocation/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "IWM", "VGK", "EWJ", "VWO", "VNQ", "DBC", "GLD", "TLT", "HYG", "LQD"],
+      "defensive": ["TIP", "DBC", "BIL", "IEF", "TLT", "LQD", "BND"],
+      "canary": ["SPY", "VWO", "VEA", "BND"],
+      "cash": "BIL (AllocateSmartly books BIL as cash / 3-month T-bill)"
+    },
+    "signal": "Relative momentum (offensive and defensive): SMA12 = P_t / mean(P_t..P_{t-12}) - 1 over 13 month-end total-return prices. Canary (absolute) momentum: 13612W = 12*R1 + 4*R3 + 2*R6 + R12. Breadth B = 1.",
+    "rules": [
+      "At month-end compute 13612W for the 4 canaries.",
+      "If all canaries have positive 13612W: hold the top 6 offensive assets by SMA12 momentum, 1/6 each (no absolute filter on offensive picks).",
+      "If any canary is negative: pick the top 3 defensive assets by SMA12 momentum, 1/3 each; any of the three whose SMA12 momentum is below BIL's is replaced by BIL.",
+      "Hold to next month-end; rebalance monthly."
+    ],
+    "parameters": {"NO": 12, "TO": 6, "ND": 7, "TD": 3, "NP": 4, "B": 1, "offensive_defensive_momentum": "SMA12 (13 points)", "canary_momentum": "13612W"},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (HYG, BIL, BND, VEA); +12 months",
+    "plain_english": "Four canaries (US, developed and emerging stocks plus US bonds) decide the mode. If all four are trending up, the six assets furthest above their one-year average are held; if any canary weakens, the strategy holds the three best of a defensive list of bonds, TIPS and commodities, falling back to T-bills where those are weaker than cash.",
+    "notes": "Paper (v0.981, 18 Jul 2022): Dec 1970-Jun 2022, defensive ~57% of months, turnover ~472%/yr. AllocateSmartly ETFs: canary SPY, EFA, EEM, AGG; offensive uses EEM for VWO; defensive uses AGG for BND; says it tracks 'version 2' of the paper (v1 had more universe overfitting) - the downloaded v0.981 matches AS's universes. Paper text says 'negative' canary momentum for bad. TuringTrader's BAA_v2 code uses BNDX as canary, which appears to be an error vs the paper's BND."
+  },
+  {
+    "id": "baa_g4_aggressive",
+    "name": "Bold Asset Allocation - Aggressive (BAA-G4/T1)",
+    "author": "Wouter J. Keller",
+    "family": "momentum-rotation",
+    "source": {"title": "Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA)", "year": 2022, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845"},
+    "allocatesmartly_url": "https://allocatesmartly.com/bold-asset-allocation/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["QQQ", "VWO", "VEA", "BND"],
+      "defensive": ["TIP", "DBC", "BIL", "IEF", "TLT", "LQD", "BND"],
+      "canary": ["SPY", "VWO", "VEA", "BND"],
+      "cash": "BIL"
+    },
+    "signal": "Same as baa_g12_balanced: SMA12 relative momentum for offensive/defensive, 13612W for canaries, B = 1.",
+    "rules": [
+      "If all 4 canaries have positive 13612W: 100% in the single offensive asset with the highest SMA12 momentum.",
+      "Otherwise: top 3 defensive assets by SMA12 at 1/3 each, replacing any with momentum below BIL by BIL.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"NO": 4, "TO": 1, "ND": 7, "TD": 3, "NP": 4, "B": 1},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (VEA, BND, BIL); +12 months",
+    "plain_english": "The high-octane BAA: when all four canaries are healthy it puts everything into the strongest of Nasdaq-100, developed stocks, emerging stocks and bonds. Any canary weakness sends it to the defensive trio.",
+    "notes": "Paper: QQQ substituted for SPY in the G4 offensive universe (in-sample optimal); FS Dec 1970-Jun 2022 R=21.0%, D=14.6%. AllocateSmartly ETFs: QQQ, EEM, EFA, AGG offensive; canary SPY, EFA, EEM, AGG; defensive uses AGG for BND."
+  },
+  {
+    "id": "baa_g12_t3",
+    "name": "Bold Asset Allocation - G12/T3 variant",
+    "author": "Wouter J. Keller",
+    "family": "momentum-rotation",
+    "source": {"title": "Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA)", "year": 2022, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "IWM", "VGK", "EWJ", "VWO", "VNQ", "DBC", "GLD", "TLT", "HYG", "LQD"],
+      "defensive": ["TIP", "DBC", "BIL", "IEF", "TLT", "LQD", "BND"],
+      "canary": ["SPY", "VWO", "VEA", "BND"],
+      "cash": "BIL"
+    },
+    "signal": "As baa_g12_balanced but with TO = 3.",
+    "rules": [
+      "All canaries positive (13612W): top 3 offensive by SMA12, 1/3 each.",
+      "Otherwise: top 3 defensive by SMA12, BIL replacing any weaker than BIL.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"NO": 12, "TO": 3, "ND": 7, "TD": 3, "NP": 4, "B": 1},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007; +12 months",
+    "plain_english": "A middle ground between balanced and aggressive BAA that concentrates the offensive leg in the three strongest of twelve assets.",
+    "notes": "Robustness variant from section 5 / fig 15 of the paper; not tracked by AllocateSmartly."
+  },
+  {
+    "id": "baa_g4_t2",
+    "name": "Bold Asset Allocation - G4/T2 variant",
+    "author": "Wouter J. Keller",
+    "family": "momentum-rotation",
+    "source": {"title": "Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA)", "year": 2022, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["QQQ", "VWO", "VEA", "BND"],
+      "defensive": ["TIP", "DBC", "BIL", "IEF", "TLT", "LQD", "BND"],
+      "canary": ["SPY", "VWO", "VEA", "BND"],
+      "cash": "BIL"
+    },
+    "signal": "As baa_g4_aggressive but with TO = 2.",
+    "rules": [
+      "All canaries positive: top 2 offensive by SMA12, 50% each.",
+      "Otherwise: top 3 defensive by SMA12, BIL replacing any weaker than BIL.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"NO": 4, "TO": 2, "ND": 7, "TD": 3, "NP": 4, "B": 1},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007; +12 months",
+    "plain_english": "Aggressive BAA split across the two strongest offensive assets instead of one; the paper found it had the best Sharpe ratio of the BAA family.",
+    "notes": "Robustness variant from section 5 / fig 15 of the paper; not tracked by AllocateSmartly."
+  },
+  {
+    "id": "haa_balanced",
+    "name": "Hybrid Asset Allocation - Balanced (HAA-8, G8/T4)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA)", "year": 2023, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906"},
+    "allocatesmartly_url": "https://allocatesmartly.com/hybrid-asset-allocation/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "IWM", "VEA", "VWO", "VNQ", "DBC", "IEF", "TLT"],
+      "defensive": ["BIL", "IEF"],
+      "canary": ["TIP"],
+      "cash": "best of BIL/IEF by momentum (AllocateSmartly: cash instead of BIL)"
+    },
+    "signal": "13612U momentum for all universes: mom = (R1 + R3 + R6 + R12)/4, Rk = P_t/P_{t-k} - 1 on month-end total-return prices. 'Bad' = mom <= 0.",
+    "rules": [
+      "At month-end compute 13612U for TIP, the 8 offensive assets, BIL and IEF.",
+      "Defensive asset = whichever of BIL and IEF has the higher momentum.",
+      "If TIP momentum <= 0: 100% in the defensive asset.",
+      "Else: take the top 4 offensive assets by momentum at 25% each; any of the four with momentum <= 0 is replaced by the defensive asset.",
+      "Hold to next month-end; rebalance the whole portfolio monthly."
+    ],
+    "parameters": {"NO": 8, "TO": 4, "ND": 2, "TD": 1, "NP": 1, "momentum": "13612U"},
+    "data_needs": ["monthly total-return prices", "TIPS proxy before Dec 2003 (paper uses IEF for TIP before end-1973)"],
+    "earliest_etf_start": "2007 (VEA, BIL); TIP Dec 2003",
+    "plain_english": "The inflation-protected Treasury fund (TIP) is the single canary: when it is falling, which tends to happen when yields or inflation expectations rise, everything goes to bills or intermediate Treasuries. Otherwise the four strongest of eight global assets are held equally, and any of them that is itself in a downtrend is swapped for the defensive asset.",
+    "notes": "Verified directly from the paper (v0.98, 5 Mar 2023; FS Dec 1970-Dec 2022: R=15.9%, D=9.7%, cash fraction 16.7%). AllocateSmartly uses EFA/EEM for VEA/VWO and PDBC for DBC, uses cash instead of BIL, and notes it initially sent bad offensive slots to cash before correcting to 'IEF or cash, whichever is stronger'. Pre-1997 TIPS data are simulated - treat with caution; paper substitutes IEF for TIP before end-1973."
+  },
+  {
+    "id": "haa_simple",
+    "name": "Hybrid Asset Allocation - Simple (HAA-1, SPY only)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "trend-following",
+    "source": {"title": "Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA)", "year": 2023, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906"},
+    "allocatesmartly_url": "https://allocatesmartly.com/dr-keller-keunings-simple-variation-of-hybrid-asset-allocation/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY"],
+      "defensive": ["BIL", "IEF"],
+      "canary": ["TIP"],
+      "cash": "best of BIL/IEF by 13612U"
+    },
+    "signal": "13612U momentum (average of 1, 3, 6, 12-month total returns) for SPY, TIP, IEF, BIL.",
+    "rules": [
+      "If TIP momentum > 0 and SPY momentum > 0: 100% SPY.",
+      "Otherwise: 100% in IEF if IEF momentum > BIL momentum, else BIL (cash).",
+      "Rebalance monthly."
+    ],
+    "parameters": {"NO": 1, "TO": 1, "ND": 2, "TD": 1, "NP": 1, "momentum": "13612U"},
+    "data_needs": ["monthly total-return prices", "TIPS proxy pre-2003"],
+    "earliest_etf_start": "2004 (TIP Dec 2003; BIL 2007 or use T-bill index)",
+    "plain_english": "Own the S&P 500 only when both stocks and inflation-protected Treasuries have positive average returns over 1-12 months; otherwise sit in whichever of intermediate Treasuries or T-bills is trending better. It trades only about twice a year on average.",
+    "notes": "Paper FS Dec 1970-Dec 2022: R=12.8%, D=16.6%, ~1.8 trading months/yr. AllocateSmartly phrases the rule as 'TIP and SPY both positive', which is equivalent to the paper's Top1-of-1 with absolute momentum. AS also ran an adversarial test substituting IEF for TIP before Dec 2003. Paper footnote: HAA-2 (SPY/IEF risky, Top1) considered slightly less offensive."
+  },
+  {
+    "id": "haa_4",
+    "name": "Hybrid Asset Allocation - HAA-4 (G4/T2)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA)", "year": 2023, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "VEA", "VNQ", "IEF"],
+      "defensive": ["BIL", "IEF"],
+      "canary": ["TIP"],
+      "cash": "best of BIL/IEF"
+    },
+    "signal": "13612U momentum; TopX = NO/2 = 2.",
+    "rules": [
+      "If TIP momentum <= 0: 100% best of BIL/IEF.",
+      "Else: top 2 risky by momentum at 50% each, each replaced by best of BIL/IEF if its momentum <= 0.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"NO": 4, "TO": 2, "ND": 2, "TD": 1, "NP": 1, "momentum": "13612U"},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (VEA, BIL)",
+    "plain_english": "A four-asset HAA (US stocks, developed stocks, real estate, Treasuries) holding the best two, governed by the TIP canary.",
+    "notes": "Robustness variant (fig 11) from the paper; FS R=14.5%, D=13.7%. Not tracked by AllocateSmartly."
+  },
+  {
+    "id": "haa_12",
+    "name": "Hybrid Asset Allocation - HAA-12 (G12/T6)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA)", "year": 2023, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "IWM", "VGK", "EWJ", "VWO", "VNQ", "DBC", "GLD", "IEF", "TLT", "LQD"],
+      "defensive": ["BIL", "IEF"],
+      "canary": ["TIP"],
+      "cash": "best of BIL/IEF"
+    },
+    "signal": "13612U momentum; TopX = 6.",
+    "rules": [
+      "If TIP momentum <= 0: 100% best of BIL/IEF.",
+      "Else: top 6 risky at 1/6 each, each replaced by best of BIL/IEF if its momentum <= 0.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"NO": 12, "TO": 6, "ND": 2, "TD": 1, "NP": 1, "momentum": "13612U"},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2007 (BIL); 2006 with a T-bill index",
+    "plain_english": "HAA applied to a twelve-asset global universe, holding the best half.",
+    "notes": "Robustness variant (fig 10); FS R=15.9%, D=10.7%. Not tracked by AllocateSmartly."
+  },
+  {
+    "id": "haa_16",
+    "name": "Hybrid Asset Allocation - HAA-16 (G16/T8)",
+    "author": "Wouter J. Keller, Jan Willem Keuning",
+    "family": "momentum-rotation",
+    "source": {"title": "Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA)", "year": 2023, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "QQQ", "IWM", "IWD", "VGK", "EWJ", "VWO", "SCZ", "VNQ", "REM", "DBC", "GLD", "IEF", "TLT", "HYG", "LQD"],
+      "defensive": ["BIL", "IEF"],
+      "canary": ["TIP"],
+      "cash": "best of BIL/IEF"
+    },
+    "signal": "13612U momentum; TopX = 8.",
+    "rules": [
+      "If TIP momentum <= 0: 100% best of BIL/IEF.",
+      "Else: top 8 risky at 12.5% each, each replaced by best of BIL/IEF if its momentum <= 0.",
+      "Rebalance monthly."
+    ],
+    "parameters": {"NO": 16, "TO": 8, "ND": 2, "TD": 1, "NP": 1, "momentum": "13612U"},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2008 (SCZ Dec 2007, REM 2007, HYG 2007)",
+    "plain_english": "HAA applied to a sixteen-asset global universe, holding the best eight.",
+    "notes": "Robustness variant (fig 9); FS R=15.1%, D=13.1%. Not tracked by AllocateSmartly. The paper's fig 9 lists IDW in the dataset text but IWD in the universe; IWD (Russell 1000 Value) assumed."
+  },
+  {
+    "id": "kda",
+    "name": "Kipnis Defensive Adaptive Asset Allocation (KDA)",
+    "author": "Ilya Kipnis",
+    "family": "momentum-rotation",
+    "source": {"title": "Right Now It's KDA... Asset Allocation (QuantStrat TradeR blog)", "year": 2019, "url": "https://quantstrattrader.wordpress.com/2019/01/24/right-now-its-kda-asset-allocation/"},
+    "allocatesmartly_url": "https://allocatesmartly.com/ilya-kipnis-defensive-adaptive-asset-allocation/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "VGK", "EWJ", "EEM", "VNQ", "RWX", "IEF", "TLT", "DBC", "GLD"],
+      "defensive": ["IEF"],
+      "canary": ["EEM", "AGG"],
+      "cash": "cash / T-bills when IEF momentum is not positive"
+    },
+    "signal": "13612W momentum on daily data: 12*(P0/P21 - 1) + 4*(P0/P63 - 1) + 2*(P0/P126 - 1) + (P0/P252 - 1) (AllocateSmartly day counts; Kipnis used monthly endpoints). Weights within the risky sleeve from minimum-variance optimisation on a covariance = vol_i*vol_j*rho_ij, where vol = standard deviation of the last 21 daily returns and rho = (12*rho_21 + 4*rho_63 + 2*rho_126 + 1*rho_252)/19 (correlations of daily returns over 21/63/126/252 days).",
+    "rules": [
+      "At month-end compute 13612W for the 10 risky assets, the 2 canaries and IEF.",
+      "Risky fraction = share of canaries with positive momentum: 2 -> 100%, 1 -> 50%, 0 -> 0%.",
+      "Select the top 5 risky assets by momentum and drop any with momentum <= 0.",
+      "Weight the survivors by long-only minimum variance using the blended covariance (single survivor gets 100% of the sleeve); scale the sleeve by the risky fraction.",
+      "Remainder goes to IEF if IEF momentum > 0, otherwise cash.",
+      "AllocateSmartly only: drop positions below 2% and redistribute proportionally.",
+      "Hold to next month-end."
+    ],
+    "parameters": {"top_n": 5, "canary_count": 2, "vol_window_days": 21, "corr_windows_days": [21, 63, 126, 252], "corr_weights": [12, 4, 2, 1], "min_position_AS": 0.02},
+    "data_needs": ["daily total-return closes (for vol/correlation)", "month-end prices"],
+    "earliest_etf_start": "2007 (RWX Dec 2006, DBC 2006); Kipnis' data from 1990 via mutual-fund/Yahoo history",
+    "plain_english": "A blend of ideas from other strategies: two canaries (emerging stocks and US bonds) set how much is invested, momentum picks up to five of ten asset classes, and a minimum-variance calculation sizes them so the mix is as calm as possible. Whatever is not invested goes to intermediate Treasuries if they are trending up, otherwise to cash.",
+    "notes": "Universe borrowed from Butler/Philbrick's Adaptive Asset Allocation; canary from DAA. Kipnis used VWO/BND canaries and monthly endpoints; AllocateSmartly uses EEM/AGG and fixed 21/63/126/252-day lookbacks, plus the 2% minimum position rule. Kipnis also tested 1.5x/2x leverage when both canaries are positive (not catalogued). AS attributes about 1.4%/yr gap vs Kipnis to its 0.1% transaction-cost assumption."
+  },
+  {
+    "id": "gem",
+    "name": "Global Equities Momentum (GEM) - Traditional Dual Momentum (official rules)",
+    "author": "Gary Antonacci",
+    "family": "momentum-rotation",
+    "source": {"title": "Dual Momentum Investing: An Innovative Strategy for Higher Returns with Lower Risk (McGraw-Hill book)", "year": 2014, "url": "https://www.optimalmomentum.com/"},
+    "allocatesmartly_url": "https://allocatesmartly.com/list-of-strategies/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "VEU"],
+      "defensive": ["AGG"],
+      "canary": ["BIL"],
+      "cash": "BIL is only the absolute-momentum hurdle; the defensive holding is AGG/BND (US aggregate bonds)"
+    },
+    "signal": "12-month total return (R12) of each asset at month-end. Absolute momentum = R12(S&P 500) - R12(3-month T-bills). Relative momentum = R12(S&P 500) vs R12(ACWI ex-US).",
+    "rules": [
+      "At month-end compute 12-month total returns of SPY, VEU (ACWI ex-US) and BIL (T-bills).",
+      "If R12(SPY) <= R12(BIL): hold 100% AGG (US aggregate bonds).",
+      "Otherwise hold 100% of whichever of SPY and VEU has the higher R12.",
+      "Hold to next month-end."
+    ],
+    "parameters": {"lookback_months": 12, "abs_momentum_asset": "S&P 500 only", "hurdle": "3-month T-bill total return"},
+    "data_needs": ["monthly total-return prices", "3-month T-bill total-return series"],
+    "earliest_etf_start": "2008 (VEU Mar 2007, BIL May 2007; ACWX Mar 2008); ~2004 with EFA/AGG and a T-bill index",
+    "plain_english": "If US stocks have beaten Treasury bills over the past year, own whichever of US or international stocks did better; if not, own a broad US bond fund. It usually holds a single fund for many months at a time.",
+    "notes": "Book indices: S&P 500, MSCI ACWI ex-US, Barclays US Aggregate Bond, 3-month T-bills (pre-ACWI splicing not verified). TrendXplorer notes the official rules (book p.98) apply absolute momentum to the S&P 500 first; the widely copied flowchart (p.101/112) differs (see gem_simplified). Antonacci's FAQ (quoted second-hand) names BIL (SHV when rates are near zero) for T-bills and BND/AGG for bonds. AllocateSmartly tracks 'Traditional Dual Momentum' but its rules/ETFs (likely SPY/EFA-or-ACWX/AGG/BIL) are members-only and not verified."
+  },
+  {
+    "id": "gem_simplified",
+    "name": "Global Equities Momentum - simplified flowchart version",
+    "author": "Gary Antonacci",
+    "family": "momentum-rotation",
+    "source": {"title": "Dual Momentum Investing (McGraw-Hill book), simplified flowchart", "year": 2014, "url": "https://www.optimalmomentum.com/"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "VEU"],
+      "defensive": ["AGG"],
+      "canary": ["BIL"],
+      "cash": "AGG/BND when the winner fails the T-bill hurdle"
+    },
+    "signal": "12-month total returns of SPY, VEU, BIL.",
+    "rules": [
+      "Pick the higher-R12 of SPY and VEU (relative momentum).",
+      "If the winner's R12 > R12(BIL): hold it; otherwise hold AGG.",
+      "Hold to next month-end."
+    ],
+    "parameters": {"lookback_months": 12},
+    "data_needs": ["monthly total-return prices", "T-bill series"],
+    "earliest_etf_start": "2008 (VEU/BIL); ~2004 with EFA/AGG and a T-bill index",
+    "plain_english": "The commonly shared version of GEM: first choose the stronger of US and international stocks, then only own it if it beat T-bills over the past year, otherwise hold bonds.",
+    "notes": "Differs from the official rule only when international stocks beat T-bills but US stocks do not; per TrendXplorer the official rule exits to bonds earlier and had better historical results with slightly more whipsaw. Included so both readings can be backtested."
+  },
+  {
+    "id": "composite_dual_momentum",
+    "name": "Composite Dual Momentum",
+    "author": "Gary Antonacci",
+    "family": "momentum-rotation",
+    "source": {"title": "Risk Premia Harvesting Through Dual Momentum", "year": 2012, "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2042750"},
+    "allocatesmartly_url": "https://allocatesmartly.com/antonaccis-composite-dual-momentum/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "EFA", "LQD", "HYG", "VNQ", "REM", "GLD", "TLT"],
+      "defensive": [],
+      "canary": ["BIL"],
+      "cash": "cash / 3-month T-bills (BIL)"
+    },
+    "signal": "12-month total return R12 at month-end; absolute hurdle = R12 of 3-month T-bills (BIL).",
+    "rules": [
+      "Split the portfolio into four fixed 25% modules: Equities (SPY vs EFA), Credit (LQD vs HYG), Real estate (VNQ vs REM), Economic stress (GLD vs TLT).",
+      "In each module pick the asset with the higher R12.",
+      "If the pick's R12 > R12(BIL), hold it with the module's 25%; otherwise that 25% goes to cash.",
+      "Modules stay at 25% (cash is not redistributed); rebalance monthly."
+    ],
+    "parameters": {"lookback_months": 12, "module_weight": 0.25, "modules": {"equities": ["SPY", "EFA"], "credit": ["LQD", "HYG"], "real_estate": ["VNQ", "REM"], "stress": ["GLD", "TLT"]}},
+    "data_needs": ["monthly total-return prices", "T-bill total-return series"],
+    "earliest_etf_start": "2008 (HYG Apr 2007, REM May 2007, BIL May 2007; +12 months)",
+    "plain_english": "Four independent mini dual-momentum strategies run side by side - stocks, credit, real estate and a 'crisis' pair of gold versus long Treasuries. Each picks the stronger of its two assets over the last year and only holds it if it beat T-bills; otherwise that quarter sits in cash.",
+    "notes": "AllocateSmartly's ETF choices 'subtly' differ from the paper's index pairs (paper used index proxies; exact series not re-verified because SSRN was blocked); AS splices REM history from two FTSE NAREIT indexes and starts tests in 1985. AS reports keeping modules fixed at 25% matters (letting cash be redistributed lowered Sharpe from 1.02 to 0.75). Antonacci himself prefers GEM."
+  },
+  {
+    "id": "accelerating_dual_momentum",
+    "name": "Accelerating Dual Momentum (AllocateSmartly version, TLT/TIP bond switch)",
+    "author": "Engineered Portfolio (Steve Hanly; Antonacci-family dual momentum)",
+    "family": "momentum-rotation",
+    "source": {"title": "Accelerating Dual Momentum Investing (engineeredportfolio.com)", "year": 2018, "url": "https://engineeredportfolio.com/2018/05/02/accelerating-dual-momentum-investing/"},
+    "allocatesmartly_url": "https://allocatesmartly.com/taa-strategy-accelerating-dual-momentum/",
+    "rebalance": "monthly, last trading day close",
+    "universe": {
+      "risky": ["SPY", "SCZ"],
+      "defensive": ["TLT", "TIP"],
+      "canary": [],
+      "cash": "none (always invested in one asset)"
+    },
+    "signal": "Score = average of 1-, 3- and 6-month total returns: (R1 + R3 + R6)/3 for SPY and SCZ. Bond choice: 1-month total return of TLT vs TIP.",
+    "rules": [
+      "At month-end compute the score for SPY and SCZ.",
+      "If the higher score is > 0, hold 100% of that equity fund.",
+      "Otherwise hold 100% of whichever of TLT and TIP had the higher 1-month return.",
+      "Hold to next month-end."
+    ],
+    "parameters": {"equity_lookbacks_months": [1, 3, 6], "bond_lookback_months": 1},
+    "data_needs": ["monthly total-return prices"],
+    "earliest_etf_start": "2008 (SCZ Dec 2007); AS tests start 1990 due to SCZ proxy data",
+    "plain_english": "A faster dual-momentum switch between the S&P 500 and international small caps using 1-, 3- and 6-month returns. If neither is rising it holds whichever of long Treasuries or TIPS did better last month.",
+    "notes": "AllocateSmartly added the TIP option (wary of long-duration Treasuries); the original used only long-term Treasuries (see accelerating_dual_momentum_original). AS flags ADM as the most volatile strategy it tracks. Not an Antonacci strategy per se, but derived from GEM."
+  },
+  {
+    "id": "accelerating_dual_momentum_original",
+    "name": "Accelerating Dual Momentum (original Engineered Portfolio rules)",
+    "author": "Engineered Portfolio (Steve Hanly)",
+    "family": "momentum-rotation",
+    "source": {"title": "Accelerating Dual Momentum Investing (engineeredportfolio.com)", "year": 2018, "url": "https://engineeredportfolio.com/2018/05/02/accelerating-dual-momentum-investing/"},
+    "allocatesmartly_url": null,
+    "rebalance": "monthly (author: select at the beginning of each month; use month-end close)",
+    "universe": {
+      "risky": ["SPY", "SCZ"],
+      "defensive": ["TLT"],
+      "canary": [],
+      "cash": "none"
+    },
+    "signal": "Score = R1 + R3 + R6 (sum of 1, 3, 6-month total returns) for the US and international small-cap equity funds.",
+    "rules": [
+      "If both equity scores are < 0: hold 100% long-term Treasuries (TLT; original VUSTX).",
+      "Otherwise hold 100% of the equity fund with the higher score.",
+      "Re-evaluate monthly."
+    ],
+    "parameters": {"equity_lookbacks_months": [1, 3, 6]},
+    "data_needs": ["monthly total-return prices (mutual-fund history for pre-ETF period)"],
+    "earliest_etf_start": "2008 (SCZ); original mutual funds VFINX/VINEX/VUSTX from 1996 (VINEX inception)",
+    "plain_english": "The original accelerating dual momentum: hold whichever of US large caps or international small caps has the stronger 1-6 month momentum, unless both are negative, in which case hold long-term Treasuries.",
+    "notes": "Original funds: VFINX (S&P 500), VINEX (Vanguard International Explorer, actively managed intl small cap), VUSTX (long Treasuries); SCZ is the ETF analogue. Author also showed a TIPS sub-variant (VUSTX vs VIPSX on 1-month return) which AllocateSmartly adopted. Sum vs average of returns gives identical decisions."
+  }
+]

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DAA Lab · Tiago Costa</title>
+<meta name="description" content="Dynamic Asset Allocation Lab: published tactical allocation strategies rebuilt on Norgate data, blended walk-forward into one portfolio and tracked monthly. An independent demonstration by Tiago Costa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23240b14'/%3E%3Crect x='6' y='18' width='5' height='8' fill='%23e81132'/%3E%3Crect x='13.5' y='12' width='5' height='14' fill='%23ffffff'/%3E%3Crect x='21' y='6' width='5' height='20' fill='%23e81132'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="notice-bar">Independent demonstration by Tiago Costa, prepared for a job application. Not affiliated with or endorsed by Ontario Teachers' Pension Plan. Not investment advice.</div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#/">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-text"><b>DAA Lab</b><small>by Tiago Costa</small></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#/" data-route="home">Overview</a>
+      <a href="#/blend" data-route="blend">The Blend</a>
+      <a href="#/strategies" data-route="strategies">Strategies</a>
+      <a href="#/builder" data-route="builder">Portfolio Builder</a>
+      <a href="#/macro" data-route="macro">Macro</a>
+      <a href="#/research" data-route="research">Research</a>
+      <a href="#/note" data-route="note">Monthly Note</a>
+      <a href="#/method" data-route="method">Method &amp; Data</a>
+      <a href="#/about" data-route="about">About</a>
+    </nav>
+  </div>
+</header>
+<main id="app" class="container" aria-live="polite">
+  <div class="loading">Loading the lab…</div>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <b>DAA Lab</b> · Built by Tiago Costa · <a href="mailto:tiagonbc@gmail.com">tiagonbc@gmail.com</a> · <a href="https://www.linkedin.com/in/tiagonbc" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="muted" id="footer-meta"></div>
+    <div class="muted small">Price data: Norgate Data (licensed; only derived strategy results are published). Macro data: Norgate Economic database, Ken French Data Library. Backtests are hypothetical, include 0.10% trading costs and no taxes or fees. Past performance does not predict future results.</div>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<script src="assets/js/lib.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

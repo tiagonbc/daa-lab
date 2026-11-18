@@ -1,0 +1,160 @@
+[
+  {
+    "id": "ms_wm_original_jpmaqs",
+    "name": "Macrosynergy macro-support softmax (original, 11 asset classes + USD cash)",
+    "author": "Eric Brine, Fabio Cereda, Ralph Sueppel (Macrosynergy)",
+    "family": "macro",
+    "source": {
+      "title": "Wealth management with macro factors",
+      "year": 2026,
+      "url": "https://macrosynergy.com/research/wealth-management-with-macro-factors/"
+    },
+    "rebalance": "quarterly; weights from latest month-end scores; 1-day execution slip",
+    "universe": {
+      "risky": ["US equity (S&P 500 future)", "DM ex-US equity (7 index futures)", "EM equity (12 index futures)", "US Treasuries 5y", "DM ex-US gov bonds 5y (5 areas)", "DM FX (9 currencies, 1m forwards)", "DM corporate credit (CDX/iTraxx IG+HY)", "EM sovereign credit (EMBI)", "EM local bonds (GBI-EM)", "Industrial metals (6 LME/COMEX futures)", "Gold (COMEX future)"],
+      "cash": "USD short-term deposit (Libor to 2021, then OIS)",
+      "benchmark": "equal weight 1/12 incl. cash"
+    },
+    "signal": "Per-asset composite macro support score: 35 point-in-time JPMaQS factors scored as x/expanding-MAD (neutral 0, monthly re-estimation, min 5y daily obs, winsorised at +/-3), averaged into themes, equal-weighted per asset class (conceptual parity), and re-scored.",
+    "rules": [
+      "Score every factor: z = clip(x / mean(|x|) on an expanding window, -3, 3); re-estimate monthly.",
+      "Themes = weighted averages of factor z-scores (renormalised over available components), re-scored.",
+      "Asset composite = equal-weight mean of the signed themes, re-scored (theme lists in section 2.2 of macrosynergy_spec.md).",
+      "Weights = softmax over the 11 scores plus cash score 0, temperature 1, no caps.",
+      "Rebalance quarterly with a 1-day lag; no transaction costs (naive PnL)."
+    ],
+    "parameters": {"softmax_temperature": 1.0, "cash_score": 0.0, "winsor": 3.0, "min_obs_daily": 1305, "est_freq": "M", "neutral": "zero", "rebalance": "Q", "slip_days": 1, "start": "2000-01-01"},
+    "data_needs": ["JPMaQS (J.P. Morgan DataQuery) macro-quantamental categories and asset returns; not replicable with free data for the non-US classes"],
+    "plain_english": "Each month, rate how supportive the economy is for each of 11 asset classes against cash, using economic theory rather than optimisation. Give more money to well-supported classes and less to poorly supported ones. Cash always scores zero, so when nothing looks good, cash becomes the largest holding.",
+    "notes": "Reported results (Jan 2000 to Jul 2026, excess over cash): macro 8.9%/yr, vol 9.6%, Sharpe 0.92, Sortino 1.31; equal weight 4.8%/yr, vol 7.6%, Sharpe 0.63; IR 0.80; panel forward correlation >20% and significant (industrial metals not significant on its own). Gross of costs. The notebook appears to use iis=True back-filled scaling for 2000-2004 (inferred from code defaults). Reference entry only."
+  },
+  {
+    "id": "ms_wm_us5_softmax",
+    "name": "Macro-support softmax, US-investable 4 risky classes + cash (faithful US replication)",
+    "author": "Replication of Brine, Cereda & Sueppel (2026) with US public data",
+    "family": "macro",
+    "source": {
+      "title": "Wealth management with macro factors",
+      "year": 2026,
+      "url": "https://macrosynergy.com/research/wealth-management-with-macro-factors/"
+    },
+    "rebalance": "quarterly (Mar/Jun/Sep/Dec month-end signal, trade next day's close)",
+    "universe": {
+      "assets": {"EQ": "SPY", "UST": "IEI (alt IEF)", "CR": "LQD", "GLD": "GLD", "CASH": "BIL"},
+      "backfill": {"SPY": "$SPXTR", "IEI": "$IDCOT3TR then synthetic 5y par bond from %5YTCM", "LQD": "$USBIGCORP", "GLD": "$BCOMPR + cash or gold_monthly", "BIL": "%3MTCM cash index"},
+      "benchmark": "equal weight 1/5 incl. cash, quarterly"
+    },
+    "signal": "S_EQ = zn(mean[+PRODGROWTH, +FINEASE, -LABT, -INFLPRESS, +CYCLE]); S_UST = zn(mean[+FIPREMIA, -CPI, -HOUSING, -CYCLE]); S_CR = zn(mean[+TERMPREM, -CPI, -HOUSING, -CYCLE, +CRCARRY, +ECONSTR, -INVCYCLE, -REALRATES]); S_GLD = zn(mean[-BUSCONF, -EQCARRY, -MONGROWTH, -CPI]); S_CASH = 0. Here zn(x) = clip(x / expanding mean|x|, -3, 3), with at least 60 monthly observations.",
+    "rules": [
+      "At each month-end t, build US factors from data published by t: either ALFRED as-of values, or Norgate/FRED latest values shifted by the publication lag (monthly: CPI, payrolls, UNRATE, IP, ISM, M2, CFNAI, MICH lag 1 month; real PCE, Case-Shiller, inventories/sales lag 2 months; GDP from the end of the 2nd month after quarter end; daily market data T-1).",
+      "Factors: GROWTH_NOW = 3mma CFNAI; XIP = 3mma yoy(INDPRO) - TREND (TREND = 20-quarter median of yoy real GDP); XRPCONS = 3mma yoy(real PCE) - TREND; LABTIGHT = 0.5 z(XEMPL) - 0.25 z(dUNRATE 12m) - 0.25 z(UNRATE - 60m mean); XCPI = mean(yoy and 6m/6m saar of headline and core CPI) - 2.0; XHH = MICH - 120m median; XHPI = 3mma yoy(Case-Shiller national) - 2.0; RIRY = mean(3m bill - EXPINF1YR, 5y CMT - EXPINF5YR); TP5 = Kim-Wright 5y term premium; XMON = yoy(M2) - 2.0 - TREND; MFG = ISM-50 level and 3m change; INV_CHG = 3m change of mfg inventories/sales; CONSTR_CHG = 3m % change of 3mma permits; CRCARRY = mean z(Baa-10y, CCC OAS); EQCARRY = (100/CAPE - real short rate) * 10/vol63d - 3.",
+      "Score each factor with zn; combine into themes with the stated weights; re-score multi-factor themes; average the signed themes per asset; re-score.",
+      "Weights w_i = exp(S_i) / sum_j exp(S_j) over {EQ, UST, CR, GLD, CASH} with S_CASH = 0, temperature 1, no caps.",
+      "Rebalance at quarter-end with a 1-day slip; report the faithful constant-weight PnL and the drifting buy-and-hold PnL; costs 0/5/20 bp per side."
+    ],
+    "parameters": {"softmax_temperature": 1.0, "cash_score": 0.0, "winsor": 3.0, "min_obs_months": 60, "mad_window": "expanding", "neutral": "zero", "inflation_target": 2.0, "inflation_target_alt": 2.4, "trend_gdp_quarters": 20, "labor_force_median_months": 60, "unemp_ma_months": 60, "hh_median_months": 120, "cycle_mode": "survey3 (alt: faithful5)", "use_nfci_in_fin_ease": false, "rebalance": "Q", "slip_days": 1, "tc_bps_per_side": 5, "iis_backfill": false, "backtest_start": "2000-01-01"},
+    "data_needs": [
+      "Norgate: SPY, IEI, IEF, LQD, GLD, BIL, $SPXTR, $IDCOT3TR, $USBIGCORP, $BCOMPR, %3MTCM, %5YTCM, %10YTCM, %COBAA, %CCCHYS, #NAPMI, #CFNAI, #INDSA, #NFPAY, #UNEMP, #CPISA, #CPIXSA, #M2FED, #GDPSA, #HOSSA",
+      "FRED: CFNAI, INDPRO, GDPC1, DPCERA3M086SBEA, PAYEMS, CLF16OV, UNRATE, CPIAUCSL, CPILFESL, MICH, CSUSHPISA, DGS3MO, DGS5, EXPINF1YR, EXPINF5YR, THREEFYTP5, M2SL, MNFCTRIRSA, PERMIT, BAA10Y, GACDFSA066MSFRBPHI (ISM fallback)",
+      "ALFRED/FRED API (free key) for vintages and vintagedates (release dates)",
+      "Shiller ie_data (CAPE) for equity carry"
+    ],
+    "plain_english": "A five-bucket portfolio (US stocks, 5-year Treasuries, investment-grade corporates, gold, cash). Each quarter, each bucket gets an economic support score built from growth, labour, inflation, money and real-rate data. The scores turn into weights through an exponential rule: well-supported assets get more, poorly supported ones get less, and cash is the neutral fallback.",
+    "notes": "Faithful to the post's maths (scoring, conceptual parity, softmax with temperature 1, quarterly rebalance, 1-day lag). It covers only the 4 of 11 classes whose drivers are US data. US proxies stand in for global themes. Neutral-zero carry and real-rate themes give structural tilts towards credit and Treasuries. Do not expect to match the post's 8.9% vs 4.8%."
+  },
+  {
+    "id": "ms_wm_balanced_tilt",
+    "name": "Macro-factor tilted balanced portfolio (60/40 anchored softmax with cash anchor)",
+    "author": "Our adaptation of Brine, Cereda & Sueppel (2026)",
+    "family": "macro",
+    "source": {
+      "title": "Wealth management with macro factors",
+      "year": 2026,
+      "url": "https://macrosynergy.com/research/wealth-management-with-macro-factors/"
+    },
+    "rebalance": "quarterly (monthly as a sensitivity), 1-day slip",
+    "universe": {"assets": {"EQ": "SPY", "BOND": "IEF (alt IEI)", "CASH": "BIL"}, "policy_anchor": {"SPY": 0.54, "IEF": 0.36, "BIL": 0.10}, "benchmarks": ["static 60/40", "static 54/36/10"]},
+    "signal": "S_SPY = zn(mean[+growth (PRODGROWTH), +financial ease (FINEASE), +labour slack (-LABT), -inflation pressure vs 2% target (INFLPRESS), +cycle (CYCLE)]); S_IEF = zn(mean[+real-rate and term-premium (FIPREMIA), -excess CPI, -house-price growth, -cycle]); S_CASH = 0. Same factor definitions and zn operator as ms_wm_us5_softmax.",
+    "rules": [
+      "Compute S_SPY and S_IEF at month-end as in ms_wm_us5_softmax, with publication lags applied.",
+      "Weights w_i = b_i * exp(S_i / tau) / sum_j b_j * exp(S_j / tau), with b = (0.54, 0.36, 0.10) and tau = 1. This is equivalent to a softmax with logits S_i + ln(b_i); equal b recovers the original formula.",
+      "Optional policy bounds: SPY 30-80%, IEF 10-60%, cash 0-40%. Clip, then move any excess or shortfall to or from cash and renormalise.",
+      "Trade at the next day's close after the quarter-end signal; costs 5 bp per side."
+    ],
+    "parameters": {"anchor_spy": 0.54, "anchor_ief": 0.36, "anchor_cash": 0.10, "softmax_temperature": 1.0, "bounds": {"SPY": [0.30, 0.80], "IEF": [0.10, 0.60], "CASH": [0.0, 0.40]}, "bounds_enabled": false, "winsor": 3.0, "min_obs_months": 60, "inflation_target": 2.0, "use_nfci_in_fin_ease": false, "rebalance": "Q", "slip_days": 1, "tc_bps_per_side": 5},
+    "data_needs": ["Same macro inputs as ms_wm_us5_softmax, minus the credit and gold-only inputs (CRCARRY, EQCARRY, BUSCONF)", "Norgate: SPY, IEF, BIL, $IDCOT7TR, %10YTCM, %3MTCM"],
+    "plain_english": "Start from a 60/40 stock/bond mix with a little cash. When the economy looks good for stocks (solid growth, spare capacity in the labour market, contained inflation, easy money), tilt towards stocks. When it looks good for bonds (high real yields and term premia, low inflation, a weak cycle), tilt towards bonds. When neither looks good, cash grows. Example: a stock score of +1 with a neutral bond score gives about 76/19/5.",
+    "notes": "The anchoring and the 10% cash anchor are our design choices so the post's 'cash as default' logic fits a balanced policy. The scoring and exponential weighting are faithful to the post. Unbounded with tau = 1 at the +/-3 winsor limits, the weights can become extreme, so test the bounded version too."
+  },
+  {
+    "id": "growth_inflation_quadrants",
+    "name": "Growth/inflation quadrant allocation (illustrative)",
+    "author": "Our design; sensitivities motivated by Ilmanen, Maloney & Ross (2014) and Neville et al. (2021)",
+    "family": "macro",
+    "source": {
+      "title": "The Best Strategies for Inflationary Times (regime evidence); concept also in Ilmanen, Maloney & Ross (2014), 'Exploring Macroeconomic Sensitivities', JPM [citation from memory]",
+      "year": 2021,
+      "url": "https://www.man.com/maninstitute/when-inflation-hits"
+    },
+    "rebalance": "monthly, with a 2-month confirmation filter on regime switches",
+    "universe": {"assets": ["SPY", "IEF", "TIP", "DBC", "GLD", "BIL"]},
+    "signal": "G = sign(PRODGROWTH theme score); I = sign(INFLPRESS theme score) (both from the ms_wm_us5_softmax engine, point-in-time).",
+    "rules": [
+      "G+ I-: SPY 70, IEF 30",
+      "G+ I+: SPY 50, DBC 20, TIP 15, GLD 15",
+      "G- I+: SPY 20, TIP 30, GLD 25, BIL 25",
+      "G- I-: SPY 20, IEF 60, GLD 20",
+      "Switch quadrant only when the new quadrant holds at two consecutive month-ends; trade the next day."
+    ],
+    "parameters": {"confirm_months": 2, "growth_signal": "PRODGROWTH", "inflation_signal": "INFLPRESS", "tc_bps_per_side": 5},
+    "data_needs": ["Macro engine inputs (CFNAI, INDPRO, GDPC1, CPI, core CPI, MICH)", "Norgate: SPY, IEF, TIP, DBC, GLD, BIL ($BCOMTR before DBC)"],
+    "plain_english": "Classify the economy into one of four regimes: is growth above or below trend, and is inflation above or below target? Hold the mix of stocks, bonds, inflation-linked bonds, commodities and gold that historically suits that regime.",
+    "notes": "The quadrant weights are illustrative and not taken from any paper. The Ilmanen-Maloney-Ross citation is from memory and its regime definitions were not re-verified. The Man summary of Neville et al. reports that in US inflation regimes equities returned -7%, 10y Treasuries -5% and commodities +14% real annualised. History starts with DBC (2006) and TIP (2003); use index back-fills before that."
+  },
+  {
+    "id": "gtt_growth_trend_timing",
+    "name": "Growth-Trend Timing (GTT)",
+    "author": "Jesse Livermore (Philosophical Economics)",
+    "family": "macro",
+    "source": {
+      "title": "Growth and Trend: A Simple, Powerful Technique for Timing the Stock Market",
+      "year": 2016,
+      "url": "https://www.philosophicaleconomics.com/2016/01/gtt/"
+    },
+    "rebalance": "monthly (month-end close); the author says a daily version is advisable",
+    "universe": {"risk_on": "SPY ($SPXTR before 1993)", "risk_off": "BIL / 3-month T-bills (%3MTCM)"},
+    "signal": "Recession flag = yoy real retail sales growth < 0 OR yoy industrial production growth < 0, using the prior month's published data; trend = S&P 500 total-return price vs its 10-month moving average.",
+    "rules": [
+      "At each month-end, read the growth signals for the prior month (the latest published).",
+      "If no recession flag: hold equities next month.",
+      "If a recession flag is on: hold equities if price >= 10-month moving average, otherwise hold T-bills."
+    ],
+    "parameters": {"ma_months": 10, "growth_breakpoint_yoy": 0.0, "signals": ["RRSFS yoy", "INDPRO yoy"], "econ_lag_months": 1},
+    "data_needs": ["FRED RRSFS (or Norgate #RETSA / #CPISA)", "FRED INDPRO or Norgate #INDSA3", "Norgate SPY or $SPXTR", "Norgate %3MTCM or BIL"],
+    "plain_english": "Stay invested in stocks unless the economy is flashing recession (real retail sales or industrial production shrinking year on year) and the market is also in a downtrend (below its 10-month average). Only then move to T-bills.",
+    "notes": "Rules verified in the original post. Reported: win rate about 39% vs about 24% for the plain moving-average rule; invested about 87% of the time; the daily 200-day version beat the plain 200-day MA by about 120 bp a year. No CAGR or drawdown table is given. The author notes data-mining risk. Use latest-vintage data with a 1-month lag, or ALFRED vintages to remove revision bias."
+  },
+  {
+    "id": "inflation_surge_overlay",
+    "name": "Inflation-surge defensive overlay on 60/40",
+    "author": "Our real-time rule; evidence from Neville, Draaisma, Funnell, Harvey & Van Hemert (2021)",
+    "family": "macro",
+    "source": {
+      "title": "The Best Strategies for Inflationary Times (SSRN 3813202; Man Institute summary 'When inflation hits')",
+      "year": 2021,
+      "url": "https://www.man.com/maninstitute/when-inflation-hits"
+    },
+    "rebalance": "monthly, CPI with a 1-month publication lag",
+    "universe": {"base": {"SPY": 0.60, "IEF": 0.40}, "inflation_sleeve": ["TIP", "DBC (or $BCOMTR + cash)", "GLD"], "cash": "BIL"},
+    "signal": "Surge state ON when latest CPI yoy >= 4% and above its value 6 months earlier; OFF when CPI yoy < 3% or below its value 6 months earlier.",
+    "rules": [
+      "OFF: hold 60/40 SPY/IEF.",
+      "ON: replace the 40% bond sleeve with 1/3 TIP, 1/3 commodities, 1/3 GLD; hold the 60% equity sleeve in SPY only if SPY >= its 10-month moving average, otherwise in BIL.",
+      "Evaluate at month-end; trade the next day."
+    ],
+    "parameters": {"on_level": 4.0, "off_level": 3.0, "momentum_months": 6, "equity_ma_months": 10, "cpi_series": "CPIAUCSL", "cpi_lag_months": 1},
+    "data_needs": ["FRED CPIAUCSL or Norgate #CPISA/#CPISA3", "Norgate SPY, IEF, TIP, DBC, GLD, BIL, $BCOMTR"],
+    "plain_english": "Run a normal 60/40 portfolio. When inflation is clearly surging, swap the nominal bonds for inflation-linked bonds, commodities and gold, and only keep stocks while they are in an uptrend.",
+    "notes": "The paper defines regimes after the fact: year-on-year inflation rising well beyond 2% to 5% or more, 8 US episodes since 1926. Per the Man summary, real annualised returns in those regimes were equities -7%, 10y Treasuries -5%, 60/40 -6%, commodities +14%, and active trend-following about +25%. The 4%/3% trigger is our real-time proxy, not from the paper; the journal of publication is unverified. Few episodes after 2000 (2021-22), so the backtest evidence is thin."
+  }
+]
