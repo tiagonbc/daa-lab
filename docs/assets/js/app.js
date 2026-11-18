@@ -807,7 +807,7 @@ async function pagePlaybook() {
     <div class="grid-2" style="margin-top:10px">
       <ul class="small">
         <li><b>Confidentiality:</b> no Ontario Teachers' data, positions or views in personal projects or external tools. DAA Lab would stay on public data only, or be paused, as my manager and compliance prefer.</li>
-        <li><b>Personal trading:</b> follow the personal-trading and conflict-of-interest policies in full, including pre-clearance. I would restructure or wind down my own systematic book as those policies require.</li>
+        <li><b>Personal trading:</b> comply fully with Ontario Teachers' personal-trading and conflict-of-interest policies, including pre-clearance.</li>
         <li><b>Outside activities:</b> disclose DAA Lab and any public writing for approval.</li></ul>
       <ul class="small">
         <li><b>Model risk:</b> every model documented with its assumptions, limits and tests, and validated before it supports a decision.</li>
