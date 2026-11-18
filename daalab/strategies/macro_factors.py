@@ -57,7 +57,10 @@ def factor_panel(macro: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
     ma3 = lambda s: s.rolling(3).mean()
     trend = M["gdp_yoy"].rolling(60, min_periods=36).median()
     growth_now = M["cfnai_ma3"]
-    xip = ma3(M["indpro_yoy"]) - trend
+    # Deviation from the original: industrial production is compared with ITS OWN 5-year trend, not trend GDP.
+    # US factory output has grown ~1.4pp a year slower than GDP since 1990, so "IP minus GDP trend" sits below zero
+    # most of the time and drags the growth score down (negative in 55% of months since 1990).
+    xip = ma3(M["indpro_yoy"]) - M["indpro_yoy"].rolling(60, min_periods=36).median()
     xempl = ma3(M["payrolls_yoy"]) - M["payrolls_yoy"].rolling(60, min_periods=36).median()
     du = ma3(M["unemp"]) - ma3(M["unemp"]).shift(12)
     ugap = ma3(M["unemp"]) - M["unemp"].rolling(60, min_periods=36).mean()
@@ -124,7 +127,9 @@ def _scores(ctx) -> pd.Series:
 
 MACRO_INPUTS = ["cfnai", "indpro", "payrolls", "unemp", "cpi", "core_cpi", "case_shiller", "m2", "ism", "housing_starts",
                 "y3m", "y5", "baa", "ccc_oas", "FRED: MICH, EXPINF1YR, EXPINF5YR, THREEFYTP5, MNFCTRIRSA"]
-NOTE = ("Lab replication with US public data: labour-force growth is proxied by the 60-month median of payroll growth, "
+NOTE = ("Lab replication with US public data. One deliberate change: excess industrial-production growth is measured against "
+        "its own 5-year trend rather than trend GDP growth, because US factory output structurally grows slower than GDP and the "
+        "original definition biases the US growth score downward. Labour-force growth is proxied by the 60-month median of payroll growth, "
         "building permits by housing starts, and the equity-carry leg of the gold score is omitted (no live earnings data). "
         "ISM data in Norgate stops in Aug 2026 and is carried forward. Signals at quarter-end are traded at the same close "
         "(the original trades one day later).")

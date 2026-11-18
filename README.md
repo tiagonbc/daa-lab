@@ -24,7 +24,7 @@ Period: 2005-01 to 2026-10.
 
 | Portfolio | CAGR | Volatility | Sharpe | Max drawdown |
 |---|---:|---:|---:|---:|
-| Tiago's DAA Blend (walk-forward) | 10.0% | 7.7% | 1.06 | -8.6% |
+| Tiago's DAA Blend (walk-forward) | 10.0% | 7.7% | 1.07 | -8.5% |
 | 60/40 (SPY/IEF) | 8.0% | 9.1% | 0.70 | -29.5% |
 | Global 60/40 | 6.9% | 9.5% | 0.57 | -33.4% |
 | OTPP-shaped mix (liquid proxy) | 8.4% | 12.2% | 0.59 | -39.0% |
@@ -39,13 +39,13 @@ Current blend components (2025-12): Hybrid Asset Allocation - Simple (HAA-1, SPY
 | Inflation Compass - Original | David Varadi (CSS Analytics) | 27.6% | 1.26 | -17.8% |
 | Hybrid Asset Allocation - Simple (HAA-1, SPY only) | Wouter J. Keller, Jan Willem Keuning | 15.5% | 1.24 | -9.1% |
 | Hybrid Asset Allocation - HAA-12 (G12/T6) | Wouter J. Keller, Jan Willem Keuning | 12.2% | 1.21 | -4.9% |
+| Macro-support softmax, US-investable 4 risky classes + cash (faithful US replication) | Replication of Brine, Cereda & Sueppel (2026) with US public data | 10.8% | 1.17 | -7.4% |
 | Defense First | Thomas Carlson | 12.6% | 1.16 | -8.0% |
-| Macro-support softmax, US-investable 4 risky classes + cash (faithful US replication) | Replication of Brine, Cereda & Sueppel (2026) with US public data | 10.6% | 1.16 | -7.1% |
 | Hybrid Asset Allocation 60/40 | NLX Finance (variant of Keller & Keuning's HAA-Simple) | 9.5% | 1.10 | -5.2% |
 | Inflation Compass - Enhanced | David Varadi (CSS Analytics) | 21.8% | 1.06 | -15.9% |
 | Hybrid Asset Allocation - Balanced (HAA-8, G8/T4) | Wouter J. Keller, Jan Willem Keuning | 11.3% | 1.03 | -8.0% |
+| Growth/inflation quadrant allocation (illustrative) | Tiago Costa, after Ilmanen, Maloney & Ross (2014) and Neville et al. (2021) | 10.8% | 1.02 | -12.8% |
 | Hybrid Asset Allocation - HAA-4 (G4/T2) | Wouter J. Keller, Jan Willem Keuning | 11.4% | 0.95 | -9.0% |
-| Inflation-surge defensive overlay on 60/40 | Tiago Costa, after Neville, Draaisma, Funnell, Harvey & Van Hemert (2021) | 10.8% | 0.93 | -10.9% |
 
 The full library, with rules in plain English, charts and current holdings, is on the website.
 
@@ -84,4 +84,4 @@ python -m http.server 8791 --directory docs
 
 Tiago Costa · tiagonbc@gmail.com · [linkedin.com/in/tiagonbc](https://www.linkedin.com/in/tiagonbc)
 
-*Last generated 2026-11-18 15:19 UTC.*
+*Last generated 2026-11-18 18:37 UTC.*
