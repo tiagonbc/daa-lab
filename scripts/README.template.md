@@ -24,6 +24,10 @@ Dynamic (or tactical) asset allocation means changing how much you hold in stock
 
 Current blend components ({{SELECTION_DATE}}): {{COMPONENTS}}.
 
+### Replication check: do the backtests match the authors' published results?
+
+{{REPLICATION}}
+
 ### Top strategies by Sharpe ratio, last 10 years
 
 {{TOP_TABLE}}

@@ -32,6 +32,32 @@ Period: 2005-01 to 2026-10.
 
 Current blend components (2025-12): Hybrid Asset Allocation - Simple (HAA-1, SPY only), Inflation Compass - Original, Macro-support softmax, US-investable 4 risky classes + cash (faithful US replication), Defense First, Inflation-surge defensive overlay on 60/40.
 
+### Replication check: do the backtests match the authors' published results?
+
+Each strategy is coded from its rules and run on the lab's data, then compared with figures published by its authors or independent sources over the same years: **16 close, 3 broadly consistent, 0 differ** out of 19 ([full report](research/replication_check.md)).
+
+| Strategy | Compared | Result | Verdict |
+|---|---|---|---|
+| Global Tactical Asset Allocation 5 (GTAA 5) | 13 calendar years (2000-2012) | correlation 0.98, average gap 1.4 pts | close |
+| Ivy Portfolio (static 5-asset equal weight) | 13 calendar years (2000-2012) | correlation 0.99, average gap 1.6 pts | close |
+| Global Tactical Asset Allocation – Aggressive 3 (GTAA Agg 3) | 12 calendar years (2001-2012) | correlation 0.94, average gap 3.5 pts | broadly consistent |
+| Global Tactical Asset Allocation – Aggressive 6 (GTAA Agg 6) | 12 calendar years (2001-2012) | correlation 0.78, average gap 5.0 pts | broadly consistent |
+| Global Equities Momentum (GEM) - Traditional Dual Momentum (official rules) | 26 calendar years (2000-2025) | correlation 0.98, average gap 1.7 pts | close |
+| Hybrid Asset Allocation - Balanced (HAA-8, G8/T4) | 17 calendar years (2006-2022) | correlation 1.00, average gap 0.8 pts | close |
+| Hybrid Asset Allocation - Simple (HAA-1, SPY only) | 17 calendar years (2006-2022) | correlation 1.00, average gap 0.6 pts | close |
+| Bold Asset Allocation - Balanced (BAA-G12/T6) | 2012-07 to 2022-06 | CAGR 7.7% vs 7.8%, max DD -7.0% vs -7.2% | close |
+| Bold Asset Allocation - Aggressive (BAA-G4/T1) | 2012-07 to 2022-06 | CAGR 11.1% vs 10.9%, max DD -8.5% vs -8.7% | close |
+| Defensive Asset Allocation - G12 (DAA, T6/B2) | 2008-04 to 2018-03 | CAGR 9.6% vs 9.9%, max DD -8.9% vs -9.0% | close |
+| Vigilant Asset Allocation - G4 Aggressive (VAA-G4, T1/B1) | 2008-04 to 2018-03 | CAGR 8.3% vs 10.5%, max DD -16.1% vs -10.5% | broadly consistent |
+| Protective Asset Allocation - PAA2 (high protection, Top6, IEF) | 7 calendar years (2009-2015) | correlation 0.92, average gap 1.4 pts | close |
+| Growth-Trend Timing (GTT-Original) | 26 calendar years (2000-2025) | correlation 0.94, average gap 2.3 pts | close |
+| Growth-Trend Timing - UE Rate | 10 calendar years (2016-2025) | correlation 0.98, average gap 1.8 pts | close |
+| Permanent Portfolio | 26 calendar years (2000-2025) | correlation 1.00, average gap 0.4 pts | close |
+| Golden Butterfly | 26 calendar years (2000-2025) | correlation 1.00, average gap 0.6 pts | close |
+| All-Weather/All-Seasons Portfolio | 26 calendar years (2000-2025) | correlation 0.99, average gap 0.7 pts | close |
+| US Stocks (S&P 500) | 26 calendar years (2000-2025) | correlation 1.00, average gap 0.2 pts | close |
+| 60/40 Portfolio (US) | 2003-01 to 2022-12 | CAGR 7.4% vs 7.4%, max DD -29.5% vs -29.5% | close |
+
 ### Top strategies by Sharpe ratio, last 10 years
 
 | Strategy | Author | CAGR | Sharpe | Max drawdown |

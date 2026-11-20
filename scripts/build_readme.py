@@ -75,12 +75,31 @@ def main(site_url=SITE_URL):
         n_tests = re.search(r"(\d+) tests? collected", out.stdout).group(1)
     except Exception:
         n_tests = "the"
+    rep_path = d / "replication.json"
+    rep_md = "Not run yet."
+    if rep_path.exists():
+        rep = [r for r in json.loads(rep_path.read_text(encoding="utf-8")) if r.get("primary")]
+        cnt = {v: sum(1 for r in rep if r["verdict"] == v) for v in ("close", "broadly consistent", "differs")}
+        rl = [f"Each strategy is coded from its rules and run on the lab's data, then compared with figures published by its authors "
+              f"or independent sources over the same years: **{cnt['close']} close, {cnt['broadly consistent']} broadly consistent, "
+              f"{cnt['differs']} differ** out of {len(rep)} ([full report](research/replication_check.md)).", "",
+              "| Strategy | Compared | Result | Verdict |", "|---|---|---|---|"]
+        for r in rep:
+            if r.get("method") == "calendar-year returns":
+                cmp_ = f"{r['n_years']} calendar years ({r['years']})"
+                res = f"correlation {r['corr']:.2f}, average gap {r['mean_abs_diff'] * 100:.1f} pts" if r.get("corr") is not None else f"average gap {r['mean_abs_diff'] * 100:.1f} pts"
+            else:
+                cmp_ = f"{r['period']['start']} to {r['period']['end']}"
+                o, q = r["ours"], r["published"]
+                res = f"CAGR {o['cagr'] * 100:.1f}% vs {q['cagr'] * 100:.1f}%" + (f", max DD {o['max_dd'] * 100:.1f}% vs {q['max_dd'] * 100:.1f}%" if "max_dd" in q else "")
+            rl.append(f"| {names.get(r['strategy_id'], r['strategy_id'])} | {cmp_} | {res} | {r['verdict']} |")
+        rep_md = chr(10).join(rl)
     sel = blend["selections"][-1]
     vals = {
         "N_STRATEGIES": str(meta["n_strategies"]), "SITE_URL": site_url, "SIGNAL_DATE": meta["signal_date"],
         "DATA_THROUGH": meta["data_through"], "BLEND_N": str(blend["config"]["n"]), "BLEND_CAP": str(blend["config"]["corr_cap"]),
         "BLEND_TABLE": blend_table, "TOP_TABLE": "\n".join(tt), "SELECTION_DATE": sel["date"],
-        "COMPONENTS": ", ".join(names.get(c, c) for c in sel["chosen"]), "N_TESTS": n_tests, "GENERATED_AT": meta["generated_at"],
+        "COMPONENTS": ", ".join(names.get(c, c) for c in sel["chosen"]), "REPLICATION": rep_md, "N_TESTS": n_tests, "GENERATED_AT": meta["generated_at"],
     }
     text = (ROOT / "scripts" / "README.template.md").read_text(encoding="utf-8")
     for k, v in vals.items():

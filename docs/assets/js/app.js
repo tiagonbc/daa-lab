@@ -618,6 +618,11 @@ async function pageNote() {
 async function pageMethod() {
   const { meta } = await core();
   const pv = meta.proxy_validation || [];
+  let rep = [];
+  try { rep = await load('replication.json'); } catch (e) { }
+  const repRows = rep.filter(r => r.method && r.primary);
+  const repCount = v => repRows.filter(r => r.verdict === v).length;
+  const vchip = v => `<span class="chip ${v === 'close' ? 'teal' : v === 'differs' ? 'red' : ''}">${esc(v)}</span>`;
   app.innerHTML = `
   <section class="hero"><div class="eyebrow">Method &amp; data</div><h1>How the lab works, and where it could be wrong</h1>
   <p class="lede">A backtest is only as good as its data and its honesty about limits. This page documents both.</p></section>
@@ -632,7 +637,7 @@ async function pageMethod() {
     <div class="card"><h3>Known limitations</h3><ul class="small">
       <li><b>Proxies before ETFs existed.</b> They are validated below. Correlations are mostly above 0.95, but a proxy is not the real fund.</li>
       <li><b>Revised macro data.</b> Norgate stores the latest revised economic values, not first releases. Publication lags are applied, but revisions remain.</li>
-      <li><b>Replication ≠ the original.</b> Where a paper is ambiguous, my reading is documented in the strategy's notes. Results can differ from the author's own or AllocateSmartly's.</li>
+      <li><b>Replication ≠ the original.</b> Where a paper is ambiguous, my reading is documented in the strategy's notes. Results can differ from the author's own or AllocateSmartly's; the <a href="#replication">replication check</a> below measures by how much.</li>
       <li><b>Selection bias.</b> Even an honest walk-forward is run on a library of strategies that were published <i>because</i> they backtested well. Expect live results to be weaker (McLean &amp; Pontiff, 2016).</li>
       <li><b>US-dollar, US-listed view.</b> A Canadian pension fund would see these returns in CAD, with its own hedging policy.</li></ul></div>
   </section>
@@ -640,6 +645,16 @@ async function pageMethod() {
     <div class="table-wrap"><table class="compact"><thead><tr><th>ETF</th><th>Proxy used before launch</th><th class="num">Months</th><th class="num">Correlation</th><th class="num">Tracking error</th><th class="num">ETF ann. return</th><th class="num">Proxy ann. return</th></tr></thead><tbody>
     ${pv.map(p => `<tr><td class="mono">${p.ticker}</td><td class="small">${esc(p.proxy)}</td><td class="num">${p.months}</td><td class="num">${fmt.num(p.corr, 3)}</td><td class="num">${fmt.pct(p.tracking_error, 2)}</td><td class="num">${fmt.pct(p.ann_return_etf)}</td><td class="num">${fmt.pct(p.ann_return_proxy)}</td></tr>`).join('')}
     </tbody></table></div></section>
+  ${repRows.length ? `<section class="card" id="replication"><h3>Replication check: do my backtests match the authors' published results?</h3>
+    <div class="sub">Each strategy was coded from its rules and run on my data. Here its results are compared with figures the authors (or independent sources) published, over the same years. Differences are expected from data proxies, costs and rule details; the point is to show where the replication is faithful and where it is not.</div>
+    <div class="kpis light" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:14px"><div class="kpi"><div class="label">Comparisons</div><div class="value">${repRows.length}</div></div><div class="kpi"><div class="label">Close match</div><div class="value">${repCount('close')}</div></div><div class="kpi"><div class="label">Broadly consistent</div><div class="value">${repCount('broadly consistent')}</div><div class="cmp">differs: ${repCount('differs')}</div></div></div>
+    <div class="table-wrap"><table class="compact"><thead><tr><th>Strategy</th><th>Published source</th><th>Compared</th><th class="num">Correlation</th><th class="num">Mean abs. diff</th><th>Verdict</th></tr></thead><tbody>
+    ${repRows.map((r, k) => `<tr class="${r.by_year ? 'click' : ''}" data-rep="${k}"><td><a href="#/s/${esc(r.strategy_id)}">${esc(r.name)}</a></td><td class="small"><a href="${esc(r.source_url || '#')}" target="_blank" rel="noopener">${esc(r.source_title || '')}</a>${r.location ? ` · <span title="${esc(r.location)}">${esc(r.location.length > 90 ? r.location.slice(0, 88) + '…' : r.location)}</span>` : ''}</td>
+      <td class="small">${r.method === 'calendar-year returns' ? `${r.n_years} calendar years, ${esc(r.years)}` : r.ours ? `${esc(r.period.start)} to ${esc(r.period.end)}: CAGR ${fmt.pct(r.ours.cagr)} vs ${fmt.pct(r.published.cagr)}${r.published.max_dd != null ? `, max DD ${fmt.pct(r.ours.max_dd)} vs ${fmt.pct(r.published.max_dd)}` : ''}` : '–'}${r.lab_note ? `<div class="sauth" style="margin-top:3px">${esc(r.lab_note)}</div>` : ''}</td>
+      <td class="num">${r.corr != null ? fmt.num(r.corr) : '–'}</td><td class="num">${r.mean_abs_diff != null ? fmt.pct(r.mean_abs_diff) : '–'}</td><td>${vchip(r.verdict)}</td></tr>`).join('')}
+    </tbody></table></div>
+    <p class="small muted" style="margin-top:8px">Verdicts: <b>close</b> = correlation of yearly returns at least 0.90 and average gap at most 3 points; <b>broadly consistent</b> = at least 0.75 and 6 points; <b>differs</b> = larger gaps, explained by the source notes (proxies, costs, rule reading). Click a row with yearly data to see the years side by side.</p>
+    <div id="rep-legend"></div><div id="c-rep" class="chart md"></div></section>` : ''}
   <section class="grid-2">
     <div class="card"><h3>Metric glossary</h3><table class="compact"><tbody>${Object.entries(meta.glossary).map(([k, v]) => `<tr><td class="mono small" style="white-space:nowrap">${k}</td><td class="small">${esc(v)}</td></tr>`).join('')}</tbody></table></div>
     <div class="card"><h3>How AI was used, and how its output was checked</h3><p class="small">This lab was built with an AI coding assistant (Claude Code): for code scaffolding, first-pass summaries of papers, and drafting text. Every output was checked:</p><ul class="small">
@@ -653,6 +668,17 @@ async function pageMethod() {
 pip install -r requirements.txt          # needs a Norgate Data subscription + Norgate Data Updater running
 python scripts/run_all.py                # rebuilds every strategy, the blend and docs/data/*.json
 python -m pytest                         # tests</pre><p class="small muted" style="margin-top:8px">Generated ${esc(meta.generated_at)} in ${meta.runtime_s}s. ${Object.keys(meta.failures || {}).length ? 'Failed strategies: ' + Object.keys(meta.failures).join(', ') : 'All strategies ran.'}</p></section>`;
+  const drawRep = k => {
+    const r = repRows[k]; if (!r || !r.by_year) return;
+    const old = CHARTS.find(c => c.getDom().id === 'c-rep'); if (old) { old.dispose(); CHARTS.splice(CHARTS.indexOf(old), 1); }
+    const yrs = Object.keys(r.by_year);
+    const ours = Object.fromEntries(yrs.map(y => [y, r.by_year[y].ours])), pub = Object.fromEntries(yrs.map(y => [y, r.by_year[y].published]));
+    document.getElementById('rep-legend').innerHTML = `<h3 style="margin-top:10px">${esc(r.name)}: yearly returns</h3>` + legendHTML([{ name: 'This lab', color: C.red }, { name: 'Published', color: C.blue }], true);
+    annualBars('c-rep', yrs, [{ name: 'This lab', values: ours, color: C.red }, { name: 'Published', values: pub, color: C.blue }]);
+  };
+  const firstYearly = repRows.findIndex(r => r.by_year);
+  if (firstYearly >= 0) drawRep(firstYearly);
+  document.querySelectorAll('[data-rep]').forEach(tr => tr.addEventListener('click', e => { if (!e.target.closest('a')) drawRep(+tr.dataset.rep); }));
 }
 
 /* ================================================================== ABOUT */

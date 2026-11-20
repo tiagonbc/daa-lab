@@ -1,0 +1,2376 @@
+[
+ {
+  "strategy_id": "faber_gtaa5",
+  "source_title": "Faber, A Quantitative Approach to Tactical Asset Allocation, Journal of Wealth Management, Spring 2007",
+  "source_url": "https://community.portfolio123.com/uploads/short-url/gX99wyHof0svv6mVhnyJUNTOBsK.pdf",
+  "location": "Exhibit 12 'Asset Allocation Buy-and-Hold vs. Asset Allocation Timing, 1972-2005', p.8",
+  "period": {
+   "start": "1972-01",
+   "end": "2005-12"
+  },
+  "annual_returns": {
+   "2000": 0.1376,
+   "2001": 0.031,
+   "2002": 0.0333,
+   "2003": 0.2052,
+   "2004": 0.1508,
+   "2005": 0.0821
+  },
+  "stats": {
+   "cagr": 0.1192,
+   "vol": 0.0661,
+   "sharpe": 1.2,
+   "max_dd": -0.0951
+  },
+  "costs": "Gross.",
+  "proxies": "S&P 500, MSCI EAFE, GSCI, NAREIT, US 10Y govt (GFD); T-bills",
+  "confidence": "exact",
+  "notes": "Original paper. Here Sharpe uses yearly returns and a 4% risk-free rate, and the SD is probably of yearly returns (the 2009 update switched to monthly). Monthly rebalancing. The July 2006 working paper (https://www.trendfollowing.com/whitepaper/CMT-Simple.pdf) has the same structure (Table 7)."
+ },
+ {
+  "strategy_id": "faber_gtaa5",
+  "source_title": "Faber, A Quantitative Approach to Tactical Asset Allocation (Feb 2013 update, SSRN 962461)",
+  "source_url": "https://mebfaber.com/wp-content/uploads/2016/05/SSRN-id962461.pdf",
+  "location": "Figure 14 'Yearly Returns for Buy & Hold vs. Timing Model, 1973-2012', p.32 (same values in Figure 18 'B&H 5 / GTAA 5' column, p.45); stats rows at bottom of same table",
+  "period": {
+   "start": "1973-01",
+   "end": "2012-12"
+  },
+  "annual_returns": {
+   "2000": 0.1382,
+   "2001": 0.0315,
+   "2002": 0.0328,
+   "2003": 0.2045,
+   "2004": 0.1506,
+   "2005": 0.0763,
+   "2006": 0.1421,
+   "2007": 0.098,
+   "2008": -0.0059,
+   "2009": 0.1277,
+   "2010": 0.0365,
+   "2011": 0.0249,
+   "2012": 0.0126
+  },
+  "stats": {
+   "cagr": 0.1048,
+   "vol": 0.0699,
+   "sharpe": 0.73,
+   "max_dd": -0.0954
+  },
+  "costs": "Gross: taxes, commissions and slippage excluded (p.22).",
+  "proxies": "S&P 500 TR (GFD); MSCI EAFE TR (MSCI; gross/net not stated); US 10-yr govt bond TR (GFD); GSCI TR (Goldman Sachs); NAREIT TR; cash = 90-day T-bills",
+  "confidence": "exact",
+  "notes": "Rules: 10-month SMA on monthly total-return series; signal and trade at the month-end close; each 20% sleeve is either long or in T-bills; the FAQ says weights are rebalanced monthly. Stats are for 1973-2012 (only the annual_returns are trimmed to 2000-2012). Sharpe uses a fixed 5.41% risk-free rate; vol = annualized SD of monthly returns. Transcribed from the embedded raster table (upscaled); where the same series appears in two figures, the values agree. Compounding the 2006-2012 yearly values gives 6.09%/yr vs 6.01% printed in Fig 16, a small internal inconsistency."
+ },
+ {
+  "strategy_id": "faber_gtaa5",
+  "source_title": "Faber, A Quantitative Approach to Tactical Asset Allocation (Feb 2009 update)",
+  "source_url": "https://community.portfolio123.com/uploads/short-url/kbsA05k7XScAkgohfEGeGkwoOD3.pdf",
+  "location": "Exhibit 19 'Yearly Returns for Buy & Hold vs. Timing Model, 1973-2008', p.26; Appendix C 'Monthly Timing Model Returns 1973-2008', p.41",
+  "period": {
+   "start": "1973-01",
+   "end": "2008-12"
+  },
+  "annual_returns": {
+   "2000": 0.1378,
+   "2001": 0.0321,
+   "2002": 0.0339,
+   "2003": 0.2053,
+   "2004": 0.1506,
+   "2005": 0.082,
+   "2006": 0.1416,
+   "2007": 0.0949,
+   "2008": 0.0159
+  },
+  "stats": {
+   "cagr": 0.1133,
+   "vol": 0.0687,
+   "sharpe": 0.78,
+   "max_dd": -0.0953
+  },
+  "costs": "Gross.",
+  "proxies": "Same 5 indices (GFD etc.); T-bills.",
+  "confidence": "exact",
+  "notes": "Older data vintage: 2008 is +1.59% here vs -0.59% in the 2013 version, and other years differ by up to ~0.6pt. Sharpe rf = 6%. Appendix C monthly returns (%), Jan-Dec. 2000: -0.65,1.60,2.71,-1.95,1.57,3.04,-0.90,4.20,-0.59,-0.47,2.82,1.80 | 2001: -0.61,0.12,-0.39,0.18,0.03,1.45,0.45,1.26,-0.21,0.11,0.53,0.26 | 2002: 0.24,0.82,0.62,-0.55,-0.18,0.92,-2.21,1.91,1.03,-1.26,-0.31,2.41 | 2003: 1.70,3.00,-2.99,-0.18,4.33,1.11,0.69,1.80,0.24,2.76,2.00,4.62 | 2004: 1.60,3.00,1.61,-4.18,1.32,0.51,0.27,1.56,3.20,2.86,1.76,0.80 | 2005: -2.19,2.74,0.16,-1.20,1.64,1.45,3.33,2.98,0.62,-3.80,1.41,1.02 | 2006: 3.88,-1.64,2.07,0.77,-1.96,1.34,1.41,0.73,1.26,2.90,2.26,0.45 | 2007: 1.98,-0.24,0.27,2.00,1.10,-2.40,0.36,-0.33,3.93,3.34,-1.30,0.58 | 2008: -1.15,2.62,0.01,1.24,1.66,-0.17,-2.30,-1.02,-2.41,0.28,1.81,1.15. These compound to the Year column within 0.03pt."
+ },
+ {
+  "strategy_id": "faber_gtaa5",
+  "source_title": "Faber 2013 update (SSRN 962461) - out-of-sample summary",
+  "source_url": "https://mebfaber.com/wp-content/uploads/2016/05/SSRN-id962461.pdf",
+  "location": "Figure 16 'Summary Annualized Returns for B&H vs. Timing Model, 2006-2012', p.34",
+  "period": {
+   "start": "2006-01",
+   "end": "2012-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.0601,
+   "vol": 0.0727,
+   "sharpe": 0.61,
+   "max_dd": -0.0942
+  },
+  "costs": "Gross.",
+  "proxies": "As in the 2013 Figure 14 record.",
+  "confidence": "exact",
+  "notes": "Sharpe uses rf 5.41%. Inflation CAGR 2.20%."
+ },
+ {
+  "strategy_id": "faber_gtaa5",
+  "source_title": "Faber, A Quantitative Approach to Tactical Asset Allocation Revisited 10 Years Later, J. Portfolio Management 44(2), 2018, 156-167",
+  "source_url": "https://allocatortraining.com/wp-content/uploads/2023/06/A-Quantitative-Approach-to-Tactical-Asset-Allocation.pdf",
+  "location": "Exhibit 8 'GAA and QTAA Equity Curves, 1972-2005 and 2006-2016', p.161 (also Exhibit 12, p.163)",
+  "period": {
+   "start": "2006-01",
+   "end": "2016-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.0488,
+   "vol": 0.0655,
+   "sharpe": 0.59,
+   "max_dd": -0.0945
+  },
+  "costs": "Gross: taxes, commissions and slippage excluded.",
+  "proxies": "GFD total-return data: S&P 500, MSCI EAFE, US 10Y govt, GSCI TR, NAREIT TR; 90-day T-bills",
+  "confidence": "exact",
+  "notes": "Called QTAA in this paper, with the same rules (month-end close, 10-month SMA). Exhibit 12 (2006-2016) gives other SMA lengths. 6-month: 5.46% / 6.62% / 0.67 / -10.30%. 8-month: 5.73% / 6.43% / 0.73 / -7.09%. 12-month: 3.62% / 6.75% / 0.38 / -14.76%. Full period 1972-2016: 9.79% / 6.85% / 0.71 / -9.54%. 1972-2005: 11.73% / 6.84% / 0.81 / -9.54%. The author published no yearly portfolio returns after 2012. The PDF is a public mirror of the JPM article."
+ },
+ {
+  "strategy_id": "faber_gtaa5",
+  "source_title": "Concretum Group (Zarattini et al.), QuanTips #1: Global Tactical Asset Allocation (independent update of Faber 2007)",
+  "source_url": "https://concretumgroup.com/wp-content/uploads/2026/06/GlobalTacticalAssetAllocation.pdf",
+  "location": "Section 2.1 'Updated Results', pp.1-2 (also https://concretumgroup.com/global-tactical-asset-allocation/)",
+  "period": {
+   "start": "2006-01",
+   "end": "2025-03"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.0605,
+   "sharpe": 0.68,
+   "max_dd": -0.117
+  },
+  "costs": "Excludes taxes, commissions and slippage.",
+  "proxies": "Bloomberg total-return indices: S&P 500, MSCI EAFE, US 10Y govt, GSCI, NAREIT; T-bills from the Ken French data library",
+  "confidence": "exact",
+  "notes": "Independent replication, not the author. VARIANT: uses a 200-DAY SMA evaluated at the month-end close instead of a 10-month SMA. Equal 20% sleeves. Volatility not reported. The authors stress large rebalance-day dispersion (about a 220bp CAGR spread across n-th-trading-day variants). No yearly table. The only public figure covering 2017-2025 for GTAA-5."
+ },
+ {
+  "strategy_id": "faber_gtaa5_buyhold",
+  "source_title": "Faber, JWM Spring 2007",
+  "source_url": "https://community.portfolio123.com/uploads/short-url/gX99wyHof0svv6mVhnyJUNTOBsK.pdf",
+  "location": "Exhibit 12, p.8, AA column",
+  "period": {
+   "start": "1972-01",
+   "end": "2005-12"
+  },
+  "annual_returns": {
+   "2000": 0.1273,
+   "2001": -0.0974,
+   "2002": 0.0209,
+   "2003": 0.257,
+   "2004": 0.1744,
+   "2005": 0.1174
+  },
+  "stats": {
+   "cagr": 0.1157,
+   "vol": 0.1004,
+   "sharpe": 0.75,
+   "max_dd": -0.1962
+  },
+  "costs": "Gross.",
+  "proxies": "Equal weight of the 5 indices, rebalanced monthly",
+  "confidence": "exact",
+  "notes": "Sharpe uses a 4% risk-free rate on yearly returns."
+ },
+ {
+  "strategy_id": "faber_gtaa5_buyhold",
+  "source_title": "Faber, A Quantitative Approach to Tactical Asset Allocation (Feb 2013 update)",
+  "source_url": "https://mebfaber.com/wp-content/uploads/2016/05/SSRN-id962461.pdf",
+  "location": "Figure 14, p.32, B&H column (same in Figure 18 'B&H 5', p.45)",
+  "period": {
+   "start": "1973-01",
+   "end": "2012-12"
+  },
+  "annual_returns": {
+   "2000": 0.1273,
+   "2001": -0.0973,
+   "2002": 0.0199,
+   "2003": 0.2588,
+   "2004": 0.1745,
+   "2005": 0.1173,
+   "2006": 0.1204,
+   "2007": 0.0796,
+   "2008": -0.3001,
+   "2009": 0.1874,
+   "2010": 0.1404,
+   "2011": 0.0281,
+   "2012": 0.1157
+  },
+  "stats": {
+   "cagr": 0.0992,
+   "vol": 0.1028,
+   "sharpe": 0.44,
+   "max_dd": -0.46
+  },
+  "costs": "Gross, no costs.",
+  "proxies": "Equal weight, 20% each, of the same 5 GFD/MSCI/GS/NAREIT TR indices",
+  "confidence": "exact",
+  "notes": "Stats cover 1973-2012. The 2006 working paper says the weights are rebalanced monthly and that yearly rebalancing gives near-identical results. Text sanity checks (p.11, p.13): US stocks 1.65%/yr over 2000-2012; US govt bonds compounded 7.07% over the 'past twelve years'."
+ },
+ {
+  "strategy_id": "faber_gtaa5_buyhold",
+  "source_title": "Faber 2009 update",
+  "source_url": "https://community.portfolio123.com/uploads/short-url/kbsA05k7XScAkgohfEGeGkwoOD3.pdf",
+  "location": "Exhibit 19, p.26, B&H column",
+  "period": {
+   "start": "1973-01",
+   "end": "2008-12"
+  },
+  "annual_returns": {
+   "2000": 0.1273,
+   "2001": -0.0974,
+   "2002": 0.0209,
+   "2003": 0.257,
+   "2004": 0.1744,
+   "2005": 0.1174,
+   "2006": 0.1207,
+   "2007": 0.0806,
+   "2008": -0.2976
+  },
+  "stats": {
+   "cagr": 0.0979,
+   "vol": 0.0971,
+   "sharpe": 0.39,
+   "max_dd": -0.3567
+  },
+  "costs": "Gross.",
+  "proxies": "Equal weight of the 5 indices",
+  "confidence": "exact",
+  "notes": "Older data vintage. Sharpe rf 6%. MaxDD is -35.67% here vs -46.00% in the 2013 version, which includes the 2009 trough."
+ },
+ {
+  "strategy_id": "faber_gtaa5_buyhold",
+  "source_title": "Faber 2013 update - out-of-sample summary",
+  "source_url": "https://mebfaber.com/wp-content/uploads/2016/05/SSRN-id962461.pdf",
+  "location": "Figure 16, p.34",
+  "period": {
+   "start": "2006-01",
+   "end": "2012-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.0394,
+   "vol": 0.1496,
+   "sharpe": 0.16,
+   "max_dd": -0.46
+  },
+  "costs": "Gross.",
+  "proxies": "As above.",
+  "confidence": "exact",
+  "notes": ""
+ },
+ {
+  "strategy_id": "faber_gtaa5_buyhold",
+  "source_title": "Faber JPM 2018 - GAA (buy & hold)",
+  "source_url": "https://allocatortraining.com/wp-content/uploads/2023/06/A-Quantitative-Approach-to-Tactical-Asset-Allocation.pdf",
+  "location": "Exhibit 8 (and Exhibit 7, GAA column), p.161",
+  "period": {
+   "start": "2006-01",
+   "end": "2016-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.0351,
+   "vol": 0.1281,
+   "sharpe": 0.19,
+   "max_dd": -0.46
+  },
+  "costs": "Gross.",
+  "proxies": "Equal weight of the 5 indices",
+  "confidence": "exact",
+  "notes": "Exhibit 7 per-asset 2006-2016 CAGR: US stocks 7.66%, foreign 3.29%, US bonds 4.48%, REITs 7.05%, commodities -8.70%."
+ },
+ {
+  "strategy_id": "faber_gtaa_agg3",
+  "source_title": "Faber 2013 update (SSRN 962461) - GTAA 13 AGG Top 3",
+  "source_url": "https://mebfaber.com/wp-content/uploads/2016/05/SSRN-id962461.pdf",
+  "location": "Figure 20 'Buy & Hold vs. Various GTAA Allocations, 1973-2012', table image p.52, column 'GTAA 13 AGG Top 3'",
+  "period": {
+   "start": "1973-01",
+   "end": "2012-12"
+  },
+  "annual_returns": {
+   "2000": 0.102,
+   "2001": -0.022,
+   "2002": 0.0659,
+   "2003": 0.4669,
+   "2004": 0.1376,
+   "2005": 0.1102,
+   "2006": 0.2859,
+   "2007": 0.2757,
+   "2008": 0.1225,
+   "2009": 0.1424,
+   "2010": 0.0658,
+   "2011": 0.0119,
+   "2012": 0.0273
+  },
+  "stats": {
+   "cagr": 0.191,
+   "vol": 0.1482,
+   "sharpe": 0.92,
+   "max_dd": -0.2029
+  },
+  "costs": "Gross.",
+  "proxies": "13-asset universe (p.43/49): French-Fama US LC value, LC momentum, SC value, SC momentum; MSCI EAFE; MSCI EEM; GFD US 10Y, foreign 10Y, US corporate, US 30Y bonds; GSCI; gold; NAREIT",
+  "confidence": "exact",
+  "notes": "Rule (p.50): rank the 13 assets by the average of 1-, 3-, 6- and 12-month total returns; hold the top 3, each only if above its 10-month SMA, otherwise that slice goes to cash. Per-slot weighting is not stated (presumably equal); the cash instrument for Agg is not stated (T-bills elsewhere). Stats cover 1973-2012; Sharpe rf 5.41%. Compounding 2000-2012 gives 13.11%/yr. NB: the universe is French-Fama factor/style indices, not ETFs, so an ETF replication will differ."
+ },
+ {
+  "strategy_id": "faber_gtaa_agg6",
+  "source_title": "Faber 2013 update (SSRN 962461) - GTAA 13 AGG Top 6",
+  "source_url": "https://mebfaber.com/wp-content/uploads/2016/05/SSRN-id962461.pdf",
+  "location": "Figure 20, p.52, column 'GTAA 13 AGG Top 6'",
+  "period": {
+   "start": "1973-01",
+   "end": "2012-12"
+  },
+  "annual_returns": {
+   "2000": 0.1036,
+   "2001": -0.022,
+   "2002": 0.1364,
+   "2003": 0.3695,
+   "2004": 0.1736,
+   "2005": 0.111,
+   "2006": 0.2147,
+   "2007": 0.1442,
+   "2008": 0.1211,
+   "2009": 0.1796,
+   "2010": 0.1237,
+   "2011": 0.0676,
+   "2012": 0.1124
+  },
+  "stats": {
+   "cagr": 0.1776,
+   "vol": 0.1161,
+   "sharpe": 1.06,
+   "max_dd": -0.2343
+  },
+  "costs": "Gross.",
+  "proxies": "Same 13-asset universe as Agg 3",
+  "confidence": "exact",
+  "notes": "Same rules, top 6 of 13. Stats cover 1973-2012. Compounding 2000-2012 gives 13.81%/yr. The same table gives 'GTAA 13 2X Leverage', 2000-2012 (%): 10.88, 5.07, 2.91, 59.59, 27.81, 16.62, 27.04, 18.88, 4.13, 32.42, 18.42, 5.24, 3.44."
+ },
+ {
+  "strategy_id": "gem",
+  "source_title": "Antonacci, Extended Backtest of Global Equities Momentum (Optimal Momentum blog)",
+  "source_url": "https://www.optimalmomentum.com/extended-backtest-of-global-equities-momentum/",
+  "location": "Results table image https://optimalmomentum.com/wp-content/uploads/2018/10/Capture1.jpg, column 'Jan 1980 - Sep 2018 GEM'",
+  "period": {
+   "start": "1980-01",
+   "end": "2018-09"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.173,
+   "vol": 0.124,
+   "sharpe": 1.03,
+   "max_dd": -0.178
+  },
+  "costs": "Gross (indexes; no fees or trading costs).",
+  "proxies": "S&P 500 / ACWI ex-US / Barclays US Agg; GFD pre-1970",
+  "confidence": "exact",
+  "notes": "Same image: Jan 1950-Sep 2018 GEM 15.8% / 11.5% / 0.96 / -17.8%. GAA benchmark (45% S&P 500 / 28% ACWI ex-US / 27% bonds), Jan 1980-Sep 2018: 10.3% / 10.9% / 0.58 / -41.2%. About 1.5 trades/yr. Start precedes 2000, so this is only loosely comparable."
+ },
+ {
+  "strategy_id": "gem",
+  "source_title": "Optimal Momentum (Antonacci) - Global Equities Momentum: monthly table, compounded to calendar years",
+  "source_url": "https://www.optimalmomentum.com/global-equities-momentum/",
+  "location": "Table image https://www.optimalmomentum.com/wp-content/uploads/2026/10/Screenshot-2026-10-18-195754.png, monthly columns Jan-Dec (compounded); identical values in the Jan-2026 version wp-content/uploads/2026/01/Screenshot-2026-01-08-112704.png",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": -0.0825,
+   "2001": 0.0855,
+   "2002": 0.1029,
+   "2003": 0.2331,
+   "2004": 0.213,
+   "2005": 0.1725,
+   "2006": 0.2719,
+   "2007": 0.1703,
+   "2008": -0.0655,
+   "2009": 0.1162,
+   "2010": 0.0558,
+   "2011": 0.0074,
+   "2012": 0.1149,
+   "2013": 0.3111,
+   "2014": 0.1356,
+   "2015": -0.0639,
+   "2016": 0.0669,
+   "2017": 0.2184,
+   "2018": -0.0772,
+   "2019": 0.1909,
+   "2020": 0.0236,
+   "2021": 0.251,
+   "2022": -0.1665,
+   "2023": 0.0001,
+   "2024": 0.2134,
+   "2025": 0.1527
+  },
+  "stats": {
+   "cagr": 0.0948
+  },
+  "costs": "Gross: no management fees, transaction costs or taxes (page disclaimer).",
+  "proxies": "S&P 500; MSCI ACWI ex-US (MSCI World ex-US 1970-1988, GFD World ex-US pre-1970); Barclays/Bloomberg US Aggregate Bond (Ibbotson Intermediate Govt before 1976); absolute momentum = S&P 500 12-month return minus US T-bill 12-month return",
+  "confidence": "exact",
+  "notes": "PREFERRED GEM record for comparison. These are the author's printed monthly returns (1 decimal) compounded into calendar years by the research agent, so expect about +/-0.3pt rounding error. CAGR is 2000-2025. Rules: 12-month lookback at month-end closes. If S&P 500 excess return > 0, hold the stronger of S&P 500 and ACWI ex-US by 12-month return; otherwise hold US Agg. The FAQ implies GROSS (not net-of-withholding) non-US index returns. Printed monthly (%): 2000:-5.4,2.7,3.8,-5.6,-2.6,4.3,-4.0,1.2,-5.3,-0.4,1.6,1.9 | 2001:1.6,0.9,0.5,-0.4,0.6,0.4,2.2,1.2,1.2,2.1,-1.4,-0.6 | 2002:0.8,1.0,-1.7,1.9,0.9,0.9,1.2,1.7,1.6,-0.5,0.0,2.1 | 2003:0.1,1.4,-0.1,0.8,1.9,-0.2,-3.4,2.0,2.8,6.5,2.2,7.6 | 2004:1.6,2.5,0.6,-3.1,0.3,2.2,-2.9,0.8,3.2,3.5,6.9,4.3 | 2005:-1.7,4.9,-2.7,-2.5,0.6,1.9,3.7,2.6,5.2,-3.6,3.4,4.8 | 2006:7.0,-0.3,2.9,5.2,-4.6,-0.1,1.0,2.8,0.1,4.1,3.6,3.1 | 2007:0.4,0.6,2.8,4.6,2.7,0.9,-0.3,-1.5,6.6,5.6,-4.5,-1.5 | 2008:-9.7,0.1,0.3,-0.2,-0.7,-0.1,-0.1,1.0,-1.3,-2.4,3.3,3.7 | 2009:-0.9,-0.4,1.4,0.5,0.7,0.6,1.6,1.0,1.1,0.5,2.9,2.1 | 2010:-4.9,0.0,6.9,-0.8,-10.4,-5.2,7.0,-4.5,8.9,3.8,0.0,6.7 | 2011:2.4,3.4,0.0,3.0,-2.8,-1.4,-2.0,-5.4,-7.0,10.9,-0.2,1.0 | 2012:4.5,4.3,3.3,-0.6,-6.0,0.0,1.4,2.3,2.6,-1.9,0.6,0.9 | 2013:4.1,1.4,3.8,1.9,2.3,-1.3,5.1,-2.9,3.1,4.6,3.1,2.5 | 2014:-3.5,4.6,0.8,0.7,2.4,2.1,-1.4,4.0,-1.4,2.4,2.7,-0.3 | 2015:-3.0,5.8,-1.6,1.0,1.3,-1.9,2.1,-6.0,-2.5,0.0,0.3,-1.6 | 2016:-5.0,0.7,0.9,0.4,1.8,0.3,3.7,0.1,0.0,-1.8,3.7,2.0 | 2017:1.9,4.0,0.1,1.0,1.4,0.4,3.7,0.6,1.9,1.9,0.8,2.3 | 2018:5.6,-4.7,-1.7,1.7,-2.2,0.6,3.7,3.3,0.6,-6.8,2.0,-9.0 | 2019:1.1,-0.1,1.9,4.1,-6.4,7.1,1.4,-1.6,1.9,2.2,3.6,3.0 | 2020:0.0,-8.2,-12.4,1.8,0.5,2.0,5.6,7.2,-3.8,-2.7,10.9,3.8 | 2021:-1.0,2.8,4.4,5.3,0.7,-0.6,2.4,3.0,-4.7,7.0,-0.7,4.6 | 2022:-5.2,-3.0,3.7,-8.7,0.2,-1.6,2.4,-2.8,-4.3,-1.3,3.8,-0.5 | 2023:3.1,-2.5,2.5,0.6,-1.1,-0.4,3.2,-4.5,-4.8,-3.1,3.1,4.5 | 2024:1.7,5.3,3.2,-4.1,5.0,0.6,1.2,2.4,2.1,-0.8,5.8,-2.4 | 2025:2.7,-1.3,-5.6,-0.7,4.4,5.3,-1.1,2.1,3.6,2.4,0.4,2.6 | 2026 (Jan-Sep):5.7,5.3,-8.1,7.8,3.8,0.2,-1.1,2.9,-2.5 (compounded YTD +13.79%). May-2010 shows '#####' in the Oct-2026 image; -10.4 is taken from the Jan-2026 image."
+ },
+ {
+  "strategy_id": "gem",
+  "source_title": "Optimal Momentum (Antonacci) - Global Equities Momentum: 'GEM Ann' column as printed",
+  "source_url": "https://www.optimalmomentum.com/global-equities-momentum/",
+  "location": "Same table image, column 'GEM Ann' (rows 1950-2026; 2026 = Jan-Sep)",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": -0.078,
+   "2001": 0.082,
+   "2002": 0.099,
+   "2003": 0.216,
+   "2004": 0.2,
+   "2005": 0.165,
+   "2006": 0.248,
+   "2007": 0.165,
+   "2008": -0.061,
+   "2009": 0.111,
+   "2010": 0.074,
+   "2011": 0.018,
+   "2012": 0.114,
+   "2013": 0.277,
+   "2014": 0.132,
+   "2015": -0.062,
+   "2016": 0.068,
+   "2017": 0.199,
+   "2018": -0.069,
+   "2019": 0.182,
+   "2020": 0.046,
+   "2021": 0.232,
+   "2022": -0.173,
+   "2023": 0.006,
+   "2024": 0.2,
+   "2025": 0.148
+  },
+  "stats": null,
+  "costs": "Gross.",
+  "proxies": "As in the compounded GEM record.",
+  "confidence": "exact",
+  "notes": "DO NOT COMPARE DIRECTLY. The printed 'GEM Ann' equals the arithmetic SUM of the 12 printed monthly returns (checked for every year 2000-2025, within +/-0.1pt), NOT the compounded calendar-year return. Example: 2013 is printed 27.7% but compounds to 31.1%. Use the compounded GEM record instead."
+ },
+ {
+  "strategy_id": "haa_balanced",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "'Annual return distributions' bar chart (upper, HAA-Balanced), 1971-2022 bars",
+  "period": {
+   "start": "2000-01",
+   "end": "2022-12"
+  },
+  "annual_returns": {
+   "2000": 0.062,
+   "2001": 0.063,
+   "2002": 0.065,
+   "2003": 0.326,
+   "2004": 0.205,
+   "2005": 0.133,
+   "2006": 0.283,
+   "2007": 0.125,
+   "2008": 0.096,
+   "2009": 0.163,
+   "2010": 0.198,
+   "2011": 0.026,
+   "2012": 0.117,
+   "2013": 0.092,
+   "2014": 0.015,
+   "2015": -0.031,
+   "2016": 0.124,
+   "2017": 0.144,
+   "2018": 0.067,
+   "2019": 0.073,
+   "2020": 0.215,
+   "2021": 0.238,
+   "2022": 0.037
+  },
+  "stats": null,
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY, IWM, VWO, VEA, VNQ, DBC, IEF, TLT (Top4, 13612U momentum); defensive best of BIL/IEF; canary TIP. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "read-from-chart",
+  "notes": "read from chart (approx.): bar heights pixel-measured on the full-resolution image against the gridlines; estimated error about +/-0.2pp per year. Consistency check: compounding the 52 chart-read years reproduces the post's KPI-table CARs to within 0.03pp for every period (FS 1971-2022, 2001-2022, last 20/10/5/3/1 years). Exact 2022 value from the KPI table: 3.67%."
+ },
+ {
+  "strategy_id": "haa_balanced",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "first KPI table image ('Key performance indicators for HAA-Balanced'), row New Millennium 31-12-2000..31-12-2022",
+  "period": {
+   "start": "2001-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.1227,
+   "vol": 0.0908,
+   "sharpe": 1.35,
+   "max_dd": -0.0944
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY, IWM, VWO, VEA, VNQ, DBC, IEF, TLT (Top4, 13612U momentum); defensive best of BIL/IEF; canary TIP. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 6.15%. Numbers differ from the SSRN paper (e.g. 2022: paper 2.7% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_balanced",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 6 'HAA-Balanced (G8/T4)', p.6, row R20 Dec02-Dec22",
+  "period": {
+   "start": "2003-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.121,
+   "vol": 0.094,
+   "sharpe": 1.17,
+   "max_dd": -0.097
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY, IWM, VWO, VEA, VNQ, DBC, IEF, TLT (Top4, 13612U momentum); defensive best of BIL/IEF; canary TIP. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). Fig 17 (p.13) repeats these but prints R20 R=12.2% (Fig 6 says 12.1%). Cash fraction CF: R1 86.5%, R10 36.8%, R20 24.4%; turnover 275%/yr (FS). period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "haa_balanced",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "first KPI table image ('Key performance indicators for HAA-Balanced'), row Last 20-Years 31-12-2002..31-12-2022",
+  "period": {
+   "start": "2003-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.1287,
+   "vol": 0.0938,
+   "sharpe": 1.37,
+   "max_dd": -0.0944
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY, IWM, VWO, VEA, VNQ, DBC, IEF, TLT (Top4, 13612U momentum); defensive best of BIL/IEF; canary TIP. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 7.44%. Numbers differ from the SSRN paper (e.g. 2022: paper 2.7% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_balanced",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 6 'HAA-Balanced (G8/T4)', p.6, row R10 Dec12-Dec22",
+  "period": {
+   "start": "2013-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.085,
+   "vol": 0.077,
+   "sharpe": 1.02,
+   "max_dd": -0.064
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY, IWM, VWO, VEA, VNQ, DBC, IEF, TLT (Top4, 13612U momentum); defensive best of BIL/IEF; canary TIP. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). Fig 17 (p.13) repeats these but prints R20 R=12.2% (Fig 6 says 12.1%). Cash fraction CF: R1 86.5%, R10 36.8%, R20 24.4%; turnover 275%/yr (FS). period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "haa_balanced",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "first KPI table image ('Key performance indicators for HAA-Balanced'), row Last 10-Years 31-12-2012..31-12-2022",
+  "period": {
+   "start": "2013-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.0943,
+   "vol": 0.077,
+   "sharpe": 1.22,
+   "max_dd": -0.0559
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY, IWM, VWO, VEA, VNQ, DBC, IEF, TLT (Top4, 13612U momentum); defensive best of BIL/IEF; canary TIP. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 7.89%. Numbers differ from the SSRN paper (e.g. 2022: paper 2.7% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_balanced",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "first KPI table image ('Key performance indicators for HAA-Balanced'), row Last 5-Years 31-12-2017..31-12-2022",
+  "period": {
+   "start": "2018-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.1227,
+   "vol": 0.0918,
+   "sharpe": 1.34,
+   "max_dd": -0.0512
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY, IWM, VWO, VEA, VNQ, DBC, IEF, TLT (Top4, 13612U momentum); defensive best of BIL/IEF; canary TIP. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 5.84%. Numbers differ from the SSRN paper (e.g. 2022: paper 2.7% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_balanced",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "first KPI table image ('Key performance indicators for HAA-Balanced'), row Last 3-Years 31-12-2019..31-12-2022",
+  "period": {
+   "start": "2020-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.1594,
+   "vol": 0.1003,
+   "sharpe": 1.59,
+   "max_dd": -0.0422
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY, IWM, VWO, VEA, VNQ, DBC, IEF, TLT (Top4, 13612U momentum); defensive best of BIL/IEF; canary TIP. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 3.64%. Numbers differ from the SSRN paper (e.g. 2022: paper 2.7% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_balanced",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 6 'HAA-Balanced (G8/T4)', p.6, row R1 Dec21-Dec22",
+  "period": {
+   "start": "2022-01",
+   "end": "2022-12"
+  },
+  "annual_returns": {
+   "2022": 0.027
+  },
+  "stats": {
+   "cagr": 0.027,
+   "vol": 0.055,
+   "sharpe": 0.27,
+   "max_dd": -0.028
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY, IWM, VWO, VEA, VNQ, DBC, IEF, TLT (Top4, 13612U momentum); defensive best of BIL/IEF; canary TIP. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). Fig 17 (p.13) repeats these but prints R20 R=12.2% (Fig 6 says 12.1%). Cash fraction CF: R1 86.5%, R10 36.8%, R20 24.4%; turnover 275%/yr (FS). period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "haa_balanced",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "first KPI table image ('Key performance indicators for HAA-Balanced'), row Last 1-Year 31-12-2021..31-12-2022",
+  "period": {
+   "start": "2022-01",
+   "end": "2022-12"
+  },
+  "annual_returns": {
+   "2022": 0.0367
+  },
+  "stats": {
+   "cagr": 0.0367,
+   "vol": 0.0711,
+   "sharpe": 0.52,
+   "max_dd": -0.0244
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY, IWM, VWO, VEA, VNQ, DBC, IEF, TLT (Top4, 13612U momentum); defensive best of BIL/IEF; canary TIP. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 -16.65%. Numbers differ from the SSRN paper (e.g. 2022: paper 2.7% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_simple",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "'Annual return distributions' bar chart (lower, HAA-Simple), 1971-2022 bars",
+  "period": {
+   "start": "2000-01",
+   "end": "2022-12"
+  },
+  "annual_returns": {
+   "2000": -0.07,
+   "2001": 0.067,
+   "2002": 0.051,
+   "2003": 0.24,
+   "2004": 0.107,
+   "2005": 0.048,
+   "2006": 0.191,
+   "2007": 0.04,
+   "2008": 0.179,
+   "2009": 0.068,
+   "2010": -0.002,
+   "2011": -0.004,
+   "2012": 0.11,
+   "2013": 0.152,
+   "2014": 0.072,
+   "2015": 0.016,
+   "2016": 0.158,
+   "2017": 0.164,
+   "2018": 0.117,
+   "2019": 0.157,
+   "2020": 0.248,
+   "2021": 0.287,
+   "2022": -0.004
+  },
+  "stats": null,
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY only (Top1); defensive best of BIL/IEF; canary TIP; 13612U momentum. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "read-from-chart",
+  "notes": "read from chart (approx.): bar heights pixel-measured on the full-resolution image against the gridlines; estimated error about +/-0.2pp per year. Consistency check: compounding the 52 chart-read years reproduces the post's KPI-table CARs to within 0.03pp for every period (FS 1971-2022, 2001-2022, last 20/10/5/3/1 years). Exact 2022 value from the KPI table: -0.38%."
+ },
+ {
+  "strategy_id": "haa_simple",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "second KPI table image (HAA-Simple), row New Millennium 31-12-2000..31-12-2022",
+  "period": {
+   "start": "2001-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.1089,
+   "vol": 0.0923,
+   "sharpe": 1.18,
+   "max_dd": -0.1588
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY only (Top1); defensive best of BIL/IEF; canary TIP; 13612U momentum. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 6.15%. Numbers differ from the SSRN paper (e.g. 2022: paper -0.8% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_simple",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 12 'HAA-Simple (SPY only)', p.10, row R20 Dec02-Dec22",
+  "period": {
+   "start": "2003-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.108,
+   "vol": 0.094,
+   "sharpe": 1.03,
+   "max_dd": -0.166
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY only (Top1); defensive best of BIL/IEF; canary TIP; 13612U momentum. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). CF: R1 84.6%, R10 38.0%, R20 32.4%; turnover 184%/yr (FS). period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "haa_simple",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "second KPI table image (HAA-Simple), row Last 20-Years 31-12-2002..31-12-2022",
+  "period": {
+   "start": "2003-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.114,
+   "vol": 0.0933,
+   "sharpe": 1.22,
+   "max_dd": -0.1588
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY only (Top1); defensive best of BIL/IEF; canary TIP; 13612U momentum. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 7.44%. Numbers differ from the SSRN paper (e.g. 2022: paper -0.8% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_simple",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 12 'HAA-Simple (SPY only)', p.10, row R10 Dec12-Dec22",
+  "period": {
+   "start": "2013-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.125,
+   "vol": 0.092,
+   "sharpe": 1.3,
+   "max_dd": -0.082
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY only (Top1); defensive best of BIL/IEF; canary TIP; 13612U momentum. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). CF: R1 84.6%, R10 38.0%, R20 32.4%; turnover 184%/yr (FS). period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "haa_simple",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "second KPI table image (HAA-Simple), row Last 10-Years 31-12-2012..31-12-2022",
+  "period": {
+   "start": "2013-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.1334,
+   "vol": 0.0905,
+   "sharpe": 1.47,
+   "max_dd": -0.0795
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY only (Top1); defensive best of BIL/IEF; canary TIP; 13612U momentum. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 7.89%. Numbers differ from the SSRN paper (e.g. 2022: paper -0.8% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_simple",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "second KPI table image (HAA-Simple), row Last 5-Years 31-12-2017..31-12-2022",
+  "period": {
+   "start": "2018-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.1564,
+   "vol": 0.1134,
+   "sharpe": 1.38,
+   "max_dd": -0.0795
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY only (Top1); defensive best of BIL/IEF; canary TIP; 13612U momentum. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 5.84%. Numbers differ from the SSRN paper (e.g. 2022: paper -0.8% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_simple",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "second KPI table image (HAA-Simple), row Last 3-Years 31-12-2019..31-12-2022",
+  "period": {
+   "start": "2020-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.1696,
+   "vol": 0.1289,
+   "sharpe": 1.32,
+   "max_dd": -0.0795
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY only (Top1); defensive best of BIL/IEF; canary TIP; 13612U momentum. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 3.64%. Numbers differ from the SSRN paper (e.g. 2022: paper -0.8% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "haa_simple",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 12 'HAA-Simple (SPY only)', p.10, row R1 Dec21-Dec22",
+  "period": {
+   "start": "2022-01",
+   "end": "2022-12"
+  },
+  "annual_returns": {
+   "2022": -0.008
+  },
+  "stats": {
+   "cagr": -0.008,
+   "vol": 0.068,
+   "sharpe": -0.3,
+   "max_dd": -0.057
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY only (Top1); defensive best of BIL/IEF; canary TIP; 13612U momentum. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). CF: R1 84.6%, R10 38.0%, R20 32.4%; turnover 184%/yr (FS). period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "haa_simple",
+  "source_title": "TrendXplorer (J.W. Keuning, HAA co-author), 'Introducing Hybrid Asset Allocation (HAA)', Feb 2023",
+  "source_url": "https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html",
+  "location": "second KPI table image (HAA-Simple), row Last 1-Year 31-12-2021..31-12-2022",
+  "period": {
+   "start": "2022-01",
+   "end": "2022-12"
+  },
+  "annual_returns": {
+   "2022": -0.0038
+  },
+  "stats": {
+   "cagr": -0.0038,
+   "vol": 0.0824,
+   "sharpe": -0.05,
+   "max_dd": -0.0529
+  },
+  "costs": "Before costs: post states 'risk-free rates, trading costs, slippage, and taxes are disregarded'.",
+  "proxies": "Offensive SPY only (Top1); defensive best of BIL/IEF; canary TIP; 13612U momentum. ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns CAR, Vol(Y), MaxDD, Sharpe (=CAR/Vol, rf=0). 60/40 SPY/IEF buy&hold over same period: BH6040 -16.65%. Numbers differ from the SSRN paper (e.g. 2022: paper -0.8% after 0.1% TC) - no costs here and possibly a different data vintage. Transcribed from table image."
+ },
+ {
+  "strategy_id": "baa_g12_balanced",
+  "source_title": "Keller (2022), Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA), SSRN 4166845, v0.98 (18 Jul 2022)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845",
+  "location": "Fig 3 'The BAA-G12 model', p.5, row RS Jun02-Jun22",
+  "period": {
+   "start": "2002-07",
+   "end": "2022-06"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.122,
+   "vol": 0.087,
+   "sharpe": 1.27,
+   "max_dd": -0.087
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY, QQQ, IWM, VGK, EWJ, VWO, VNQ, DBC, GLD, TLT, HYG, LQD (Top6 by SMA(12)=13-month SMA momentum); defensive TIP, DBC, BIL, IEF, TLT, LQD, BND (Top3, replaced by BIL if below BIL); canary SPY, VWO, VEA, BND (13612W, B=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns R, D, V, SR (Sharpe excess over risk-free). DF 53.5%. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). SSRN-generated PDF (footer 'Electronic copy available at: https://ssrn.com/abstract=4166845') read from a public mirror copy; SSRN direct download is bot-protected."
+ },
+ {
+  "strategy_id": "baa_g12_balanced",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 8 'BAA-Balanced (G12/T6)', p.7 (BAA re-run to Dec 2022 inside the HAA paper), row R20 Dec02-Dec22",
+  "period": {
+   "start": "2003-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.115,
+   "vol": 0.087,
+   "sharpe": 1.2,
+   "max_dd": -0.087
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY, QQQ, IWM, VGK, EWJ, VWO, VNQ, DBC, GLD, TLT, HYG, LQD (Top6, SMA(12) rel. momentum); defensive DBC, BIL, IEF, TLT, LQD, BND, TIP (Top3, BIL floor); canary SPY, VWO, VEA, BND (13612W, B=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). CF: R1 92.3%, R10 62.0%, R20 53.5%; turnover 472%/yr. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "baa_g12_balanced",
+  "source_title": "Keller (2022), Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA), SSRN 4166845, v0.98 (18 Jul 2022)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845",
+  "location": "Fig 3 'The BAA-G12 model', p.5, row IS2 Jun12-Jun22",
+  "period": {
+   "start": "2012-07",
+   "end": "2022-06"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.078,
+   "vol": 0.065,
+   "sharpe": 1.12,
+   "max_dd": -0.072
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY, QQQ, IWM, VGK, EWJ, VWO, VNQ, DBC, GLD, TLT, HYG, LQD (Top6 by SMA(12)=13-month SMA momentum); defensive TIP, DBC, BIL, IEF, TLT, LQD, BND (Top3, replaced by BIL if below BIL); canary SPY, VWO, VEA, BND (13612W, B=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns R, D, V, SR (Sharpe excess over risk-free). DF 59.5%. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). SSRN-generated PDF (footer 'Electronic copy available at: https://ssrn.com/abstract=4166845') read from a public mirror copy; SSRN direct download is bot-protected."
+ },
+ {
+  "strategy_id": "baa_g12_balanced",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 8 'BAA-Balanced (G12/T6)', p.7 (BAA re-run to Dec 2022 inside the HAA paper), row R10 Dec12-Dec22",
+  "period": {
+   "start": "2013-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.071,
+   "vol": 0.066,
+   "sharpe": 0.98,
+   "max_dd": -0.077
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY, QQQ, IWM, VGK, EWJ, VWO, VNQ, DBC, GLD, TLT, HYG, LQD (Top6, SMA(12) rel. momentum); defensive DBC, BIL, IEF, TLT, LQD, BND, TIP (Top3, BIL floor); canary SPY, VWO, VEA, BND (13612W, B=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). CF: R1 92.3%, R10 62.0%, R20 53.5%; turnover 472%/yr. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "baa_g12_balanced",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 8 'BAA-Balanced (G12/T6)', p.7 (BAA re-run to Dec 2022 inside the HAA paper), row R1 Dec21-Dec22",
+  "period": {
+   "start": "2022-01",
+   "end": "2022-12"
+  },
+  "annual_returns": {
+   "2022": 0.006
+  },
+  "stats": {
+   "cagr": 0.006,
+   "vol": 0.064,
+   "sharpe": -0.09,
+   "max_dd": -0.077
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY, QQQ, IWM, VGK, EWJ, VWO, VNQ, DBC, GLD, TLT, HYG, LQD (Top6, SMA(12) rel. momentum); defensive DBC, BIL, IEF, TLT, LQD, BND, TIP (Top3, BIL floor); canary SPY, VWO, VEA, BND (13612W, B=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). CF: R1 92.3%, R10 62.0%, R20 53.5%; turnover 472%/yr. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "baa_g12_balanced",
+  "source_title": "Keller (2022), Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA), SSRN 4166845, v0.98 (18 Jul 2022)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845",
+  "location": "Text p.5: 'YTD 2022 (at ultimo Jun 2022) performance ... +6.4%'",
+  "period": {
+   "start": "2022-01",
+   "end": "2022-06"
+  },
+  "annual_returns": null,
+  "stats": {
+   "total_return": 0.064
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive SPY, QQQ, IWM, VGK, EWJ, VWO, VNQ, DBC, GLD, TLT, HYG, LQD (Top6 by SMA(12)=13-month SMA momentum); defensive TIP, DBC, BIL, IEF, TLT, LQD, BND (Top3, replaced by BIL if below BIL); canary SPY, VWO, VEA, BND (13612W, B=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Cumulative (not annualised) return Jan-Jun 2022; both BAA variants were fully defensive (33% DBC, 67% BIL) Jan-Jun 2022 per p.7. Same text gives 60/40 YTD -16% (p.5) / -15% (p.7)."
+ },
+ {
+  "strategy_id": "baa_g4_aggressive",
+  "source_title": "Keller (2022), Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA), SSRN 4166845, v0.98 (18 Jul 2022)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845",
+  "location": "Fig 6 'BAA-G4', p.7, row RS Jun02-Jun22",
+  "period": {
+   "start": "2002-07",
+   "end": "2022-06"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.167,
+   "vol": 0.118,
+   "sharpe": 1.32,
+   "max_dd": -0.095
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive QQQ, VWO, VEA, BND (Top1 by SMA(12) momentum); defensive TIP, DBC, BIL, IEF, TLT, LQD, BND (Top3, BIL floor); canary SPY, VWO, VEA, BND (13612W, B=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns R, D, V, SR (Sharpe excess over risk-free). DF 53.5%. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). SSRN-generated PDF (footer 'Electronic copy available at: https://ssrn.com/abstract=4166845') read from a public mirror copy; SSRN direct download is bot-protected."
+ },
+ {
+  "strategy_id": "baa_g4_aggressive",
+  "source_title": "Keller (2022), Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA), SSRN 4166845, v0.98 (18 Jul 2022)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845",
+  "location": "Fig 6 'BAA-G4', p.7, row IS2 Jun12-Jun22",
+  "period": {
+   "start": "2012-07",
+   "end": "2022-06"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.109,
+   "vol": 0.094,
+   "sharpe": 1.11,
+   "max_dd": -0.087
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive QQQ, VWO, VEA, BND (Top1 by SMA(12) momentum); defensive TIP, DBC, BIL, IEF, TLT, LQD, BND (Top3, BIL floor); canary SPY, VWO, VEA, BND (13612W, B=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Columns R, D, V, SR (Sharpe excess over risk-free). DF 59.5%. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). SSRN-generated PDF (footer 'Electronic copy available at: https://ssrn.com/abstract=4166845') read from a public mirror copy; SSRN direct download is bot-protected."
+ },
+ {
+  "strategy_id": "baa_g4_aggressive",
+  "source_title": "Keller (2022), Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA), SSRN 4166845, v0.98 (18 Jul 2022)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845",
+  "location": "Text p.7: 'YTD 2022 (at ultimo Jun 2022) performance ... +6.4%'",
+  "period": {
+   "start": "2022-01",
+   "end": "2022-06"
+  },
+  "annual_returns": null,
+  "stats": {
+   "total_return": 0.064
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Offensive QQQ, VWO, VEA, BND (Top1 by SMA(12) momentum); defensive TIP, DBC, BIL, IEF, TLT, LQD, BND (Top3, BIL floor); canary SPY, VWO, VEA, BND (13612W, B=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "Cumulative (not annualised) return Jan-Jun 2022; both BAA variants were fully defensive (33% DBC, 67% BIL) Jan-Jun 2022 per p.7. Same text gives 60/40 YTD -16% (p.5) / -15% (p.7)."
+ },
+ {
+  "strategy_id": "daa_g12",
+  "source_title": "TrendXplorer (J.W. Keuning, DAA co-author), 'Announcing Defensive Asset Allocation', Jul 2018",
+  "source_url": "https://indexswingtrader.blogspot.com/2018/07/announcing-defensive-asset-allocation.html",
+  "location": "Table image 'DAA-G12 FS T6B2 TC0 Table', row OS Dec-1993..Mar-2018",
+  "period": {
+   "start": "1994-01",
+   "end": "2018-03"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.141,
+   "max_dd": -0.082
+  },
+  "costs": "Before costs (image file name 'TC0' = zero transaction costs).",
+  "proxies": "Risky G12: SPY, IWM, QQQ, VGK, EWJ, VWO, VNQ, GSG, GLD, TLT, HYG, LQD (Top6, 13612W); cash universe SHY, IEF, LQD (best one); canary VWO, BND (B=2). Index proxies before ETF inception.",
+  "confidence": "exact",
+  "notes": "Table also gives K50/K25/UPI/CF (CF 28.8% OS, 28.5% RS); no vol/Sharpe. IS Dec-1970..Dec-1993: R 20.4%, D 10.5%; FS Dec-1970..Mar-2018: R 17.2%, D 10.5%. Differs from the paper's own Mar08-Mar18 figure (9.9%/9.0%, see other record) - likely costs and/or implementation details. Transcribed from table image."
+ },
+ {
+  "strategy_id": "daa_g12",
+  "source_title": "TrendXplorer (J.W. Keuning, DAA co-author), 'Announcing Defensive Asset Allocation', Jul 2018",
+  "source_url": "https://indexswingtrader.blogspot.com/2018/07/announcing-defensive-asset-allocation.html",
+  "location": "Table image 'DAA-G12 FS T6B2 TC0 Table', row RS Mar-2008..Mar-2018",
+  "period": {
+   "start": "2008-04",
+   "end": "2018-03"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.111,
+   "max_dd": -0.082
+  },
+  "costs": "Before costs (image file name 'TC0' = zero transaction costs).",
+  "proxies": "Risky G12: SPY, IWM, QQQ, VGK, EWJ, VWO, VNQ, GSG, GLD, TLT, HYG, LQD (Top6, 13612W); cash universe SHY, IEF, LQD (best one); canary VWO, BND (B=2). Index proxies before ETF inception.",
+  "confidence": "exact",
+  "notes": "Table also gives K50/K25/UPI/CF (CF 28.8% OS, 28.5% RS); no vol/Sharpe. IS Dec-1970..Dec-1993: R 20.4%, D 10.5%; FS Dec-1970..Mar-2018: R 17.2%, D 10.5%. Differs from the paper's own Mar08-Mar18 figure (9.9%/9.0%, see other record) - likely costs and/or implementation details. Transcribed from table image."
+ },
+ {
+  "strategy_id": "daa_g12",
+  "source_title": "Keller & Keuning (2018), Breadth Momentum and the Canary Universe: Defensive Asset Allocation (DAA), SSRN 3212862 - table as reproduced by CXO Advisory",
+  "source_url": "https://www.cxoadvisory.com/strategic-allocation/multi-class-momentum-portfolio-with-canary-crash-protection/",
+  "location": "Table image 'DAA-vs-VAA-recent' ('extracted from the paper'), row DAA-G12",
+  "period": {
+   "start": "2008-04",
+   "end": "2018-03"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.099,
+   "max_dd": -0.09
+  },
+  "costs": "Probably after 0.1% one-way costs (Keller's standard) - not stated in the CXO extract.",
+  "proxies": "Risky G12: SPY, IWM, QQQ, VGK, EWJ, VWO, VNQ, GSG, GLD, TLT, HYG, LQD (Top6, 13612W); cash universe SHY, IEF, LQD (best one); canary VWO, BND (B=2). Index proxies before ETF inception.",
+  "confidence": "second-hand",
+  "notes": "Exact transcription of the paper's table as reproduced by CXO; CXO describes the period as 'March 2008 through March 2018 (when selected ETFs are all available)'. Original SSRN PDF not accessible (Cloudflare 403; ResearchGate 403; super.so mirror 404). Same table: VAA-G12 8.6%/7.1%."
+ },
+ {
+  "strategy_id": "vaa_g4",
+  "source_title": "Keller & Keuning (2017), Breadth Momentum and Vigilant Asset Allocation (VAA): Winning More by Losing Less, SSRN 3002624 - CXO Advisory summary",
+  "source_url": "https://www.cxoadvisory.com/technical-trading/conservative-breadth-rule-for-asset-class-momentum-crash-protection/",
+  "location": "CXO bullet: 'For B=1 and T=1 out-of-sample, CAGR is 16%, MaxDD is -10% and annual Sharpe ratio is 0.92'",
+  "period": {
+   "start": "1994-01",
+   "end": "2016-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.16,
+   "sharpe": 0.92,
+   "max_dd": -0.1
+  },
+  "costs": "After 0.1% one-way trading frictions (CXO: 'they apply 0.1% one-way trading frictions').",
+  "proxies": "VAA-G4: risky SPY, EFA/VEA, EEM/VWO, AGG/BND (Top1, B=1, 13612W); cash universe SHY, IEF, LQD (best one). Index proxies before ETF inception.",
+  "confidence": "second-hand",
+  "notes": "Rounded figures in CXO's prose summary of the paper. Period: CXO gives the OS window as December 1993 through December 2016 for the G12 table; assumed identical for G4 (the paper splits the short sample in halves) - verify against the paper. In-sample (1971-1993) per CXO: CAGR 22%, MaxDD -13%, Sharpe 0.98."
+ },
+ {
+  "strategy_id": "vaa_g4",
+  "source_title": "Keller & Keuning (2018) DAA paper (SSRN 3212862) - table as reproduced by CXO Advisory",
+  "source_url": "https://www.cxoadvisory.com/strategic-allocation/multi-class-momentum-portfolio-with-canary-crash-protection/",
+  "location": "Table image 'DAA-vs-VAA-recent', row VAA-G4",
+  "period": {
+   "start": "2008-04",
+   "end": "2018-03"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.105,
+   "max_dd": -0.105
+  },
+  "costs": "Probably after 0.1% one-way costs (not stated in extract).",
+  "proxies": "VAA-G4: risky SPY, EFA/VEA, EEM/VWO, AGG/BND (Top1, B=1, 13612W); cash universe SHY, IEF, LQD (best one). Index proxies before ETF inception.",
+  "confidence": "second-hand",
+  "notes": "Exact transcription of the DAA paper's comparison table as reproduced by CXO (R and D only)."
+ },
+ {
+  "strategy_id": "paa2",
+  "source_title": "Keller & Keuning (2016), Protective Asset Allocation (PAA): A Simple Momentum-Based Alternative for Term Deposits, SSRN 2759734 - table as reproduced by CXO Advisory",
+  "source_url": "https://www.cxoadvisory.com/technical-trading/dual-momentum-with-multi-market-breadth-crash-protection/",
+  "location": "Table image 'PAA-out-of-sample-performance' ('extracted from the paper'), row PAA2",
+  "period": {
+   "start": "1993-01",
+   "end": "2015-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.105,
+   "vol": 0.079,
+   "sharpe": 1.0,
+   "max_dd": -0.088
+  },
+  "costs": "After costs: 0.1% one-way trading frictions.",
+  "proxies": "PAA2 (high protection, a=2): risky SPY, QQQ, IWM, VGK, EWJ, EEM, IYR, GSG, GLD, HYG, LQD, TLT; momentum = price/SMA(12) - 1; BF=(12-n)/6 capped at 1; Top6; safe asset IEF. Index proxies before ETF inception.",
+  "confidence": "second-hand",
+  "notes": "Out-of-sample period described by CXO as '1993 through 2015' (in-sample 1971-Dec 1992). Same table: PAA1 11.3%/8.2%/7.9%/SR 1.06; PAA0 11.6%/8.5%/8.3%/1.05; 60/40 (SPY/IEF) 8.4%/8.7%/29.5%/0.66; SPY 8.9%/14.5%/50.8%/0.44 (R/V/D/SR). Original SSRN PDF not accessible."
+ },
+ {
+  "strategy_id": "paa2",
+  "source_title": "TrendXplorer (J.W. Keuning, PAA co-author), 'Introducing Protective Asset Allocation', Apr 2016",
+  "source_url": "https://indexswingtrader.blogspot.com/2016/04/introducing-protective-asset-allocation.html",
+  "location": "'Annual returns' bar chart (image PAA2T6_YearlyReturns.png), bars 1971-2015",
+  "period": {
+   "start": "2000-01",
+   "end": "2015-12"
+  },
+  "annual_returns": {
+   "2000": 0.103,
+   "2001": 0.037,
+   "2002": 0.084,
+   "2003": 0.296,
+   "2004": 0.112,
+   "2005": 0.086,
+   "2006": 0.183,
+   "2007": 0.147,
+   "2008": 0.07,
+   "2009": -0.004,
+   "2010": 0.134,
+   "2011": 0.038,
+   "2012": 0.043,
+   "2013": 0.073,
+   "2014": 0.066,
+   "2015": -0.008
+  },
+  "stats": null,
+  "costs": "Before costs: post says results 'do not reflect trading costs, slippage nor taxes'.",
+  "proxies": "PAA2 Top6, N12 universe as above but safety asset = best of SHY/IEF by momentum (not IEF alone).",
+  "confidence": "read-from-chart",
+  "notes": "read from chart (approx.): pixel-measured bar heights, est. error +/-0.2pp. Compounding all 45 chart-read years (1971-2015) gives 13.79% vs the post's published full-sample CAGR 13.78% (Dec 1970-Dec 2015; V 7.75%, D 8.76%, SR(0%) 1.78). CAUTION: SHY/IEF safety pair and zero costs differ from the paper's PAA2 (IEF, 0.1% TC)."
+ },
+ {
+  "strategy_id": "paa2",
+  "source_title": "Keller (2022), Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA), SSRN 4166845, v0.98 (18 Jul 2022)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845",
+  "location": "Fig 1 'PAA-G12', p.3 (PAA re-run inside the BAA paper), row RS Jun02-Jun22",
+  "period": {
+   "start": "2002-07",
+   "end": "2022-06"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.089,
+   "vol": 0.075,
+   "sharpe": 1.03,
+   "max_dd": -0.07
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "PAA-G12 variant: risky SPY, QQQ, IWM, VGK, EWJ, VWO, VNQ, DBC, GLD, TLT, HYG, LQD; breadth B=6 over the same 12 (high protection, BF=(12-n)/6), Top6 by SMA(12) momentum; defensive = best of BIL/IEF (ND=2, TD=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "CAUTION: this is PAA2/Top6 but with defensive asset = best of BIL/IEF and VWO/VNQ/DBC instead of EEM/IYR/GSG; the 2016 paper's PAA2 used IEF only. Columns R, D, V, SR (Sharpe excess over risk-free). DF 48.2%. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). SSRN-generated PDF (footer 'Electronic copy available at: https://ssrn.com/abstract=4166845') read from a public mirror copy; SSRN direct download is bot-protected."
+ },
+ {
+  "strategy_id": "paa2",
+  "source_title": "Keller (2022), Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA), SSRN 4166845, v0.98 (18 Jul 2022)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845",
+  "location": "Fig 1 'PAA-G12', p.3 (PAA re-run inside the BAA paper), row IS2 Jun12-Jun22",
+  "period": {
+   "start": "2012-07",
+   "end": "2022-06"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.058,
+   "vol": 0.057,
+   "sharpe": 0.92,
+   "max_dd": -0.046
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "PAA-G12 variant: risky SPY, QQQ, IWM, VGK, EWJ, VWO, VNQ, DBC, GLD, TLT, HYG, LQD; breadth B=6 over the same 12 (high protection, BF=(12-n)/6), Top6 by SMA(12) momentum; defensive = best of BIL/IEF (ND=2, TD=1). ETF total returns; pre-inception history from indices 'adjusted for fees etc by ETF calibration' (Keller 2016, PAA Appendix A).",
+  "confidence": "exact",
+  "notes": "CAUTION: this is PAA2/Top6 but with defensive asset = best of BIL/IEF and VWO/VNQ/DBC instead of EEM/IYR/GSG; the 2016 paper's PAA2 used IEF only. Columns R, D, V, SR (Sharpe excess over risk-free). DF 54.0%. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). SSRN-generated PDF (footer 'Electronic copy available at: https://ssrn.com/abstract=4166845') read from a public mirror copy; SSRN direct download is bot-protected."
+ },
+ {
+  "strategy_id": "philoeconomics_growth_trend_timing",
+  "source_title": "Philosophical Economics, Growth and Trend: A Simple, Powerful Technique for Timing the Stock Market, 18 Jan 2016",
+  "source_url": "https://www.philosophicaleconomics.com/2016/01/gtt/",
+  "location": "Chart gttrrsgipg1.jpg (preferred construction RRSG/IPG), stats table, GTT column; trade table table.jpg (entries/exits; summary box 'ANN TR GTT 11.2%')",
+  "period": {
+   "start": "1928-02",
+   "end": "2015-11"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.112,
+   "vol": 0.145,
+   "sharpe": 0.565,
+   "max_dd": -0.479,
+   "sortino": 0.944,
+   "pct_time_invested": 0.865
+  },
+  "costs": "After 0.6% round-trip slip (printed).",
+  "proxies": "S&P 500 TR; T-bills (avg 3.6%). Growth signal = YoY real retail sales growth OR YoY industrial production growth; a negative reading in either turns timing on. Pre-1947 retail sales proxied by real department-store plus real shoe sales. Trend = 10m MA of the TR index.",
+  "confidence": "exact",
+  "notes": "Rule: at month-end, if the PRIOR month's growth signals are all positive, stay long; otherwise long if price >= 10m MA, else T-bills. Economic data lagged one month; revised FRED data. EXACT post-2000 trades from table.jpg (RISK = S&P TR index level, SAFE = T-bill index; GAIN = round-trip gain vs buy & hold, net of slip): Exit 2001.01 (1700.94/16.95) -> Enter 2001.02 (1545.63/17.02) +9.90%; Exit 2001.03 (1448.05/17.08) -> Enter 2002.03 (1451.63/17.54) +1.79%; Exit 2002.04 (1364.14/17.56) -> Enter 2002.07 (1159.44/17.64) +17.56%; Exit 2002.11 (1197.98/17.72) -> Enter 2003.01 (1098.23/17.76) +8.70%; Exit 2003.03 (1092.06/17.79) -> Enter 2003.04 (1182.31/17.81) -8.15%; Exit 2008.01 (1929.55/20.58) -> Enter 2009.07 (1439.30/20.83) +35.14%. No trades from 2009.07 to 2015.11. These dates let you check the replication's switch months directly. Same chart: buy & hold 9.8%; trend-only MMA 9.8% / 12.7% / -49.6%."
+ },
+ {
+  "strategy_id": "philoeconomics_growth_trend_timing",
+  "source_title": "ActuallyFinance, Recession Timing Dashboard - 'Philosophical Economics GTT #3: Retail Sales or Industrial Production', 10-month MA, 0 bps",
+  "source_url": "https://actuallyfin.github.io/recession-timing-dashboard/",
+  "location": "Performance Summary table (embedded JSON ['10m']['0bps'].statRows)",
+  "period": {
+   "start": "1961-08",
+   "end": "2026-10"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.117,
+   "vol": 0.129,
+   "sharpe": 0.6,
+   "sortino": 0.91,
+   "max_dd": -0.307,
+   "pct_time_invested": 0.885
+  },
+  "costs": "0 bps. The 10 bps version is about the same (MaxDD -31.0%).",
+  "proxies": "SPY/S&P TR proxy as above; real retail sales YoY < 0 OR industrial production YoY < 0 turns timing on; 10m MA",
+  "confidence": "exact",
+  "notes": "The author's preferred construction, independently replicated. Other dashboard rows (same period, 0 bps; CAGR/vol/Sharpe/Sortino/MaxDD/%invested): #1 Retail Sales 11.1/13.4/0.54/0.81/-45.1/91.1; #2 Industrial Production 11.7/13.4/0.57/0.88/-29.7/93.6; #4 Employment Growth 11.7/13.1/0.59/0.90/-29.7/90.4; #5 Real Income or Housing Starts 10.7/11.9/0.56/0.85/-23.3/82.9; 10M MA always on 10.0/11.0/0.53/0.80/-23.3/75.3; buy & hold 10.5/14.9/0.46/0.68/-50.8/100 (re-checked against the saved HTML)."
+ },
+ {
+  "strategy_id": "philoeconomics_growth_trend_timing",
+  "source_title": "ActuallyFinance, Recession Timing Dashboard - GTT #3 Retail Sales or Industrial Production, 10-month MA, 0 bps (decoded growth chart)",
+  "source_url": "https://actuallyfin.github.io/recession-timing-dashboard/",
+  "location": "SVG growth-chart polyline 'pe_gtt_3_retail_or_industrial', decoded",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": -0.0974,
+   "2001": -0.066,
+   "2002": -0.0136,
+   "2003": 0.2149,
+   "2004": 0.1041,
+   "2005": 0.049,
+   "2006": 0.1582,
+   "2007": 0.0526,
+   "2008": -0.0499,
+   "2009": 0.2275,
+   "2010": 0.1503,
+   "2011": 0.0207,
+   "2012": 0.1582,
+   "2013": 0.3233,
+   "2014": 0.1347,
+   "2015": 0.0138,
+   "2016": 0.049,
+   "2017": 0.2149,
+   "2018": -0.0434,
+   "2019": 0.3098,
+   "2020": 0.2964,
+   "2021": 0.2876,
+   "2022": -0.1483,
+   "2023": 0.1903,
+   "2024": 0.2486,
+   "2025": 0.1782
+  },
+  "stats": null,
+  "costs": "0 bps.",
+  "proxies": "As above.",
+  "confidence": "read-from-chart",
+  "notes": "Read from chart (approx.): same decoding method and +/-0.3-0.4pp precision as the GTT #6 record. 2026 Jan-Oct: +11.55%. Decoded Dec-1999 to Dec-2025: CAGR about 10.6%, MaxDD about -30.6%. NB: this replication uses real-time vintages where available, so it can differ from the author's revised-data rule."
+ },
+ {
+  "strategy_id": "philoeconomics_growth_trend_timing",
+  "source_title": "Philosophical Economics, In Search of the Perfect Recession Indicator, Feb 2016 - retail-sales-only GTT, revised vs unrevised",
+  "source_url": "https://www.philosophicaleconomics.com/2016/02/uetrend/",
+  "location": "Chart RRSG-rvur.jpg, column GTT (revised data)",
+  "period": {
+   "start": "2002-07",
+   "end": "2015-10"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.106,
+   "vol": 0.115,
+   "sharpe": 0.8,
+   "max_dd": -0.173,
+   "sortino": 1.431,
+   "pct_time_invested": 0.876
+  },
+  "costs": "0.6% round-trip slip.",
+  "proxies": "S&P 500 TR; T-bills (avg 1.3%); growth signal = real retail sales growth ONLY (variant, not the RRSG-or-IPG preferred rule); 10m MA",
+  "confidence": "exact",
+  "notes": "VARIANT (RRSG only). The only author sub-period mostly inside 2000-2016. The PERIOD IS NOT STATED: about Jul 2002 to Oct 2015 was inferred from the chart's monthly x-axis and price path, so the dates are approximate. Same chart: unrevised GTT-U 10.4% / 11.5% / -17.3% / Sharpe 0.780; buy & hold S&P TR 8.1% / 14.7% / -51.0% / 0.503."
+ },
+ {
+  "strategy_id": "philoeconomics_gtt_unemployment",
+  "source_title": "Philosophical Economics ('Jesse Livermore'), In Search of the Perfect Recession Indicator, 21 Feb 2016",
+  "source_url": "https://www.philosophicaleconomics.com/2016/02/uetrend/",
+  "location": "Chart image GTTUE12.jpg (https://www.philosophicaleconomics.com/wp-content/uploads/2016/02/GTTUE12.jpg), stats table, GTT column; table gtttablecomps.jpg row 'UE vs 12 MMA' (START 1930.05, END 2016.01)",
+  "period": {
+   "start": "1930-05",
+   "end": "2016-01"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.108,
+   "vol": 0.14,
+   "sharpe": 0.56,
+   "max_dd": -0.513,
+   "sortino": 0.933,
+   "pct_time_invested": 0.85
+  },
+  "costs": "After costs: chart prints 'Round Trip Slip: 0.6%' (the author's model of the historical bid-ask spread).",
+  "proxies": "Risk: S&P 500 total return index. Safe: rolled 3-month T-bills (avg 3.5%/yr). Signal: seasonally adjusted civilian unemployment rate vs its trailing 12-month MA. Price trend: S&P 500 TOTAL RETURN index vs its 10-month MA.",
+  "confidence": "exact",
+  "notes": "The author's headline GTT-UE test; read from the table image. Rule: hold 100% S&P 500 unless UE is above its 12m MA AND the TR index is below its 10m MA, then hold T-bills; checked monthly at the close. The Jan-2016 GTT post says backtests act on the PRIOR month's economic data (1-month lag). The post text says Jan 1930-Jan 2016; the comps table says START 1930.05. Same chart: trend-only MMA 9.3% / 12.4% / -49.6% / Sharpe 0.511; buy & hold 9.3% / 18.9% / -78.8% / 0.385. Starts long before 2000, so only loosely comparable."
+ },
+ {
+  "strategy_id": "philoeconomics_gtt_unemployment",
+  "source_title": "CXO Advisory, Combine Market Trend and Economic Trend Signals?, Nov 2019 - S&P 500 long sample, \"Either\"",
+  "source_url": "https://www.cxoadvisory.com/economic-indicators/combine-market-trend-and-economic-trend-signals/",
+  "location": "Table image SP500-trend-following-performance-stats.png ('Gross Performance (Jan 1949 - Sep 2019)'), column \"Either\"",
+  "period": {
+   "start": "1949-01",
+   "end": "2019-09"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.12,
+   "sharpe": 0.58,
+   "max_dd": -0.3
+  },
+  "costs": "Gross, no frictions. 54 one-way switches.",
+  "proxies": "S&P 500 index plus monthly Shiller dividend estimates; SMA10 on the PRICE index; cash = 3-month T-bill; UR vs SMA12; no publication lag",
+  "confidence": "exact",
+  "notes": "CONFLICT: the page's 'Key Insight'/FAQ text says '10.7% vs 10.0% CAGR; 1948-2019', which does not match the table image (12.0% vs 11.3%); the table is used. Same table: S&P 500 TR 11.3% / -51% / 0.45; SMA10 only 11.0% / -23% / 0.54."
+ },
+ {
+  "strategy_id": "philoeconomics_gtt_unemployment",
+  "source_title": "Philosophical Economics, In Search of the Perfect Recession Indicator, 21 Feb 2016",
+  "source_url": "https://www.philosophicaleconomics.com/2016/02/uetrend/",
+  "location": "Chart image gttunrevrevue.jpg ('GTT using from March 1961 to present'), stats table, column 'GTT' (revised data)",
+  "period": {
+   "start": "1961-03",
+   "end": "2016-01"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.112,
+   "vol": 0.126,
+   "sharpe": 0.521,
+   "max_dd": -0.296,
+   "sortino": 0.873,
+   "pct_time_invested": 0.87
+  },
+  "costs": "After 0.6% round-trip slip (printed).",
+  "proxies": "S&P 500 TR; T-bills (avg 5.0%); revised (last-issue) UE vs 12m MA; TR index vs 10m MA",
+  "confidence": "exact",
+  "notes": "End month not stated ('to present' in a Feb-2016 post); assumed Jan 2016. Same chart: first-issue unrevised (ALFRED) version GTT-U 11.3% / 12.6% / -29.6% / Sharpe 0.526; buy & hold 9.9% / 14.9% / -51.0% / 0.380."
+ },
+ {
+  "strategy_id": "philoeconomics_gtt_unemployment",
+  "source_title": "ActuallyFinance, Recession Timing Dashboard - 'Philosophical Economics GTT #6: Unemployment Rate Trend', trend rule '10-month MA (monthly)', 0 bps",
+  "source_url": "https://actuallyfin.github.io/recession-timing-dashboard/",
+  "location": "Performance Summary table (embedded JSON script#strategy-data -> ['10m']['0bps'].statRows), snapshot fetched 2026-11-20",
+  "period": {
+   "start": "1961-08",
+   "end": "2026-10"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.117,
+   "vol": 0.13,
+   "sharpe": 0.59,
+   "sortino": 0.91,
+   "max_dd": -0.297,
+   "pct_time_invested": 0.886
+  },
+  "costs": "0 bps. A 10 bps version gives CAGR 11.7%, vol 13.0%, Sharpe 0.59, MaxDD -29.7%.",
+  "proxies": "SPY proxy: synthetic S&P 500 TR through 1987, ^SP500TR 1988 to SPY inception, adjusted SPY after. Idle cash earns a monthly cash proxy. UE (FRED UNRATE) above its 12m average turns timing on; SPY vs 10m MA at month-end.",
+  "confidence": "exact",
+  "notes": "Independent live replication (not the author). Equity curve starts 1961-07-31 (first return Aug 1961) and ends 2026-10-31; final value $13,840,568 from $10,000 (re-checked against the saved HTML). Uses FRED/ALFRED real-time vintages where available, otherwise revised data with about a one-month lag. Sharpe and Sortino are on excess returns over cash, computed from monthly returns. Live page; may change after 2026-11-20. The dashboard decision was 'Defensive' only at 2026-03 month-end (SPY 647.06 < 10M MA 657.05), so in cash in April 2026."
+ },
+ {
+  "strategy_id": "philoeconomics_gtt_unemployment",
+  "source_title": "CXO Advisory, Combine Market Trend and Economic Trend Signals?, 4 Nov 2019 - scenario \"Either\"",
+  "source_url": "https://www.cxoadvisory.com/economic-indicators/combine-market-trend-and-economic-trend-signals/",
+  "location": "Table image SPY-trend-following-performance-stats.png ('Gross Performance (Nov 1993 - Sep 2019)'), column \"Either\"",
+  "period": {
+   "start": "1993-11",
+   "end": "2019-09"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.123,
+   "sharpe": 0.87,
+   "max_dd": -0.15
+  },
+  "costs": "Gross: no switching frictions or taxes. 12 one-way switches.",
+  "proxies": "Dividend-adjusted SPY; cash = 3-month T-bill yield; UR (seasonally adjusted civilian) vs SMA12; SPY vs SMA10 at the prior month-end",
+  "confidence": "exact",
+  "notes": "\"Either\" = hold SPY if either the SPY trend or the UR trend is favorable, i.e. GTT-UE. NO publication lag: CXO assumes month t's UR is known at month t's close, using revised data. Sharpe is annual, with the yearly average T-bill yield as risk-free. Same table: SPY buy & hold 9.4% / -51% / 0.45; SPY:SMA10 9.8% / -16% / 0.67 (32 switches). Read from chart (approx.), \"Either\" minus SPY by calendar year: 1998 about -9.5pp, 2001 about +17.5pp, 2002 about +23pp, 2003 about -5pp, 2008 about +39pp, 2009 about -2pp; about 0 in other years 1994-2018."
+ },
+ {
+  "strategy_id": "philoeconomics_gtt_unemployment",
+  "source_title": "ActuallyFinance, Recession Timing Dashboard - GTT #6 Unemployment Rate Trend, 10-month MA, 0 bps (decoded growth chart)",
+  "source_url": "https://actuallyfin.github.io/recession-timing-dashboard/",
+  "location": "'Growth of $10,000 (Log Scale)' SVG polyline (one point per month-end, 1961-07..2026-10), decoded to calendar-year returns",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": -0.0912,
+   "2001": -0.027,
+   "2002": -0.0434,
+   "2003": 0.3323,
+   "2004": 0.1079,
+   "2005": 0.049,
+   "2006": 0.1582,
+   "2007": 0.049,
+   "2008": 0.0172,
+   "2009": 0.2275,
+   "2010": 0.1503,
+   "2011": 0.0207,
+   "2012": 0.1582,
+   "2013": 0.3233,
+   "2014": 0.1347,
+   "2015": 0.0138,
+   "2016": 0.1193,
+   "2017": 0.2149,
+   "2018": -0.0434,
+   "2019": 0.2701,
+   "2020": 0.1309,
+   "2021": 0.2876,
+   "2022": -0.1825,
+   "2023": 0.0966,
+   "2024": 0.2486,
+   "2025": 0.127
+  },
+  "stats": null,
+  "costs": "0 bps.",
+  "proxies": "As in the dashboard stats record.",
+  "confidence": "read-from-chart",
+  "notes": "Read from chart (approx.): SVG y-coordinates (0.1 px resolution, log scale) converted back to values; precision about +/-0.3-0.4pp per year, and identical values across years reflect pixel quantization. The decoded final value is within 0.12% of the stated $13,840,568, and the decoded buy-and-hold series matches published SPY total returns within about 0.25pp. 2026 Jan-Oct decoded: +1.38%. Decoded Dec-1999 to Dec-2025: CAGR about 10.2%, month-end MaxDD about -23.9%. Decoded monthly curves: scratchpad bench_dl/agentB/actuallyfin_10m_0bps_decoded_equity.csv."
+ },
+ {
+  "strategy_id": "philoeconomics_gtt_unemployment",
+  "source_title": "Martin Schwoerer (Substack), Is the \"Perfect Indicator\" Useful, Once Again?, 15 Dec 2025",
+  "source_url": "https://martinschwoerer.substack.com/p/is-the-perfect-indicator-useful-once",
+  "location": "Section 'So, timing the market based on unemployment data worked quite well... until it didn't' (yearly list)",
+  "period": {
+   "start": "2016-01",
+   "end": "2025-11"
+  },
+  "annual_returns": {
+   "2016": 0.12,
+   "2017": 0.217,
+   "2018": -0.0456,
+   "2019": 0.3122,
+   "2020": 0.1837,
+   "2021": 0.2875,
+   "2022": -0.1817,
+   "2023": 0.0904,
+   "2024": 0.2489,
+   "2025": 0.1147
+  },
+  "stats": {
+   "cagr": 0.1245
+  },
+  "costs": "Not stated (none apparent).",
+  "proxies": "S&P 500 (fully invested years match S&P 500 total return). Rule: out only when UNRATE > its 12m MA AND S&P 500 < its 10m MA.",
+  "confidence": "exact",
+  "notes": "CRUDE METHODOLOGY. 2023 = SUM (not compounded) of Feb-Oct +4.47% and Dec +4.57%, out in Jan and Nov 2023, with no cash return. 2025 runs only to NOVEMBER: Jan-Mar -4.15% plus Jun-Nov +15.62%, summed, out Apr-May 2025. CAGR 12.45% is the 10-year product of these figures. His risk-off periods: Aug 1981-Aug 1982, Aug 1990-Jan 1991, Jan 2001-Apr 2003, Nov 2007-Jun 2009, Jan and Nov 2023, Apr and May 2025. Release-lag convention unclear. Differs from ActuallyFinance in 2019 (31.22 vs about 27.0) and 2020 (18.37 vs about 13.1). Useful mainly for the risk-off month list."
+ },
+ {
+  "strategy_id": "browne_permanent_portfolio",
+  "source_title": "Lazy Portfolio ETF - Harry Browne Permanent Portfolio: ETF allocation and returns",
+  "source_url": "https://www.lazyportfolioetf.com/allocation/harry-browne-permanent/",
+  "location": "'Monthly Returns and Seasonality' table, Year/Return column, rendered client-side from the inline `const _d` JSON (portfolios.P000003_1.rend.sliceArray.MAX.rendList = monthly % returns 1793-01..2026-10); stats from 'Metrics as of Oct 31, 2026' and 'Risk Indicators', 30Y column",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": 0.02397,
+   "2001": -0.00522,
+   "2002": 0.05851,
+   "2003": 0.13321,
+   "2004": 0.06833,
+   "2005": 0.08915,
+   "2006": 0.10941,
+   "2007": 0.12695,
+   "2008": 0.00866,
+   "2009": 0.07848,
+   "2010": 0.13924,
+   "2011": 0.11114,
+   "2012": 0.0641,
+   "2013": -0.02084,
+   "2014": 0.09397,
+   "2015": -0.03058,
+   "2016": 0.05537,
+   "2017": 0.10973,
+   "2018": -0.01756,
+   "2019": 0.1617,
+   "2020": 0.16098,
+   "2021": 0.04205,
+   "2022": -0.12531,
+   "2023": 0.1155,
+   "2024": 0.11902,
+   "2025": 0.22292
+  },
+  "stats": {
+   "cagr": 0.0689,
+   "vol": 0.069,
+   "sharpe": 0.68,
+   "max_dd": -0.1592
+  },
+  "costs": "No transaction fees or taxes; dividends reinvested. ETF expense ratios are implicit only once live ETF data starts; no fee adjustment is stated for the pre-ETF series.",
+  "proxies": "VTI 25 / TLT 25 / BIL 25 (1-3 month T-bills) / GLD 25. Before the ETFs existed, equivalent series are used up to: VTI Dec 2001, TLT Dec 2002, BIL Dec 2007, GLD Dec 2004.",
+  "confidence": "exact",
+  "notes": "NOMINAL series (the page's real series is separate). Rebalanced 'at every January 1st'. Calendar years were compounded from the published monthly returns; they match the page's own rendered yearly figures to 2 dp for 2000-2026. Re-checked from the saved monthly CSV (2008 0.87%, 2022 -12.53%, 2025 22.29%). 2026 Jan-Oct = +0.435%. Stats are the site's 30-year window (1996-11..2026-10); Sharpe uses BIL as risk-free; MaxDD is month-end (Dec 2021-Sep 2022). From the same monthly data, 2000-01..2026-10: CAGR 6.81%, vol 6.97%, MaxDD -15.92%. Data as of 31 Oct 2026, fetched 20 Nov 2026. Monthly series: scratchpad bench_dl/agentC/lz_hbpp_monthly.csv."
+ },
+ {
+  "strategy_id": "browne_permanent_portfolio",
+  "source_title": "Harry Browne, 'Permanent Portfolio Results' (harrybrowne.org), Wayback Machine copy",
+  "source_url": "http://web.archive.org/web/20101215140241/http://www.harrybrowne.org/PermanentPortfolioResults.htm",
+  "location": "'Yearly Permanent Portfolio Results, 1970 through 2003' grid and the 'Comparison among Investments in Recent Years' table",
+  "period": {
+   "start": "2000-01",
+   "end": "2003-12"
+  },
+  "annual_returns": {
+   "2000": 0.027,
+   "2001": -0.01,
+   "2002": 0.072,
+   "2003": 0.118
+  },
+  "stats": null,
+  "costs": "Not stated. Stock results include reinvested dividends; bond results include interest.",
+  "proxies": "Stocks = S&P 500 index mutual fund (dividends reinvested); bonds = 30-year T-bond; gold = American Eagle 1-oz coins; cash = Treasury bills (a 1-year bill bought at the start of each year)",
+  "confidence": "exact",
+  "notes": "The strategy author's own published series; the live URL is now 404. Component returns from the same page (stocks/bonds/gold/cash, %): 2000 -8.7/+21.2/-6.5/+6.0; 2001 -11.9/+1.6/+1.4/+5.4; 2002 -21.9/+17.5/+23.5/+1.8; 2003 +26.5/+5.5/+19.2/+1.4. The portfolio figure is NOT the equal-weight average of these, so weights apparently drift and are not reset every 1 Jan. The rebalancing rule is not stated."
+ },
+ {
+  "strategy_id": "browne_permanent_portfolio",
+  "source_title": "Investing Guy blog, 'Harry Browne's Permanent Portfolio' (Sep 2009), reproducing Craig Rowland / Crawling Road data",
+  "source_url": "https://investingguy.blogspot.com/2009/09/",
+  "location": "Table 'Annual Returns (%) of Different Investments (1972-2008)', 'Avg' column",
+  "period": {
+   "start": "2000-01",
+   "end": "2008-12"
+  },
+  "annual_returns": {
+   "2000": 0.032,
+   "2001": 0.009,
+   "2002": 0.07,
+   "2003": 0.14,
+   "2004": 0.066,
+   "2005": 0.081,
+   "2006": 0.11,
+   "2007": 0.129,
+   "2008": 0.019
+  },
+  "stats": null,
+  "costs": "No expenses. Includes interest and reinvested dividends.",
+  "proxies": "TSM = total stock market index; ST = 1-2 year Treasuries (used as cash, NOT T-bills); LT = 20+ year Treasuries; gold = bullion",
+  "confidence": "second-hand",
+  "notes": "25% each, rebalanced at the end of each year (= simple mean of the 4 asset columns; checked for 2000-2008). Component returns TSM/ST/LT/Gold (%): 2000 -10.6/8.8/19.7/-5.3; 2001 -11.0/7.8/4.3/2.4; 2002 -21.0/8.0/16.7/24.4; 2003 31.4/2.4/2.7/19.6; 2004 12.5/1.0/7.1/5.6; 2005 6.0/1.8/6.6/18.1; 2006 15.5/3.8/1.7/23.0; 2007 5.5/5.9/9.2/30.9; 2008 -36.7/6.2/33.4/4.9. A separate column is the PRPFX mutual FUND (not the strategy): 2000 5.88, 2001 3.81, 2002 14.36, 2003 20.45, 2004 12.05, 2005 7.62, 2006 13.82, 2007 12.43, 2008 -8.36. The original crawlingroad.com post is 404 and not archived."
+ },
+ {
+  "strategy_id": "browne_permanent_portfolio",
+  "source_title": "PortfoliosLab - Harry Browne Permanent Portfolio",
+  "source_url": "https://portfolioslab.com/portfolio/harry-browne-permanent",
+  "location": "'Monthly Returns' table (Total column) and 'Yearly Performance Comparison' table; since-inception stats from embedded page indicators and the drawdown table",
+  "period": {
+   "start": "2021-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2021": 0.0411,
+   "2022": -0.139,
+   "2023": 0.1143,
+   "2024": 0.1157,
+   "2025": 0.226
+  },
+  "stats": {
+   "cagr": 0.0704,
+   "vol": 0.0748,
+   "sharpe": 0.69,
+   "max_dd": -0.1899
+  },
+  "costs": "Dividend-adjusted ETF prices, so net of ETF expense ratios (weighted 0.18%). No transaction costs mentioned.",
+  "proxies": "VTI 25 / TLT 25 / SHY 25 (1-3y Treasuries as the cash sleeve) / GLD 25",
+  "confidence": "exact",
+  "notes": "Rebalanced 'Every year' (date not stated). Only 2021-2026 is public; earlier years are paywalled and were not used. NB the stats are NOT for the annual_returns window: they cover 2004-11-18 to 2026-11-20 on daily data. MaxDD -18.99% (2021-11-10 to 2022-10-20). 2026 YTD to 20 Nov = -3.09%."
+ },
+ {
+  "strategy_id": "portfoliocharts_golden_butterfly",
+  "source_title": "Lazy Portfolio ETF - Tyler Golden Butterfly Portfolio: ETF allocation and returns",
+  "source_url": "https://www.lazyportfolioetf.com/allocation/golden-butterfly/",
+  "location": "'Monthly Returns and Seasonality' table, Year/Return column, from the inline `const _d` JSON rend.sliceArray.MAX.rendList (monthly, 1927-01..2026-10); stats from the Metrics and Risk Indicators tables, 30Y column",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": 0.06883,
+   "2001": 0.02713,
+   "2002": 0.03151,
+   "2003": 0.18847,
+   "2004": 0.09882,
+   "2005": 0.08041,
+   "2006": 0.12443,
+   "2007": 0.0958,
+   "2008": -0.04179,
+   "2009": 0.10766,
+   "2010": 0.16541,
+   "2011": 0.08857,
+   "2012": 0.08841,
+   "2013": 0.06262,
+   "2014": 0.09132,
+   "2015": -0.03713,
+   "2016": 0.10821,
+   "2017": 0.10964,
+   "2018": -0.04027,
+   "2019": 0.1803,
+   "2020": 0.13931,
+   "2021": 0.09346,
+   "2022": -0.13348,
+   "2023": 0.1198,
+   "2024": 0.10732,
+   "2025": 0.19301
+  },
+  "stats": {
+   "cagr": 0.0787,
+   "vol": 0.08,
+   "sharpe": 0.71,
+   "max_dd": -0.1779
+  },
+  "costs": "No transaction fees or taxes; dividends reinvested. ETF expense ratios are implicit only within live ETF data.",
+  "proxies": "VTI 20 / IJS 20 (S&P SmallCap 600 Value) / TLT 20 / SHY 20 (1-3y Treasuries) / GLD 20. Before the ETFs existed, equivalent series are used up to: IJS Dec 2000, VTI Dec 2001, SHY Dec 2002, TLT Dec 2002, GLD Dec 2004.",
+  "confidence": "exact",
+  "notes": "NOMINAL. Rebalanced every 1 January. Matches the page's rendered yearly figures to 2 dp; re-checked from the saved monthly CSV. 2026 Jan-Oct = +3.59%. Stats are the 30-year window (1996-11..2026-10). From the same monthly data, 2000-01..2026-10: CAGR 7.76%, vol 8.03%, MaxDD -17.79%. The small-cap-value proxy (S&P 600 Value) may differ from Portfolio Charts' SCV series. Monthly series: bench_dl/agentC/lz_gb2_monthly.csv."
+ },
+ {
+  "strategy_id": "portfoliocharts_golden_butterfly",
+  "source_title": "Optimized Portfolio - Golden Butterfly Portfolio review (last updated 12 Apr 2026)",
+  "source_url": "https://www.optimizedportfolio.com/golden-butterfly/",
+  "location": "Section 'How Did the Golden Butterfly Portfolio Handle Major Market Events?', table 'Period | Golden Butterfly | S&P 500'",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": 0.08,
+   "2001": 0.034,
+   "2002": 0.029,
+   "2008": -0.046,
+   "2022": -0.129,
+   "2025": 0.193
+  },
+  "stats": null,
+  "costs": "Not stated.",
+  "proxies": "Not stated for this table (elsewhere the page links Portfolio Visualizer backtests and suggests VTI/VIOV/VGLT/VGSH/SGOL at 20% each).",
+  "confidence": "exact",
+  "notes": "Transcribed exactly, but the author writes 'All figures approximate'; treat as about +/-0.5-1pp. Rebalancing convention not stated. Only six years are given."
+ },
+ {
+  "strategy_id": "portfoliocharts_golden_butterfly",
+  "source_title": "PortfoliosLab - Golden Butterfly Portfolio",
+  "source_url": "https://portfolioslab.com/portfolio/golden-butterfly",
+  "location": "'Monthly Returns' table (Total column) and 'Yearly Performance Comparison' table; since-inception stats from embedded page indicators and the drawdown table",
+  "period": {
+   "start": "2021-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2021": 0.0936,
+   "2022": -0.1364,
+   "2023": 0.1216,
+   "2024": 0.1038,
+   "2025": 0.1833
+  },
+  "stats": {
+   "cagr": 0.0763,
+   "vol": 0.0907,
+   "sharpe": 0.64,
+   "max_dd": -0.2032
+  },
+  "costs": "Dividend-adjusted ETF prices, so net of ETF expense ratios (weighted 0.196%). No transaction costs mentioned.",
+  "proxies": "VTI 20 / IJS 20 / TLT 20 / SHY 20 / GLD 20",
+  "confidence": "exact",
+  "notes": "REBALANCED QUARTERLY ('Every 3 months'), unlike the annual convention. Only 2021-2026 is public. NB the stats are NOT for the annual_returns window: they cover 2004-11-18 to 2026-11-20 on daily data. MaxDD -20.32% (2008-05-21 to 2008-11-20). 2026 YTD to 20 Nov = +0.62%."
+ },
+ {
+  "strategy_id": "dalio_all_weather",
+  "source_title": "Tony Robbins, 'Tony Robbins: Ray Dalio's \"All Weather\" Portfolio', Yahoo Finance, 18 Nov 2014 (companion to MONEY Master the Game)",
+  "source_url": "https://ca.finance.yahoo.com/news/tony-robbins--ray-dalio-s--all-weather--portfolio-161619133.html",
+  "location": "Numbered list after 'During what I call the \"modern period,\" 30 years from 1984 through 2013'",
+  "period": {
+   "start": "1984-01",
+   "end": "2013-12"
+  },
+  "annual_returns": {
+   "2008": -0.0393
+  },
+  "stats": {
+   "cagr": 0.0972,
+   "vol": 0.0763
+  },
+  "costs": "'net of fees' (fee level and type not specified).",
+  "proxies": "30% stocks ('for instance, the S&P 500 or other indexes'), 15% intermediate Treasuries (7-10y), 40% long-term Treasuries (20-25y), 7.5% gold, 7.5% commodities. Specific indices or funds not given.",
+  "confidence": "exact",
+  "notes": "Published by Robbins; the backtest came from his advisory team and is undocumented. Rebalancing 'at least annually'; the backtest convention is not stated. 4 negative years out of 30; worst year -3.93% (2008). Unclear whether the 7.63% SD uses annual or monthly returns. The book's full year-by-year table was not found publicly. Also quoted by Ben Carlson (awealthofcommonsense.com) and Canadian Couch Potato."
+ },
+ {
+  "strategy_id": "dalio_all_weather",
+  "source_title": "Lazy Portfolio ETF - Ray Dalio All Weather Portfolio: ETF allocation and returns",
+  "source_url": "https://www.lazyportfolioetf.com/allocation/ray-dalio-all-weather/",
+  "location": "'Monthly Returns and Seasonality' table, Year/Return column, from the inline `const _d` JSON rend.sliceArray.MAX.rendList (monthly, 1871-01..2026-10); stats from the Metrics and Risk Indicators tables, 30Y column",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": 0.10146,
+   "2001": -0.02774,
+   "2002": 0.07765,
+   "2003": 0.13957,
+   "2004": 0.09407,
+   "2005": 0.08552,
+   "2006": 0.06926,
+   "2007": 0.11877,
+   "2008": 0.02385,
+   "2009": 0.02708,
+   "2010": 0.12881,
+   "2011": 0.15644,
+   "2012": 0.07023,
+   "2013": 0.01714,
+   "2014": 0.12886,
+   "2015": -0.03231,
+   "2016": 0.06498,
+   "2017": 0.11545,
+   "2018": -0.03019,
+   "2019": 0.17932,
+   "2020": 0.15884,
+   "2021": 0.0827,
+   "2022": -0.18385,
+   "2023": 0.09947,
+   "2024": 0.06357,
+   "2025": 0.13256
+  },
+  "stats": {
+   "cagr": 0.0724,
+   "vol": 0.0752,
+   "sharpe": 0.67,
+   "max_dd": -0.2058
+  },
+  "costs": "No transaction fees or taxes; dividends reinvested. ETF expense ratios are implicit only within live ETF data.",
+  "proxies": "VTI 30 / TLT 40 / IEI 15 (iShares 3-7 Year Treasury, NOT 7-10y) / DBC 7.5 / GLD 7.5. Before the ETFs existed, equivalent series are used up to: VTI Dec 2001, TLT Dec 2002, IEI Dec 2007, DBC Dec 2006, GLD Dec 2004.",
+  "confidence": "exact",
+  "notes": "NOMINAL. Rebalanced every 1 January. Matches the page's rendered yearly figures to 2 dp; re-checked from the saved monthly CSV. 2026 Jan-Oct = +5.31%. Stats are the 30-year window (1996-11..2026-10). From the same monthly data, 2000-01..2026-10: CAGR 6.85%, vol 7.56%, MaxDD -20.58%. 2008 is +2.38% here vs Robbins's -3.93% (commodity proxy, intermediate duration and fees probably explain it). Monthly series: bench_dl/agentC/lz_aw_monthly.csv."
+ },
+ {
+  "strategy_id": "dalio_all_weather",
+  "source_title": "PortfoliosLab - Ray Dalio All Weather Portfolio",
+  "source_url": "https://portfolioslab.com/portfolio/ray-dalio-all-weather",
+  "location": "'Monthly Returns' table (Total column) and 'Yearly Performance Comparison' table; since-inception stats from embedded page indicators and the drawdown table",
+  "period": {
+   "start": "2021-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2021": 0.0822,
+   "2022": -0.1933,
+   "2023": 0.0995,
+   "2024": 0.06,
+   "2025": 0.1345
+  },
+  "stats": {
+   "cagr": 0.0651,
+   "vol": 0.0809,
+   "sharpe": 0.58,
+   "max_dd": -0.2377
+  },
+  "costs": "Dividend-adjusted ETF prices, so net of ETF expense ratios (weighted 0.185%). No transaction costs mentioned.",
+  "proxies": "VTI 30 / TLT 40 / IEF 15 (7-10y Treasuries) / GLD 7.5 / DBC 7.5",
+  "confidence": "exact",
+  "notes": "Rebalanced 'Every year' (date not stated). Only 2021-2026 is public. NB the stats are NOT for the annual_returns window: they cover 2006-02-03 (DBC inception) to 2026-11-20 on daily data. MaxDD -23.77% (2021-11-10 to 2022-10-20). 2026 YTD to 20 Nov = +1.04%."
+ },
+ {
+  "strategy_id": "bench_spy",
+  "source_title": "A. Damodaran (NYU Stern), Historical Returns on Stocks, Bonds and Bills: 1928-2025 (histretSP.xls, updated 5 Jan 2026)",
+  "source_url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html (xls: https://www.stern.nyu.edu/~adamodar/pc/datasets/histretSP.xls)",
+  "location": "Sheet 'Returns by year', column 'S&P 500 (includes dividends)'",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": -0.090318,
+   "2001": -0.118498,
+   "2002": -0.21966,
+   "2003": 0.283558,
+   "2004": 0.107428,
+   "2005": 0.048345,
+   "2006": 0.156126,
+   "2007": 0.054847,
+   "2008": -0.365523,
+   "2009": 0.259352,
+   "2010": 0.148211,
+   "2011": 0.020984,
+   "2012": 0.158906,
+   "2013": 0.321451,
+   "2014": 0.135244,
+   "2015": 0.013789,
+   "2016": 0.117731,
+   "2017": 0.216055,
+   "2018": -0.042269,
+   "2019": 0.312117,
+   "2020": 0.180232,
+   "2021": 0.284689,
+   "2022": -0.180375,
+   "2023": 0.260607,
+   "2024": 0.248786,
+   "2025": 0.177237
+  },
+  "stats": null,
+  "costs": "Index, no fees.",
+  "proxies": "S&P 500 index level + dividends (annual computation from year-end level and dividends paid).",
+  "confidence": "exact",
+  "notes": "Damodaran's annual computation differs slightly from S&P DJI's official total return (monthly reinvestment), e.g. 2000 -9.03% here vs -9.10% and 2008 -36.55% vs -37.00% in the Slickcharts total-return table (separate record). Use for rough checks."
+ },
+ {
+  "strategy_id": "bench_spy",
+  "source_title": "Slickcharts, 'S&P 500 Total Returns by Year Since 1926'",
+  "source_url": "https://www.slickcharts.com/sp500/returns",
+  "location": "Table 'S&P 500 Total Returns by Year'",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": -0.091,
+   "2001": -0.1189,
+   "2002": -0.221,
+   "2003": 0.2868,
+   "2004": 0.1088,
+   "2005": 0.0491,
+   "2006": 0.1579,
+   "2007": 0.0549,
+   "2008": -0.37,
+   "2009": 0.2646,
+   "2010": 0.1506,
+   "2011": 0.0211,
+   "2012": 0.16,
+   "2013": 0.3239,
+   "2014": 0.1369,
+   "2015": 0.0138,
+   "2016": 0.1196,
+   "2017": 0.2183,
+   "2018": -0.0438,
+   "2019": 0.3149,
+   "2020": 0.184,
+   "2021": 0.2871,
+   "2022": -0.1811,
+   "2023": 0.2629,
+   "2024": 0.2502,
+   "2025": 0.1788
+  },
+  "stats": null,
+  "costs": "Index, no fees.",
+  "proxies": "S&P 500 total return (price + dividends).",
+  "confidence": "second-hand",
+  "notes": "Aggregator site (not S&P DJI); values match the commonly cited official S&P 500 total returns (e.g. 2008 -37.00%, 2022 -18.11%). Official S&P DJI factsheet/site returned HTTP 403 to automated download. Page also lists 2026 YTD (excluded)."
+ },
+ {
+  "strategy_id": "bench_spy",
+  "source_title": "ActuallyFinance, Recession Timing Dashboard - 'Buy and hold' (decoded growth chart)",
+  "source_url": "https://actuallyfin.github.io/recession-timing-dashboard/",
+  "location": "SVG growth-chart polyline 'benchmark_buy_hold', decoded",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": -0.0974,
+   "2001": -0.1157,
+   "2002": -0.218,
+   "2003": 0.2832,
+   "2004": 0.1079,
+   "2005": 0.049,
+   "2006": 0.1582,
+   "2007": 0.049,
+   "2008": -0.3673,
+   "2009": 0.2658,
+   "2010": 0.1503,
+   "2011": 0.0172,
+   "2012": 0.1622,
+   "2013": 0.3233,
+   "2014": 0.1347,
+   "2015": 0.0103,
+   "2016": 0.1193,
+   "2017": 0.2191,
+   "2018": -0.0467,
+   "2019": 0.3143,
+   "2020": 0.1822,
+   "2021": 0.2876,
+   "2022": -0.1825,
+   "2023": 0.2615,
+   "2024": 0.2486,
+   "2025": 0.1782
+  },
+  "stats": null,
+  "costs": "None.",
+  "proxies": "Adjusted SPY (S&P TR proxy before 1993)",
+  "confidence": "read-from-chart",
+  "notes": "Included only to show the decoding precision of the ActuallyFinance records (compare with the Slickcharts/Damodaran S&P records). Not a primary benchmark."
+ },
+ {
+  "strategy_id": "bench_spy",
+  "source_title": "Keller (2022), Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA), SSRN 4166845, v0.98 (18 Jul 2022)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845",
+  "location": "Fig 12 'SPY', p.10, row RS Jun02-Jun22",
+  "period": {
+   "start": "2002-07",
+   "end": "2022-06"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.089,
+   "vol": 0.148,
+   "sharpe": 0.53,
+   "max_dd": -0.508
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Keller's SPY series (S&P 500 total return index calibrated to SPY ETF incl. fees pre-inception), buy & hold.",
+  "confidence": "exact",
+  "notes": "Columns R, D, V, SR (Sharpe excess over risk-free). . period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). SSRN-generated PDF (footer 'Electronic copy available at: https://ssrn.com/abstract=4166845') read from a public mirror copy; SSRN direct download is bot-protected."
+ },
+ {
+  "strategy_id": "bench_spy",
+  "source_title": "Keller (2022), Relative and Absolute Momentum in Times of Rising/Low Yields: Bold Asset Allocation (BAA), SSRN 4166845, v0.98 (18 Jul 2022)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845",
+  "location": "Fig 12 'SPY', p.10, row IS2 Jun12-Jun22",
+  "period": {
+   "start": "2012-07",
+   "end": "2022-06"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.126,
+   "vol": 0.137,
+   "sharpe": 0.89,
+   "max_dd": -0.2
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "Keller's SPY series (S&P 500 total return index calibrated to SPY ETF incl. fees pre-inception), buy & hold.",
+  "confidence": "exact",
+  "notes": "Columns R, D, V, SR (Sharpe excess over risk-free). . period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). SSRN-generated PDF (footer 'Electronic copy available at: https://ssrn.com/abstract=4166845') read from a public mirror copy; SSRN direct download is bot-protected."
+ },
+ {
+  "strategy_id": "bench_6040_spy_ief",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 16 'The 60/40 benchmark', p.12, row R20 Dec02-Dec22",
+  "period": {
+   "start": "2003-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.074,
+   "vol": 0.088,
+   "sharpe": 0.71,
+   "max_dd": -0.295
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "60% SPY / 40% IEF, monthly rebalanced (ETF-calibrated index history).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). Benchmark used throughout Keller papers; handy to sanity-check SPY/IEF data. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "bench_6040_spy_ief",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 16 'The 60/40 benchmark', p.12, row R10 Dec12-Dec22",
+  "period": {
+   "start": "2013-01",
+   "end": "2022-12"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.078,
+   "vol": 0.091,
+   "sharpe": 0.79,
+   "max_dd": -0.205
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "60% SPY / 40% IEF, monthly rebalanced (ETF-calibrated index history).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). Benchmark used throughout Keller papers; handy to sanity-check SPY/IEF data. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "bench_6040_spy_ief",
+  "source_title": "Keller & Keuning (2023), Dual and Canary Momentum with Rising Yields/Inflation: Hybrid Asset Allocation (HAA), SSRN 4346906, v0.98 (5 Mar 2023)",
+  "source_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4346906",
+  "location": "Fig 16 'The 60/40 benchmark', p.12, row R1 Dec21-Dec22",
+  "period": {
+   "start": "2022-01",
+   "end": "2022-12"
+  },
+  "annual_returns": {
+   "2022": -0.145
+  },
+  "stats": {
+   "cagr": -0.145,
+   "vol": 0.164,
+   "sharpe": -0.95,
+   "max_dd": -0.205
+  },
+  "costs": "After costs: 0.1% one-way transaction cost assumed (TC=0.1%). Monthly total-return data; signals at month-end close, traded at that close, full monthly rebalance.",
+  "proxies": "60% SPY / 40% IEF, monthly rebalanced (ETF-calibrated index history).",
+  "confidence": "exact",
+  "notes": "Keller table columns R (CAGR), D (max monthly drawdown), V (annual vol), SR (Sharpe, excess over risk-free). Benchmark used throughout Keller papers; handy to sanity-check SPY/IEF data. period.start = first month of returns included (Keller 'Dec 12 - Dec 22' = month-end Dec 2012 to month-end Dec 2022 = returns Jan 2013-Dec 2022). PDF read from a public mirror copy (SSRN download is bot-protected)."
+ },
+ {
+  "strategy_id": "bench_ief_rough_ust10y",
+  "source_title": "A. Damodaran (NYU Stern), Historical Returns on Stocks, Bonds and Bills: 1928-2025 (histretSP.xls, updated 5 Jan 2026)",
+  "source_url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html",
+  "location": "Sheet 'Returns by year', column 'US T. Bond (10-year)'",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": 0.166553,
+   "2001": 0.055722,
+   "2002": 0.151164,
+   "2003": 0.003753,
+   "2004": 0.044907,
+   "2005": 0.028675,
+   "2006": 0.01961,
+   "2007": 0.102099,
+   "2008": 0.201013,
+   "2009": -0.111167,
+   "2010": 0.084629,
+   "2011": 0.160353,
+   "2012": 0.029716,
+   "2013": -0.091046,
+   "2014": 0.107462,
+   "2015": 0.012843,
+   "2016": 0.006906,
+   "2017": 0.028017,
+   "2018": -0.000167,
+   "2019": 0.096356,
+   "2020": 0.113319,
+   "2021": -0.04416,
+   "2022": -0.178282,
+   "2023": 0.0388,
+   "2024": -0.016372,
+   "2025": 0.077955
+  },
+  "stats": null,
+  "costs": "No fees.",
+  "proxies": "Constant-maturity 10-year Treasury: return computed from FRED year-end 10y yields (coupon + price change, maturity held at 10y).",
+  "confidence": "exact",
+  "notes": "ROUGH check only for IEF (7-10y Treasury ETF, shorter duration ~7.5y, fees 0.15%): expect the same sign and broadly similar size, with IEF moving less in big rate-move years because of its shorter duration."
+ },
+ {
+  "strategy_id": "bench_tbill_3m",
+  "source_title": "A. Damodaran (NYU Stern), Historical Returns on Stocks, Bonds and Bills: 1928-2025 (histretSP.xls, updated 5 Jan 2026)",
+  "source_url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html",
+  "location": "Sheet 'Returns by year', column '3-month T.Bill'",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": 0.06,
+   "2001": 0.0348,
+   "2002": 0.0164,
+   "2003": 0.0103,
+   "2004": 0.014,
+   "2005": 0.0322,
+   "2006": 0.0485,
+   "2007": 0.0448,
+   "2008": 0.014,
+   "2009": 0.0015,
+   "2010": 0.0014,
+   "2011": 0.0005,
+   "2012": 0.0009,
+   "2013": 0.0006,
+   "2014": 0.0003,
+   "2015": 0.0005,
+   "2016": 0.0032,
+   "2017": 0.0095,
+   "2018": 0.0197,
+   "2019": 0.0211,
+   "2020": 0.0036,
+   "2021": 0.0004,
+   "2022": 0.0209,
+   "2023": 0.0528,
+   "2024": 0.0518,
+   "2025": 0.0421
+  },
+  "stats": null,
+  "costs": "No fees.",
+  "proxies": "3-month T-bill: average of the year's T-bill rates (Damodaran switched from year-end to average rate).",
+  "confidence": "exact",
+  "notes": "Approximate cash return; useful for BIL/SHV/cash legs."
+ },
+ {
+  "strategy_id": "faber_gtaa13",
+  "source_title": "Faber 2013 update - GTAA 13 (timing, T-bill cash)",
+  "source_url": "https://mebfaber.com/wp-content/uploads/2016/05/SSRN-id962461.pdf",
+  "location": "Figure 18 'Buy and Hold and GTAA Portfolios, 1973-2012', table image p.45, column 'GTAA 13' (identical to 'GTAA 13 MOD' in Figure 20, p.52)",
+  "period": {
+   "start": "1973-01",
+   "end": "2012-12"
+  },
+  "annual_returns": {
+   "2000": 0.089,
+   "2001": 0.0439,
+   "2002": 0.0303,
+   "2003": 0.2809,
+   "2004": 0.1514,
+   "2005": 0.1078,
+   "2006": 0.1645,
+   "2007": 0.1233,
+   "2008": -0.0325,
+   "2009": 0.1839,
+   "2010": 0.1022,
+   "2011": 0.0265,
+   "2012": 0.0235
+  },
+  "stats": {
+   "cagr": 0.1204,
+   "vol": 0.0709,
+   "sharpe": 0.94,
+   "max_dd": -0.1074
+  },
+  "costs": "Gross.",
+  "proxies": "13-asset weights: 5% each US LC value/LC mom/SC value/SC mom (French-Fama); 10% EAFE; 10% EEM; 5% each US10Y, foreign 10Y, US corp, US30Y (GFD); 10% GSCI; 10% gold; 20% NAREIT",
+  "confidence": "exact",
+  "notes": "Context for the Agg models (not one of the replicated ids). Same table, 'B & H 13', 2000-2012: 6.94, 1.11, 3.65, 32.24, 18.94, 13.75, 17.25, 8.94, -28.26, 26.97, 19.29, 1.97, 13.93 (%)."
+ },
+ {
+  "strategy_id": "faber_sp500_10m_sma_timing",
+  "source_title": "Faber JPM 2018 - US stocks timing (single-asset sleeve of GTAA-5)",
+  "source_url": "https://allocatortraining.com/wp-content/uploads/2023/06/A-Quantitative-Approach-to-Tactical-Asset-Allocation.pdf",
+  "location": "Exhibit 5 'U.S. Stocks and Timing Annual Returns, 2006-2016' and Exhibit 4, p.160",
+  "period": {
+   "start": "2006-01",
+   "end": "2016-12"
+  },
+  "annual_returns": {
+   "2006": 0.158,
+   "2007": 0.0549,
+   "2008": 0.0124,
+   "2009": 0.2271,
+   "2010": -0.0125,
+   "2011": -0.0177,
+   "2012": 0.1103,
+   "2013": 0.3239,
+   "2014": 0.1369,
+   "2015": -0.0412,
+   "2016": 0.0504
+  },
+  "stats": {
+   "cagr": 0.0853,
+   "vol": 0.0938,
+   "sharpe": 0.8,
+   "max_dd": -0.1673
+  },
+  "costs": "Gross.",
+  "proxies": "S&P 500 TR (GFD); T-bill cash",
+  "confidence": "exact",
+  "notes": "Handy for checking the SPY 10-month-SMA sleeve of GTAA-5. Buy-and-hold S&P 500 TR in the same exhibit, 2006-2016: 0.1580, 0.0549, -0.3700, 0.2646, 0.1506, 0.0211, 0.1600, 0.3239, 0.1369, 0.0138, 0.1196; stats 7.66% / 14.67% / 0.45 / -50.95%."
+ },
+ {
+  "strategy_id": "philoeconomics_trend_only_10m_sma",
+  "source_title": "Philosophical Economics, Growth and Trend, Jan 2016 (MMA trade table)",
+  "source_url": "https://www.philosophicaleconomics.com/2016/01/gtt/",
+  "location": "Trade table image spx1927-2015a.jpg (S&P 500 MMA entries/exits, summary box)",
+  "period": {
+   "start": "1928-02",
+   "end": "2015-11"
+  },
+  "annual_returns": null,
+  "stats": {
+   "cagr": 0.097
+  },
+  "costs": "0.6% round-trip slip.",
+  "proxies": "S&P 500 TR vs its 10m MA; T-bills",
+  "confidence": "exact",
+  "notes": "Trend-only component (useful for debugging the GTT trend leg). Summary box: ANN TR RISK 9.7%, MMA 9.7%. EXACT post-2000 trades: Exit 2000.10 (1774.46/16.71) -> Enter 2002.03 (1451.63/17.54); Exit 2002.04 (1364.14/17.56) -> Enter 2003.04 (1182.31/17.81); Exit 2007.12 (2051.80/20.53) -> Enter 2009.07 (1439.30/20.83); Exit 2010.06 (1531.31/20.85) -> Enter 2010.07 (1639.37/20.86); Exit 2010.08 (1564.35/20.86) -> Enter 2010.09 (1704.09/20.86); Exit 2011.08 (1851.03/20.88) -> Enter 2012.01 (2010.54/20.88); Exit 2015.08 (3244.82/20.92) -> Enter 2015.10 (3432.26/20.92). The index levels can also check an S&P TR series (e.g. 2007.12 to 2009.07 = 1439.30/2051.80)."
+ },
+ {
+  "strategy_id": "philoeconomics_trend_only_10m_sma",
+  "source_title": "ActuallyFinance, Recession Timing Dashboard - '10M MA always on' (decoded growth chart)",
+  "source_url": "https://actuallyfin.github.io/recession-timing-dashboard/",
+  "location": "SVG growth-chart polyline 'benchmark_sma', decoded",
+  "period": {
+   "start": "2000-01",
+   "end": "2025-12"
+  },
+  "annual_returns": {
+   "2000": 0.0,
+   "2001": 0.0383,
+   "2002": -0.0434,
+   "2003": 0.2275,
+   "2004": 0.1004,
+   "2005": 0.0454,
+   "2006": 0.1582,
+   "2007": 0.0526,
+   "2008": 0.0172,
+   "2009": 0.2275,
+   "2010": -0.0136,
+   "2011": -0.0203,
+   "2012": 0.1079,
+   "2013": 0.3233,
+   "2014": 0.1347,
+   "2015": -0.0402,
+   "2016": 0.049,
+   "2017": 0.2149,
+   "2018": -0.0596,
+   "2019": 0.1041,
+   "2020": 0.1503,
+   "2021": 0.2876,
+   "2022": -0.2018,
+   "2023": 0.0966,
+   "2024": 0.2486,
+   "2025": 0.1232
+  },
+  "stats": null,
+  "costs": "0 bps.",
+  "proxies": "SPY/S&P TR proxy vs its 10m MA at month-end; cash proxy",
+  "confidence": "read-from-chart",
+  "notes": "Read from chart (approx.), +/-0.35pp. Trend-only leg, useful for debugging. Compare with Faber's own S&P 10-month timing yearly returns for 2006-2016 (faber_sp500_10m_sma_timing record), e.g. 2008 +1.24% vs about +1.7% here."
+ }
+]
