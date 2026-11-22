@@ -1,0 +1,123 @@
+[
+  {
+    "id": "hop_trend_multi_asset",
+    "name": "Multi-Asset Trend Following (1, 3 and 12-month time-series momentum)",
+    "author": "Brian K. Hurst, Yao Hua Ooi, Lasse H. Pedersen",
+    "family": "trend-following",
+    "source": {
+      "title": "A Century of Evidence on Trend-Following Investing (Journal of Portfolio Management)",
+      "year": 2017,
+      "url": "https://www.aqr.com/Insights/Research/Journal-Article/A-Century-of-Evidence-on-Trend-Following-Investing"
+    },
+    "allocatesmartly_url": null,
+    "rebalance": "monthly; signal and trade at the close of the last trading day of the month; full rebalance every month",
+    "universe": {
+      "risky": [
+        "SPY",
+        "IWM",
+        "EFA",
+        "EEM",
+        "VNQ",
+        "TLT",
+        "IEF",
+        "LQD",
+        "TIP",
+        "HYG",
+        "GLD",
+        "SLV",
+        "DBC",
+        "USO",
+        "UUP"
+      ],
+      "defensive": [],
+      "canary": [],
+      "cash": "BIL (also the financing leg for longs above 100% and the collateral for shorts)"
+    },
+    "signal": "s_i = mean(sign(r1_i - r1_cash), sign(r3_i - r3_cash), sign(r12_i - r12_cash)) in [-1, 1]; raw w_i = s_i x (10% / sigma_i) / N, sigma_i = annualised EWMA volatility of daily returns (60-day half-life); portfolio scaled to 10% ex-ante volatility with the 126-day covariance matrix, scale capped at 4x.",
+    "rules": [
+      "At the close of the last trading day of each month, for each asset with at least 13 months of history, compare its 1, 3 and 12-month total return with cash over the same windows. Each window votes +1 (above cash) or -1 (below cash); the signal is the average vote, so it ranges from fully long (+1) to fully short (-1).",
+      "Size each position to the same risk: 10% annualised volatility divided by the number of assets, using an exponentially weighted volatility of daily returns (60-day half-life). Low-volatility assets such as Treasuries therefore get larger notional weights than equities or commodities.",
+      "Scale the whole book so its expected volatility, from the last 126 trading days of daily returns, is 10% a year (never more than 4x the raw weights). Cash takes the remainder: it is negative when the book is leveraged and above 100% when it is net short.",
+      "Hold for one month, then repeat."
+    ],
+    "parameters": {
+      "lookbacks_months": [
+        1,
+        3,
+        12
+      ],
+      "position_vol_target": "10% / N per asset",
+      "portfolio_vol_target": 0.1,
+      "vol_estimate": "EWMA of daily returns, 60-day half-life",
+      "covariance_window_days": 126,
+      "max_scale": 4.0,
+      "short_selling": true
+    },
+    "data_needs": [
+      "daily and month-end total-return closes for the 15 ETFs (index proxies before the ETFs where the lab has them)",
+      "13-week T-bill return for cash"
+    ],
+    "earliest_etf_start": "2001 with proxies; TIP, HYG, USO and UUP join when their ETFs have 13 months of history (2004-2008)",
+    "plain_english": "A managed-futures style trend follower built from ETFs. It goes long assets that have beaten cash over the last 1, 3 and 12 months and short those that have lagged, across US and international stocks, REITs, Treasuries, inflation-linked and corporate bonds, gold, silver, commodities, oil and the dollar. Every asset gets the same risk budget and the whole book targets 10% volatility, so it uses leverage on quiet assets. Its value is that it tends to make money in long equity bear markets.",
+    "notes": "Adapted from the paper's futures universe (67 markets, 1880-2016) to 15 ETFs, with monthly instead of daily rebalancing and the lab's 0.10% trading cost; no management or performance fees, no extra borrow fee on short ETF positions, and leverage financed at the T-bill rate (a broker charges more). Hurst, Ooi and Pedersen build on Moskowitz, Ooi and Pedersen (2012), Time Series Momentum, Journal of Financial Economics 104(2), https://doi.org/10.1016/j.jfineco.2011.11.003. Added from a cross-asset diversifier study (Nov 2026), where a weekly version had a correlation of about -0.04 with an equity-timing portfolio and negative correlation in months when the Nasdaq-100 fell.",
+    "as_status": "not_on_allocatesmartly",
+    "spec_status": "partial"
+  },
+  {
+    "id": "hop_trend_ex_equity",
+    "name": "Multi-Asset Trend Following, ex-equity (bonds, credit, metals, commodities, dollar)",
+    "author": "Brian K. Hurst, Yao Hua Ooi, Lasse H. Pedersen",
+    "family": "trend-following",
+    "source": {
+      "title": "A Century of Evidence on Trend-Following Investing (Journal of Portfolio Management)",
+      "year": 2017,
+      "url": "https://www.aqr.com/Insights/Research/Journal-Article/A-Century-of-Evidence-on-Trend-Following-Investing"
+    },
+    "allocatesmartly_url": null,
+    "rebalance": "monthly; signal and trade at the close of the last trading day of the month; full rebalance every month",
+    "universe": {
+      "risky": [
+        "TLT",
+        "IEF",
+        "LQD",
+        "TIP",
+        "HYG",
+        "GLD",
+        "SLV",
+        "DBC",
+        "USO",
+        "UUP"
+      ],
+      "defensive": [],
+      "canary": [],
+      "cash": "BIL (also the financing leg for longs above 100% and the collateral for shorts)"
+    },
+    "signal": "Same as hop_trend_multi_asset, without the equity and REIT ETFs.",
+    "rules": [
+      "Same rules as the multi-asset version, applied only to Treasuries, inflation-linked, corporate and high-yield bonds, gold, silver, broad commodities, oil and the US dollar.",
+      "Leaving equities out makes it a pure diversifier for a stock-heavy portfolio: its return does not depend on the equity market's direction."
+    ],
+    "parameters": {
+      "lookbacks_months": [
+        1,
+        3,
+        12
+      ],
+      "position_vol_target": "10% / N per asset",
+      "portfolio_vol_target": 0.1,
+      "vol_estimate": "EWMA of daily returns, 60-day half-life",
+      "covariance_window_days": 126,
+      "max_scale": 4.0,
+      "short_selling": true
+    },
+    "data_needs": [
+      "daily and month-end total-return closes for the 10 ETFs (index proxies before the ETFs where the lab has them)",
+      "13-week T-bill return for cash"
+    ],
+    "earliest_etf_start": "2001 with proxies; TIP, HYG, USO and UUP join when their ETFs have 13 months of history (2004-2008)",
+    "plain_english": "The same trend follower without any stocks: it rides or shorts trends in government and corporate bonds, gold, silver, commodities, oil and the dollar, with equal risk per asset and 10% target volatility. It is designed to add returns that are unrelated to the stock market.",
+    "notes": "Ex-equity variant of hop_trend_multi_asset (same adaptations: 10 ETFs, monthly rebalancing, 0.10% trading cost, no fees, no extra borrow fee, leverage financed at the T-bill rate). Added from the same cross-asset diversifier study (Nov 2026).",
+    "as_status": "not_on_allocatesmartly",
+    "spec_status": "partial"
+  }
+]

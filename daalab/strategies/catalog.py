@@ -7,7 +7,7 @@ from functools import lru_cache
 
 from ..config import RESEARCH_DIR
 
-FILES = ["strategies_keller_antonacci.json", "strategies_others.json", "macro_strategies.json"]
+FILES = ["strategies_keller_antonacci.json", "strategies_others.json", "macro_strategies.json", "strategies_additions.json"]
 
 
 @lru_cache(maxsize=None)

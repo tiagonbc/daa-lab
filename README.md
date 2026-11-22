@@ -1,10 +1,10 @@
 # DAA Lab: Dynamic Asset Allocation research platform
 
-**102 published tactical asset allocation strategies, rebuilt from scratch on Norgate data, plus macro-factor models. They are blended walk-forward into one portfolio that is tracked every month.**
+**104 published tactical asset allocation strategies, rebuilt from scratch on Norgate data, plus macro-factor models. They are blended walk-forward into one portfolio that is tracked every month.**
 
 An independent demonstration by **Tiago Costa**, prepared for a job application to the Dynamic Asset Allocation team (Total Fund Management) at Ontario Teachers' Pension Plan. It is not affiliated with or endorsed by OTPP, and it is not investment advice.
 
-**Live site:** https://tiagonbc.github.io/daa-lab/ · Signals as of **2026-10-30** · Data through **2026-11-17**
+**Live site:** https://tiagonbc.github.io/daa-lab/ · Signals as of **2026-10-30** · Data through **2026-11-20**
 
 ---
 
@@ -12,7 +12,7 @@ An independent demonstration by **Tiago Costa**, prepared for a job application 
 
 Dynamic (or tactical) asset allocation means changing how much you hold in stocks, bonds, real assets and cash when markets or the economy change. Researchers have published dozens of rule-based ways to do this. This project:
 
-1. **Rebuilds the research.** 102 strategies from the literature: Faber, Antonacci, Keller, Butler, Varadi, Livingston and others, plus macro-factor models that follow Macrosynergy's method. Each one is coded from its original rules, and any ambiguity is documented.
+1. **Rebuilds the research.** 104 strategies from the literature: Faber, Antonacci, Keller, Butler, Varadi, Livingston and others, plus macro-factor models that follow Macrosynergy's method. Each one is coded from its original rules, and any ambiguity is documented.
 2. **Tests them fairly.** All use the same data (Norgate, dividends reinvested), the same timing (signals and trades at the month-end close) and the same cost (0.10% of value traded). Before ETFs existed, validated index proxies fill the history.
 3. **Picks without hindsight.** Every December the blend ranks strategies on Sharpe and Ulcer Performance over the past 10 years. It keeps the top **5** whose returns correlate at most **0.7** with each other, using only data available at that time. The blend's record is therefore out-of-sample.
 4. **Thinks like a total fund.** The blend's view is also tested as an *overlay* on a liquid proxy of OTPP's 2025 asset mix, sized to an active-risk (tracking-error) budget.
@@ -110,4 +110,4 @@ python -m http.server 8791 --directory docs
 
 Tiago Costa · tiagonbc@gmail.com · [linkedin.com/in/tiagonbc](https://www.linkedin.com/in/tiagonbc)
 
-*Last generated 2026-11-18 18:37 UTC.*
+*Last generated 2026-11-22 03:58 UTC.*
